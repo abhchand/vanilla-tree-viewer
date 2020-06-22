@@ -18,18 +18,20 @@
        * of this file so the DOM loads before executing the script.
        */
       document.addEventListener('DOMContentLoaded', function() {
-        var urlPrefix = 'https://raw.githubusercontent.com/openstreetmap/openstreetmap-website/master';
-
         // Generate the list of files and their source URL's
-        var files = [
+        const files = [
           {
-            path: 'app/controllers/application_controller.rb',
-            url: `${urlPrefix}/app/controllers/application_controller.rb`
+            path: 'src/dateParser.js',
+            url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/dateParser.js'
           },
           {
-            path: '/app/assets/stylesheets/embed.scss',
-            url: `${urlPrefix}/app/assets/stylesheets/embed.scss`,
-            options: { language: 'css' }
+            path: 'src/index.js',
+            url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/index.js'
+          },
+          {
+            path: '/package.json',
+            url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
+            options: { language: 'json' }
           }
         ];
 
@@ -37,7 +39,7 @@
          * Define any global options that apply to all files.
          * Can be overridden per file as shown above.
          */
-        var globalOptions = { language: 'ruby' }
+        var globalOptions = { language: 'javascript' }
 
         // Render the viewer on to the desired DOM ID (e.g. `#example`);
         var viewer = new VanillaTreeViewer.default('example', files, globalOptions);

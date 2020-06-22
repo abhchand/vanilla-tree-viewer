@@ -2,28 +2,22 @@ import VanillaTreeViewer from '../../src/components/VanillaTreeViewer/VanillaTre
 
 const files = [
   {
-    path: 'app/controllers/application_controller.rb',
-    url: 'https://raw.githubusercontent.com/openstreetmap/openstreetmap-website/master/app/controllers/application_controller.rb'
+    path: 'src/dateParser.js',
+    url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/dateParser.js'
   },
   {
-    path: '/app/assets/stylesheets/embed.scss',
-    url: 'https://raw.githubusercontent.com/openstreetmap/openstreetmap-website/master/app/assets/stylesheets/embed.scss',
-    options: {
-      language: 'css'
-    }
+    path: 'src/index.js',
+    url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/index.js'
   },
   {
-    path: '/app/assets/javascripts/id.js',
-    url: 'https://raw.githubusercontent.com/openstreetmap/openstreetmap-website/master/app/assets/javascripts/id.js',
-    selected: true,
-    options: {
-      language: 'javascript'
-    }
+    path: '/package.json',
+    url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
+    options: { language: 'json' }
   }
 ];
 
 const options = {
-  language: 'ruby'
+  language: 'javascript'
 }
 
 let viewer = new VanillaTreeViewer('app', files, options);
