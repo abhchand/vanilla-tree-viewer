@@ -1,4 +1,4 @@
-import PubSub from './Pubsub';
+import PubSub from './PubSub';
 
 class Store {
 
