@@ -1,4 +1,4 @@
-import VanillaTreeViewer from '../../src/components/VanillaTreeViewer/VanillaTreeViewer';
+import VanillaTreeViewer from '../src/components/VanillaTreeViewer/VanillaTreeViewer';
 
 const files = [
   {
