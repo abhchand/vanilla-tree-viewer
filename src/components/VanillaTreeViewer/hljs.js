@@ -1,5 +1,6 @@
 import hljs from 'highlight.js/lib/core';
 
+// If updating this, manually update the README as well
 const HLJS_VERSION = '10.1.0';
 
 const hljsStyleUrl = (styleName) => {
