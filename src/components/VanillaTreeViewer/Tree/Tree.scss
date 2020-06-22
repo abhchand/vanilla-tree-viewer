@@ -1,0 +1,41 @@
+@import "components/VanillaTreeViewer/Breakpoints.scss";
+@import "components/VanillaTreeViewer/Colors.scss";
+
+.vanilla-tree-viewer__tree {
+  box-sizing: border-box;
+  min-width: 200px;
+  height: 200px;
+  margin: 0;
+  padding: 20px 0;
+  overflow-x: scroll;
+  white-space: nowrap;
+  background-color: $wimbeldon_ridge;
+
+  @include breakpoint($screen-xs) {
+    width: 200px;
+    height: auto;
+  }
+}
+
+.vanilla-tree-viewer__tree-node {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 18px;
+  padding: 6px 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $greyace;
+  }
+
+  span {
+    line-height: 18px;
+  }
+
+  svg {
+    margin-right: 7px;
+  }
+}

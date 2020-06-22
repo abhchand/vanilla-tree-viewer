@@ -1,0 +1,7 @@
+@import "components/VanillaTreeViewer/Colors.scss";
+
+.vanilla-tree-viewer__tree-node--file {
+  &.selected {
+    background-color: $greyace;
+  }
+}

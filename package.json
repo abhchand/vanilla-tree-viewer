@@ -1,0 +1,70 @@
+{
+  "name": "vanilla-tree-viewer",
+  "version": "1.0.0-beta.0",
+  "description": "A directory layout for viewing code files",
+  "main": "./dist/index.js",
+  "scripts": {
+    "lint": "eslint --ext .js --ext .jsx  src/ && stylelint src/*",
+    "lintfix": "eslint --ext .js --ext .jsx --fix src/ && stylelint src/* --fix",
+    "testonly": "jest --no-cache --config test/jest.config.js",
+    "test": "yarn run lint && yarn run testonly",
+    "dev": "NODE_ENV=development webpack-dev-server --open --debug --output-pathinfo",
+    "build": "yarn run test && rm -rf ./dist ./demo/build && NODE_ENV=production webpack --config webpack.config.js",
+    "prepublish": "yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhchand/vanilla-tree-viewer.git"
+  },
+  "keywords": [
+    "code",
+    "code-viewer",
+    "directory",
+    "file",
+    "files",
+    "highlighter",
+    "syntax",
+    "vanilla",
+    "viewer"
+  ],
+  "author": "Abhishek Chandrasekhar <me@abhchand.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhchand/vanilla-tree-viewer/issues"
+  },
+  "homepage": "https://github.com/abhchand/vanilla-tree-viewer#README",
+  "peerDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.3",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "chai": "^4.2.0",
+    "core-js": "^3.3.3",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.5.1",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "fetch-mock": "^9.10.1",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-fetch": "^2.6.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "stylelint": "^11.1.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-webpack-plugin": "^1.0.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
+  },
+  "dependencies": {
+    "highlight.js": "10.1.1"
+  }
+}

@@ -1,0 +1,23 @@
+.vanilla-tree-viewer{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;min-width:250px;margin:auto 20px;overflow:hidden;font-size:16px;font-family:monospace;border-radius:5px;box-shadow:5px 5px 15px 0 rgba(50,50,50,0.75)}@media screen and (min-width: 480px){.vanilla-tree-viewer{flex-direction:row;width:980px;height:400px;margin:auto}}
+
+.vanilla-tree-viewer__code-panel{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;height:400px}@media screen and (min-width: 480px){.vanilla-tree-viewer__code-panel{width:780px;height:auto}}
+
+.vanilla-tree-viewer__code-panel-header{height:30px;padding:5px 10px;color:#EBEDEF;background-color:#525154}
+
+.vanilla-tree-viewer__code-path{overflow-x:scroll;line-height:30px;white-space:nowrap}
+
+.vanilla-tree-viewer__code{height:100%;overflow-y:scroll}.vanilla-tree-viewer__code>pre{margin:0}.vanilla-tree-viewer__code>pre>code{height:100%;padding-left:10px !important}
+
+
+.vanilla-tree-viewer__code-loading{padding:10px}
+
+.vanilla-tree-viewer--invalid{padding:10px;color:red}
+
+.vanilla-tree-viewer__tree{box-sizing:border-box;min-width:200px;height:200px;margin:0;padding:20px 0;overflow-x:scroll;white-space:nowrap;background-color:#EBEDEF}@media screen and (min-width: 480px){.vanilla-tree-viewer__tree{width:200px;height:auto}}.vanilla-tree-viewer__tree-node{display:flex;flex-direction:row;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;height:18px;padding:6px 0;cursor:pointer}.vanilla-tree-viewer__tree-node:hover{background-color:#DBDDE0}.vanilla-tree-viewer__tree-node span{line-height:18px}.vanilla-tree-viewer__tree-node svg{margin-right:7px}
+
+
+
+.vanilla-tree-viewer__tree-node--file.selected{background-color:#DBDDE0}
+
+
+/*# sourceMappingURL=main.css.map*/

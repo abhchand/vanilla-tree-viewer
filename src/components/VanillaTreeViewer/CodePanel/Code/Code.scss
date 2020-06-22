@@ -1,0 +1,21 @@
+.vanilla-tree-viewer__code {
+
+  // For shorter files that don't have enough
+  // lines to fill up the height of the container,
+  // we set a minimum height so the background
+  // coloring extends to the full height of the
+  // code panel. This also includes setting the
+  // `<code>` tag to have full height below.
+  height: 100%;
+  overflow-y: scroll;
+
+  & > pre {
+    // Override browser default margins
+    margin: 0;
+  }
+
+  & > pre > code {
+    height: 100%;
+    padding-left: 10px !important;
+  }
+}

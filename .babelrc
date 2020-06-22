@@ -1,0 +1,21 @@
+{
+  "presets": ["@babel/preset-env"],
+  "plugins": [
+    ["module-resolver", { root: ["./src/js"] }],
+    "@babel/plugin-proposal-class-properties",
+    ["@babel/plugin-transform-runtime", { regenerator: true }]
+  ],
+
+  // Environment Specific
+  env: {
+    test: {
+      plugins: [
+        // Jest runs in node which only supports CommonJS modules
+        // Need to transform ES modules into CommonJS modules for
+        // test environment.
+        // See: https://jestjs.io/docs/en/webpack.html#using-with-webpack-2
+        '@babel/plugin-transform-modules-commonjs'
+      ]
+    }
+  }
+}
