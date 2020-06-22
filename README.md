@@ -21,8 +21,6 @@
 [![Tweet][twitter-badge]][twitter]
 
 
-# vanilla-tree-viewer
-
 Want to show off multiple files or code snippets in an elegant and space saving way?
 
 `VanillaTreeViewer` is a minimalist file browser for easily sharing several files at once.
@@ -43,7 +41,20 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
 * Easily customize-able syntax highlighting and component styling
 * Well tested
 
-# Quick Start
+# Table of Contents
+
+- [Quick Start](#quick-start)
+  - [A note on `<script>` tag placement](#a-note-on-script-tag-placement)
+- [Configuration](#configuration)
+  - [Defining Files](#defining-files)
+  - [Defining Options](#defining-options)
+  - [Less Common Languages](#less-common-languages)
+  - [Customizing `VanillaTreeViewer`'s styling](#customizing-vanilla-tree-viewers-styling)
+- [Development](#development)
+- [Issues / Contributing](#issues-contributing)
+- [Changelog](#changelog)
+
+# <a name="quick-start"></a>Quick Start
 
 Import the latest VanillaTreeViewer script and styling from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
@@ -88,7 +99,7 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
 
 For a fully functioning copy-pastable example that you can also run locally, see [`examples/simple.html`](https://github.com/abhchand/vanilla-tree-viewer/blob/master/examples/simple.html)
 
-### A note on `<script>` tag placement
+### <a name="a-note-on-script-tag-placement"></a>A note on `<script>` tag placement
 
 In the above code snippet we placed our `<script>` tag at the end so the script runs _after_ our DOM node `#my-viewer` has rendered.
 
@@ -100,9 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 ```
 
-# Configuration
+# <a name="configuration"></a>Configuration
 
-### Defining Files
+### <a name="defining-files"></a>Defining Files
 
 `VanillaTreeViewer` expects an array of objects (`files = [{}, {}, ...]`) defining the list of files to display.
 
@@ -116,7 +127,7 @@ Each file object can have the following keys:
 | `options` | No | File-level options. See `Defining Options` below for a full list of supported options |
 
 
-### Defining Options
+### <a name="defining-options"></a>Defining Options
 
 The `options` are -
 
@@ -133,7 +144,7 @@ Options can be defined per file or as a shared set of options passed to `Vanilla
 2. Shared options
 3. Default options
 
-### Less Common Languages
+### <a name="less-common-languages"></a>Less Common Languages
 
 To keep the bundle size small, `Highlight.js` ships with language support for only the most common languages by default. See the [Common Languages outlined here](https://highlightjs.org/download/)
 
@@ -148,7 +159,7 @@ Example for ActionScript:
 
 You can find the full list of language syntax definitions maintained by `highlight.js` [here](https://cdnjs.com/libraries/highlight.js/10.1.1).
 
-### Customizing `VanillaTreeViewer`'s styling
+### <a name="customizing-vanilla-tree-viewers-styling"></a>Customizing `VanillaTreeViewer`'s styling
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
@@ -156,7 +167,7 @@ The default styling for `VanillaTreeViewer` is based off the look and feel of [S
 
 The component layout is fairly simple as it's just a few `<div>`s of content. Additionally, all css classes begin with `.vanilla-tree-viewer*` as a prefix.
 
-# Development
+# <a name="development"></a>Development
 
 If you'd like to edit or develop the component locally, you can run:
 
@@ -169,13 +180,13 @@ yarn run dev
 
 This will open `http://localhost:3035` in a browser window. Any changes made to the `src/` or to the `demo/index.jsx` file will be hot reloaded.
 
-# Issues / Contributing
+# <a name="issues-contributing"></a>Issues / Contributing
 
 - If you have an issue or feature request, please [open an issue here](https://github.com/abhchand/vanilla-tree-viewer/issues/new).
 
 - Contribution is encouraged! But please open an issue first to suggest a new feature and confirm that it will be accepted before filing a pull request.
 
-# Changelog
+# <a name="changelog"></a>Changelog
 
 See [release notes](https://github.com/abhchand/vanilla-tree-viewer/releases)
 
