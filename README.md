@@ -46,8 +46,8 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
 - [Quick Start](#quick-start)
   - [A note on `<script>` tag placement](#a-note-on-script-tag-placement)
 - [Configuration](#configuration)
-  - [Defining Files](#defining-files)
-  - [Defining Options](#defining-options)
+  - [`files`](#config-files)
+  - [`options`](#config-options)
   - [Less Common Languages](#less-common-languages)
   - [Customizing `VanillaTreeViewer`'s styling](#customizing-vanilla-tree-viewers-styling)
 - [Development](#development)
@@ -114,31 +114,41 @@ document.addEventListener('DOMContentLoaded', function() {
 # <a name="configuration"></a>Configuration
 
 ```
-new VanillaTreeViewer.default(id, files, options);
+var viewer = new VanillaTreeViewer.default(id, files, options);
+viewer.render();
 ```
 
-### <a name="defining-files"></a>Defining Files
+### <a name="config-id"></a>`id`
+
+A `String` representing the HTML `id` of the DOM node the viewer will be rendered under.
+
+You can render multiple instances of the viewer, but keep in mind -
+
+* Each instance needs to have a unique HTML `id`
+* You'll need to instantiate a new `VanillaTreeViewer` object and call `render()` for each instance of the viewer
+
+### <a name="config-files"></a>`files`
 
 `VanillaTreeViewer` expects an array of objects (`files = [{}, {}, ...]`) defining the list of files to display.
 
 Each file object can have the following keys:
 
-| Key  | Required? | Description
+| Key  | Type | Required? | Description
 | ------------- | ------------- | ------------- |
-| `path`  | Yes  | The path under which the file should be displayed in the viewer tree |
-| `url`  | Yes  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents |
-| `selected` | No | Boolean indicating whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
-| `options` | No | File-level options that will apply only to this file. See `Defining Options` below for a full list of supported options |
+| `path`  | `String` | Yes  | The path under which the file should be displayed in the viewer tree |
+| `url`  | `String` | Yes  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents |
+| `selected` | `Boolean` | No | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
+| `options` | `Object{}` | No | File-level options that will apply only to this file. See `options` below for a full list of supported options |
 
 
-### <a name="defining-options"></a>Defining Options
+### <a name="config-options"></a>`options`
 
 The `options` are -
 
-| Key  | Default | Description
+| Key  | Type | Default | Description
 | ------------- | ------------- | ------------- |
-| `language` | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
-| `style` | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
+| `language` | `String` | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
+| `style` | `String` | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
 
 **NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.
 
