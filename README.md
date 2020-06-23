@@ -113,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 # <a name="configuration"></a>Configuration
 
+```
+new VanillaTreeViewer.default(id, files, options);
+```
+
 ### <a name="defining-files"></a>Defining Files
 
 `VanillaTreeViewer` expects an array of objects (`files = [{}, {}, ...]`) defining the list of files to display.
