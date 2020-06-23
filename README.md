@@ -56,7 +56,7 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
 
 # <a name="quick-start"></a>Quick Start
 
-Import the latest VanillaTreeViewer script and styling from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```erb
 <head>
@@ -85,7 +85,7 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
     {
       path: '/package.json',
       url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
-      // Override options for this specific file
+      // Override the shared options for this specific file
       options: { language: 'json' }
     }
   ];
@@ -124,7 +124,7 @@ Each file object can have the following keys:
 | `path`  | Yes  | The path under which the file should be displayed in the viewer tree |
 | `url`  | Yes  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents |
 | `selected` | No | Boolean indicating whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
-| `options` | No | File-level options. See `Defining Options` below for a full list of supported options |
+| `options` | No | File-level options that will apply only to this file. See `Defining Options` below for a full list of supported options |
 
 
 ### <a name="defining-options"></a>Defining Options
@@ -136,7 +136,7 @@ The `options` are -
 | `language` | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
 | `style` | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
 
-NOTE: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.
+**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.
 
 Options can be defined per file or as a shared set of options passed to `VanillaTreeViewer`. For each file, options are evaluated in the following order of precedence:
 
@@ -148,7 +148,9 @@ Options can be defined per file or as a shared set of options passed to `Vanilla
 
 To keep the bundle size small, `Highlight.js` ships with language support for only the most common languages by default. See the [Common Languages outlined here](https://highlightjs.org/download/)
 
-If you require syntax highlighting for a less common language, you'll have to include the syntax definitions manually. Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
+If you require syntax highlighting for a less common language, you'll have to include the syntax definitions from `Highlight.js` manually (which uses CDN JS for hosting).
+
+Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
 
 Example for ActionScript:
 
@@ -165,7 +167,7 @@ The default styling for `VanillaTreeViewer` is based off the look and feel of [S
 
 `VanillaTreeViewer` does not provide a programmatic way to customize the component itself, but if you need to customize the look and feel further you can easily override the CSS for the `VanillaTreeViewer` component.
 
-The component layout is fairly simple as it's just a few `<div>`s of content. Additionally, all css classes begin with `.vanilla-tree-viewer*` as a prefix.
+The component layout itself is fairly simple as it's just a few `<div>`s of content. Additionally, all css classes begin with `.vanilla-tree-viewer*` as a prefix.
 
 # <a name="development"></a>Development
 
