@@ -52,6 +52,7 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
   - [Less Common Languages](#less-common-languages)
   - [Customizing `VanillaTreeViewer`'s styling](#customizing-vanilla-tree-viewers-styling)
 - [Development](#development)
+- [Building Releases](#building-releases)
 - [Issues / Contributing](#issues-contributing)
 - [Changelog](#changelog)
 
@@ -196,6 +197,13 @@ yarn run dev
 ```
 
 This will open `http://localhost:3035` in a browser window. Any changes made to the `src/` or to the `demo/index.jsx` file will be hot reloaded.
+
+# <a name="building-releases"></a>Building Releases
+
+1. Install `np` globally: `yarn global add np`
+2. For non-beta releases, manually update README, `package.json`, and other assets to latest (upcoming) version
+3. Build: `yarn run build`
+4. Create new version: `np`
 
 # <a name="issues-contributing"></a>Issues / Contributing
 
