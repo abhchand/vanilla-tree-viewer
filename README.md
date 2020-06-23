@@ -93,7 +93,7 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
 
   var sharedOptions = { language: 'javascript' }
 
-  var viewer = new VanillaTreeViewer.default('my-viewer', files, sharedOptions);
+  var viewer = new VanillaTreeViewer('my-viewer', files, sharedOptions);
   viewer.render();
 </script>
 ```
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
 # <a name="configuration"></a>Configuration
 
 ```
-var viewer = new VanillaTreeViewer.default(id, files, options);
+var viewer = new VanillaTreeViewer(id, files, options);
 viewer.render();
 ```
 

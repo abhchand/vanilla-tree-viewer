@@ -129,7 +129,8 @@ var distConfig = Object.assign({}, config, {
     path: DIST_DIR,
     filename: 'index.js',
     library: 'VanillaTreeViewer',
-    libraryTarget: 'var'
+    libraryTarget: 'var',
+    libraryExport: 'default'
   },
   externals: {},
   plugins: [
