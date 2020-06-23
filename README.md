@@ -65,7 +65,7 @@ Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([Se
 </head>
 ```
 
-Define a DOM node on which to render a new viewer. You can define multiple viewers and DOM nodes, as long they each have a unique `id`.
+Define a DOM node on which to render a new viewer. You can define multiple viewers and DOM nodes, as long as they each have a unique `id`.
 
 ```erb
 <body>
