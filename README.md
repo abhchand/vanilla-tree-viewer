@@ -186,6 +186,8 @@ This will open `http://localhost:3035` in a browser window. Any changes made to 
 
 - Contribution is encouraged! But please open an issue first to suggest a new feature and confirm that it will be accepted before filing a pull request.
 
+You can also help support this project. If you've found this or any other of my projects useful, I would greatly appreciate if you could [buy me a coffee](https://www.buymeacoffee.com/abhchand)!
+
 # <a name="changelog"></a>Changelog
 
 See [release notes](https://github.com/abhchand/vanilla-tree-viewer/releases)
