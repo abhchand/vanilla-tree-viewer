@@ -225,7 +225,7 @@ This will open `http://localhost:3035` in a browser window. Any changes made to 
 1. Install `np` globally: `yarn global add np`
 2. For non-beta releases, manually update README and other version references to the latest (upcoming) version. Do not update `package.json` - that will be updated by `np` automatically.
 3. Build: `yarn run build`
-4. Commit the above changes
+4. Commit the above changes and `git push` to `master`
 5. Create new version: `np`
 
 # <a name="issues-contributing"></a>Issues / Contributing
