@@ -172,7 +172,7 @@ Example for ActionScript:
 
 ```erb
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.3/dist/index.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/languages/actionscript.min.js">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/actionscript.min.js"></script>
 ```
 
 You can find the full list of language syntax definitions maintained by `highlight.js` [here](https://cdnjs.com/libraries/highlight.js/10.1.1).

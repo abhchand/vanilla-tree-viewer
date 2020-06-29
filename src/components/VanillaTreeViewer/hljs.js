@@ -3,7 +3,7 @@
 import hljs from 'highlight.js/lib/core';
 
 // If updating this, manually update the README as well
-const HLJS_VERSION = '10.1.0';
+const HLJS_VERSION = '10.1.1';
 
 /*
  * Expose hljs globally so that external scripts can
