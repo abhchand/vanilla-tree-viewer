@@ -107,7 +107,7 @@ By default, VanillaTreeViewer supports syntax highlighting (through highlight.js
 For less common languages, you will have to register it with \`hljs\` manually
 
 Example for ActionScript:
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${HLJS_VERSION}/languages/actionscript.min.js">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${HLJS_VERSION}/languages/actionscript.min.js"></script>
 
 Ensure that this script loads *after* VanillaTreeViewer
 
