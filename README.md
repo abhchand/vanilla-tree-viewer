@@ -63,8 +63,8 @@ Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([Se
 
 ```erb
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.5/dist/main.min.css" >
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.5/dist/index.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.6/dist/main.min.css" >
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.6/dist/index.min.js"></script>
 </head>
 ```
 
@@ -172,7 +172,7 @@ Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
 Example for ActionScript:
 
 ```erb
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.5/dist/index.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.6/dist/index.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/actionscript.min.js"></script>
 ```
 
@@ -202,7 +202,7 @@ Here is one approach that handles styling for all mount nodes:
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
-`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, but if you really need to customize the look and feel further you can override [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.5/dist/main.min.css) for the `VanillaTreeViewer` component at your discretion.
+`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, but if you really need to customize the look and feel further you can override [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.6/dist/main.min.css) for the `VanillaTreeViewer` component at your discretion.
 
 * All CSS classes begin with `.vanilla-tree-viewer*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
