@@ -7,8 +7,8 @@
   flex-wrap: nowrap;
   align-items: stretch;
   justify-content: flex-start;
+  width: 100%;
   min-width: 250px;
-  margin: auto 20px;
   overflow: hidden;
   font-size: 16px;
   font-family: monospace;
@@ -18,7 +18,6 @@
 
   @include breakpoint($screen-xs) {
     flex-direction: row;
-    width: 980px;
     height: 400px;
     margin: auto;
   }

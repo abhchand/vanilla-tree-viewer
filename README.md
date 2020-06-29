@@ -50,7 +50,8 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
   - [`files`](#config-files)
   - [`options`](#config-options)
   - [Less Common Languages](#less-common-languages)
-  - [Customizing `VanillaTreeViewer`'s styling](#customizing-vanilla-tree-viewers-styling)
+  - [Configuring Width and Alignment](#configuring-width-and-alignment)
+  - [Customizing Styling](#customizing-styling)
 - [Development](#development)
 - [Building Releases](#building-releases)
 - [Issues / Contributing](#issues-contributing)
@@ -177,13 +178,34 @@ Example for ActionScript:
 
 You can find the full list of language syntax definitions maintained by `highlight.js` [here](https://cdnjs.com/libraries/highlight.js/10.1.1).
 
-### <a name="customizing-vanilla-tree-viewers-styling"></a>Customizing `VanillaTreeViewer`'s styling
+### <a name="configuring-width-and-alignment"></a>Configuring Width and Alignment
+
+By default the `VanillaTreeViewer` takes the full width of the DOM container element it's mounted on to. It is recommended that you style this DOM element accordingly to set the desired width and alignment.
+
+Here is one approach that handles styling for all mount nodes:
+
+```erb
+<head>
+  <style>
+    .vtv-mount-node {
+      margin: auto;
+      max-width: 980px;
+    }
+  </style>
+</head>
+<body>
+  <div id='my-viewer' class='vtv-mount-node'></div>
+</body>
+```
+
+### <a name="customizing-styling"></a>Customizing Styling
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
-`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, but if you need to customize the look and feel further you can easily override the CSS for the `VanillaTreeViewer` component.
+`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, but if you really need to customize the look and feel further you can override [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.4/dist/main.min.css) for the `VanillaTreeViewer` component at your discretion.
 
-The component layout itself is fairly simple as it's just a few `<div>`s of content. Additionally, all css classes begin with `.vanilla-tree-viewer*` as a prefix.
+* All CSS classes begin with `.vanilla-tree-viewer*`
+* Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
 
 # <a name="development"></a>Development
 

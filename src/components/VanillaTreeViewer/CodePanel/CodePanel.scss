@@ -2,15 +2,16 @@
 
 .vanilla-tree-viewer__code-panel {
   display: flex;
+  flex: 1;
   flex-direction: column;
   flex-wrap: nowrap;
   align-items: stretch;
   justify-content: flex-start;
 
   height: 400px;
+  overflow: hidden;
 
   @include breakpoint($screen-xs) {
-    width: 780px;
     height: auto;
   }
 }
