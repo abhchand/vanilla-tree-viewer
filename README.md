@@ -25,7 +25,7 @@ Want to show off multiple files or code snippets in an elegant and space saving 
 
 `VanillaTreeViewer` is a minimalist file browser for easily sharing several files at once.
 
-Perfect for blog posts ((example)[https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem]), tutorials, documentation, etc...
+Perfect for blog posts ([example](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
 You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [view this project on npm here](https://www.npmjs.com/package/vanilla-tree-viewer)
 
