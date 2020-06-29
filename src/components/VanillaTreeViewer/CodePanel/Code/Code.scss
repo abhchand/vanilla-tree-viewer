@@ -10,11 +10,13 @@
   overflow-y: scroll;
 
   & > pre {
+    height: 100%;
     // Override browser default margins
     margin: 0;
   }
 
   & > pre > code {
+    box-sizing: border-box;
     height: 100%;
     padding-left: 10px !important;
   }
