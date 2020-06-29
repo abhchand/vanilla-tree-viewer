@@ -6,7 +6,7 @@
 
 .vanilla-tree-viewer__code-path{overflow-x:scroll;line-height:30px;white-space:nowrap}
 
-.vanilla-tree-viewer__code{height:100%;overflow-y:scroll}.vanilla-tree-viewer__code>pre{margin:0}.vanilla-tree-viewer__code>pre>code{height:100%;padding-left:10px !important}
+.vanilla-tree-viewer__code{height:100%;overflow-y:scroll;line-height:1.2}.vanilla-tree-viewer__code>pre{height:100%;margin:0}.vanilla-tree-viewer__code>pre>code{box-sizing:border-box;height:100%;padding-left:10px !important}
 
 
 .vanilla-tree-viewer__code-loading{padding:10px}
