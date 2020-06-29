@@ -1,7 +1,15 @@
+/* eslint-disable max-lines */
+
 import hljs from 'highlight.js/lib/core';
 
 // If updating this, manually update the README as well
 const HLJS_VERSION = '10.1.0';
+
+/*
+ * Expose hljs globally so that external scripts can
+ * access it to register new languages, etc..
+ */
+window.hljs = hljs;
 
 const hljsStyleUrl = (styleName) => {
   return `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/${HLJS_VERSION}/styles/${styleName}.min.css`;
@@ -296,3 +304,5 @@ export {
   HLJS_VERSION,
   HLJS_LANGUAGES
 };
+
+/* eslint-enable max-lines */
