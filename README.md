@@ -20,15 +20,12 @@
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
-
-Want to show off multiple files or code snippets in an elegant and space saving way?
-
-`VanillaTreeViewer` is a minimalist file browser for easily sharing several files at once.
+Show off multiple files or code snippets in an elegant and space saving way.
 
 Perfect for blog posts ([example](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
-You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [view this project on npm here](https://www.npmjs.com/package/vanilla-tree-viewer)
-
+* [view a live demo](https://abhchand.me/vanilla-tree-viewer)
+* [view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)
 
 <img src="meta/demo.png" />
 
@@ -36,7 +33,7 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
 ### Features
 
 * Lightweight (built with pure JavaScript!)
-* Only 1 dependency - `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
+* Only 1 dependency! `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
 * Mobile friendly out of the box
 * Easily customize-able syntax highlighting and component styling
 * Well tested
@@ -61,7 +58,7 @@ You can [view a live demo here](https://abhchand.me/vanilla-tree-viewer) or [vie
 
 Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
-```erb
+```html
 <head>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/main.min.css" >
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/index.min.js"></script>
@@ -70,7 +67,7 @@ Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([Se
 
 Define a DOM node on which to render a new viewer. You can define multiple viewers and DOM nodes, as long as they each have a unique `id`.
 
-```erb
+```html
 <body>
   <div id='my-viewer'></div>
 </body>
@@ -78,7 +75,7 @@ Define a DOM node on which to render a new viewer. You can define multiple viewe
 
 At the bottom of your page, include a `<script>` tag that defines the list of files and initializes the viewer.
 
-```erb
+```html
 <script>
   const files = [
     {
@@ -116,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 # <a name="configuration"></a>Configuration
 
-```
+```js
 var viewer = new VanillaTreeViewer(id, files, options);
 viewer.render();
 ```
@@ -132,14 +129,14 @@ You can render multiple instances of the viewer, but keep in mind -
 
 ### <a name="config-files"></a>`files`
 
-`VanillaTreeViewer` expects an array of objects (`files = [{}, {}, ...]`) defining the list of files to display.
+`VanillaTreeViewer` expects an **array of objects** (`files = [{}, {}, ...]`) defining the list of files to display.
 
 Each file object can have the following keys:
 
 | Key  | Type | Required? | Description
 | ------------- | ------------- | ------------- | ------------- |
-| `path`  | `String` | Yes  | The path under which the file should be displayed in the viewer tree |
 | `url`  | `String` | Yes  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents |
+| `path`  | `String` | Yes  | The path under which the file should be displayed in the viewer tree |
 | `selected` | `Boolean` | No | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
 | `options` | `Object{}` | No | File-level options that will apply only to this file. See `options` below for a full list of supported options |
 
@@ -171,7 +168,7 @@ Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
 
 Example for ActionScript:
 
-```erb
+```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/index.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/actionscript.min.js"></script>
 ```
@@ -184,7 +181,7 @@ By default the `VanillaTreeViewer` takes the full width of the DOM container ele
 
 Here is one approach that handles styling for all mount nodes:
 
-```erb
+```html
 <head>
   <style>
     .vtv-mount-node {
@@ -211,7 +208,7 @@ The default styling for `VanillaTreeViewer` is based off the look and feel of [S
 
 If you'd like to edit or develop the component locally, you can run:
 
-```
+```bash
 git clone https://github.com/abhchand/vanilla-tree-viewer.git
 
 yarn install
