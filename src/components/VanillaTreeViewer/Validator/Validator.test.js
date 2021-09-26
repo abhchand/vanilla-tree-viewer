@@ -36,6 +36,7 @@ describe('Validator.validateFiles', () => {
   describe('files object is undefined', () => {
     // eslint-disable-next-line
     beforeEach(() => {
+      // eslint-disable-next-line no-undefined
       files = undefined;
     });
 
