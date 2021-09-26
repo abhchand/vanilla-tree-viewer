@@ -13,16 +13,13 @@ const render = (props) => {
   // Build Header and Code
 
   const header = renderComponent(Header, { file: props.file });
-  const code = renderComponent(
-    Code,
-    {
-      namespace: props.namespace,
-      file: props.file,
-      syntaxHighlightStyles: props.syntaxHighlightStyles,
-      fetchFileContents: props.fetchFileContents,
-      fetchSyntaxHighlightStyle: props.fetchSyntaxHighlightStyle
-    }
-  );
+  const code = renderComponent(Code, {
+    namespace: props.namespace,
+    file: props.file,
+    syntaxHighlightStyles: props.syntaxHighlightStyles,
+    fetchFileContents: props.fetchFileContents,
+    fetchSyntaxHighlightStyle: props.fetchSyntaxHighlightStyle
+  });
 
   // Assemble
 
@@ -32,6 +29,4 @@ const render = (props) => {
   return div;
 };
 
-export {
-  render
-};
+export { render };

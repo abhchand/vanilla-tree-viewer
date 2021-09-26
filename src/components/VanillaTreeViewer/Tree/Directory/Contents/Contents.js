@@ -5,7 +5,6 @@ import Directory from '../Directory';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
 class Contents {
-
   constructor(props) {
     this.props = props;
 
@@ -24,19 +23,15 @@ class Contents {
   }
 
   directories() {
-    return (
-      this.children().
-        filter((child) => child.type === 'directory').
-        sort((dir) => dir.name)
-    );
+    return this.children()
+      .filter((child) => child.type === 'directory')
+      .sort((dir) => dir.name);
   }
 
   files() {
-    return (
-      this.children().
-        filter((child) => child.type === 'file').
-        sort((file) => file.name)
-    );
+    return this.children()
+      .filter((child) => child.type === 'file')
+      .sort((file) => file.name);
   }
 
   renderDirectory(directory) {
@@ -48,31 +43,25 @@ class Contents {
       toggleDirectory
     } = this.props;
 
-    return renderComponent(
-      Directory,
-      {
-        tree: tree,
-        path: directory.path,
-        indent: indent,
-        toggleDirectory: toggleDirectory,
-        updateSelectedPath: updateSelectedPath,
-        selectedFileId: selectedFileId
-      }
-    );
+    return renderComponent(Directory, {
+      tree: tree,
+      path: directory.path,
+      indent: indent,
+      toggleDirectory: toggleDirectory,
+      updateSelectedPath: updateSelectedPath,
+      selectedFileId: selectedFileId
+    });
   }
 
   renderFile(file) {
     const { selectedFileId, updateSelectedPath, indent } = this.props;
 
-    return renderComponent(
-      File,
-      {
-        file: file,
-        updateSelectedPath: updateSelectedPath,
-        isSelected: selectedFileId === file.id,
-        indent: indent
-      }
-    );
+    return renderComponent(File, {
+      file: file,
+      updateSelectedPath: updateSelectedPath,
+      isSelected: selectedFileId === file.id,
+      indent: indent
+    });
   }
 
   render() {
@@ -88,7 +77,6 @@ class Contents {
 
     return items;
   }
-
 }
 
 export default Contents;

@@ -35,73 +35,97 @@ describe('Validator.validateFiles', () => {
 
   describe('files object is undefined', () => {
     // eslint-disable-next-line
-    beforeEach(() => { files = undefined; });
+    beforeEach(() => {
+      files = undefined;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('files object is null', () => {
-    beforeEach(() => { files = null; });
+    beforeEach(() => {
+      files = null;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('files object is an empty object', () => {
-    beforeEach(() => { files = {}; });
+    beforeEach(() => {
+      files = {};
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('files object is empty', () => {
-    beforeEach(() => { files = []; });
+    beforeEach(() => {
+      files = [];
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('one ore more files is missing `path`', () => {
-    beforeEach(() => { delete files[1].path; });
+    beforeEach(() => {
+      delete files[1].path;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('one ore more files is missing `url`', () => {
-    beforeEach(() => { delete files[1].url; });
+    beforeEach(() => {
+      delete files[1].url;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('one ore more files has null `path`', () => {
-    beforeEach(() => { files[1].path = null; });
+    beforeEach(() => {
+      files[1].path = null;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('one ore more files has null `url`', () => {
-    beforeEach(() => { files[1].url = null; });
+    beforeEach(() => {
+      files[1].url = null;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('files object is duplicate paths', () => {
-    beforeEach(() => { files[1].path = files[0].path; });
+    beforeEach(() => {
+      files[1].path = files[0].path;
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('files object is duplicate paths of different case', () => {
-    beforeEach(() => { files[1].path = files[0].path.toUpperCase(); });
+    beforeEach(() => {
+      files[1].path = files[0].path.toUpperCase();
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('language is invalid', () => {
-    beforeEach(() => { files[1].options.language = 'foo'; });
+    beforeEach(() => {
+      files[1].options.language = 'foo';
+    });
 
     it('marks the files as invalid', testForInvalid);
   });
 
   describe('language is valid, but uncommon', () => {
-    beforeEach(() => { files[1].options.language = 'actionscript'; });
+    beforeEach(() => {
+      files[1].options.language = 'actionscript';
+    });
 
     it('marks the files as invalid', testForInvalid);
   });

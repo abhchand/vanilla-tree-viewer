@@ -1,7 +1,6 @@
 import Store from './Store/Store';
 
 export default class Component {
-
   constructor(props = {}) {
     const self = this;
 
@@ -14,5 +13,4 @@ export default class Component {
       this.element = props.element;
     }
   }
-
 }

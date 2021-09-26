@@ -16,8 +16,12 @@ function allFilesHaveRequiredKey(files) {
   let badFileCount = 0;
 
   files.forEach((file) => {
-    if (!file.path || (file.path || '').length === 0) { badFileCount += 1; }
-    if (!file.url || (file.url || '').length === 0) { badFileCount += 1; }
+    if (!file.path || (file.path || '').length === 0) {
+      badFileCount += 1;
+    }
+    if (!file.url || (file.url || '').length === 0) {
+      badFileCount += 1;
+    }
   });
 
   return badFileCount === 0;
@@ -25,7 +29,9 @@ function allFilesHaveRequiredKey(files) {
 
 function allFilesHaveUniquePaths(files) {
   const paths = files.map((file) => file.path.toLowerCase());
-  const uniquePaths = paths.filter((value, idx, self) => self.indexOf(value) === idx);
+  const uniquePaths = paths.filter(
+    (value, idx, self) => self.indexOf(value) === idx
+  );
 
   return uniquePaths.length === paths.length;
 }
@@ -34,7 +40,9 @@ function allLanguagesValid(files) {
   const invalidLanguages = [];
 
   files.forEach((file) => {
-    if (!file.options) { return; }
+    if (!file.options) {
+      return;
+    }
 
     const lang = file.options.language;
 
@@ -51,7 +59,9 @@ function anyLanguagesUncommon(files) {
   const registeredLanguages = hljs.listLanguages();
 
   files.forEach((file) => {
-    if (!file.options) { return; }
+    if (!file.options) {
+      return;
+    }
 
     const lang = file.options.language;
 
@@ -118,16 +128,26 @@ https://cdnjs.com/libraries/highlight.js/${HLJS_VERSION}
 }
 
 function validateFiles(files) {
-  if (!filesIsArray(files)) { return handleFilesIsNotArray(); }
-  if (!hasAtLeasOneFile(files)) { return handleMissingFiles(); }
-  if (!allFilesHaveRequiredKey(files)) { return handleFilesMissingRequiredKeys(); }
-  if (!allFilesHaveUniquePaths(files)) { return handleFilesHaveDuplicatePaths(); }
-  if (!allLanguagesValid(files)) { return handleFilesHaveInvalidLanguage(); }
-  if (!anyLanguagesUncommon(files)) { return handleUncommonLanguages(); }
+  if (!filesIsArray(files)) {
+    return handleFilesIsNotArray();
+  }
+  if (!hasAtLeasOneFile(files)) {
+    return handleMissingFiles();
+  }
+  if (!allFilesHaveRequiredKey(files)) {
+    return handleFilesMissingRequiredKeys();
+  }
+  if (!allFilesHaveUniquePaths(files)) {
+    return handleFilesHaveDuplicatePaths();
+  }
+  if (!allLanguagesValid(files)) {
+    return handleFilesHaveInvalidLanguage();
+  }
+  if (!anyLanguagesUncommon(files)) {
+    return handleUncommonLanguages();
+  }
 
   return { isValid: true };
 }
 
-export {
-  validateFiles
-};
+export { validateFiles };

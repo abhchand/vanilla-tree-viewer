@@ -3,10 +3,7 @@ import { DEFAULT_OPTIONS } from 'components/VanillaTreeViewer/Tree/Builder/Const
 import { expect } from 'chai';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
-let fetchFileContents,
-  fetchSyntaxHighlightStyle,
-  file,
-  syntaxHighlightStyles;
+let fetchFileContents, fetchSyntaxHighlightStyle, file, syntaxHighlightStyles;
 
 const namespace = 'app';
 
@@ -36,7 +33,8 @@ beforeEach(() => {
   fetchSyntaxHighlightStyle = jest.fn();
 
   syntaxHighlightStyles = {
-    'custom-style': '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
+    'custom-style':
+      '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
   };
 });
 
@@ -45,7 +43,8 @@ describe('<Code />', () => {
     it('renders the container', () => {
       const container = render();
 
-      expect(container.classList.contains('vanilla-tree-viewer__code')).to.be.true;
+      expect(container.classList.contains('vanilla-tree-viewer__code')).to.be
+        .true;
       expect(container.tabIndex).to.eql(-1);
     });
 
@@ -58,26 +57,32 @@ describe('<Code />', () => {
 
         expect(code.classList.contains('hljs')).to.be.true;
         expect(code.tabIndex).to.eql(-1);
-        expect(code.innerHTML.trim()).to.eql(`
+        expect(code.innerHTML.trim()).to.eql(
+          `
         <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>
         <span class="hljs-literal">true</span>
       <span class="hljs-keyword">end</span>
-          `.trim());
+          `.trim()
+        );
       });
 
       describe('no language is specified', () => {
-        beforeEach(() => { delete file.options.language; });
+        beforeEach(() => {
+          delete file.options.language;
+        });
 
         it('it renders the code without highlighting', () => {
           const container = render();
 
           const pre = container.getElementsByTagName('pre')[0];
           const code = pre.getElementsByTagName('code')[0];
-          expect(code.innerHTML.trim()).to.eql(`
+          expect(code.innerHTML.trim()).to.eql(
+            `
       def foo
         true
       end
-            `.trim());
+            `.trim()
+          );
         });
       });
     });
@@ -87,11 +92,15 @@ describe('<Code />', () => {
         const container = render();
         const style = container.getElementsByTagName('style')[0];
 
-        expect(style.innerHTML).to.eql('#app .hljs{display:block;}#app .hljs,#app .hljs-subst,#app .hljs-tag{color:#ffffff}');
+        expect(style.innerHTML).to.eql(
+          '#app .hljs{display:block;}#app .hljs,#app .hljs-subst,#app .hljs-tag{color:#ffffff}'
+        );
       });
 
       describe('no language is specified', () => {
-        beforeEach(() => { delete file.options.style; });
+        beforeEach(() => {
+          delete file.options.style;
+        });
 
         it('renders no styling', () => {
           const container = render();
@@ -104,18 +113,23 @@ describe('<Code />', () => {
   });
 
   describe('file has an error', () => {
-    beforeEach(() => { file.error = 'some error'; });
+    beforeEach(() => {
+      file.error = 'some error';
+    });
 
     it('renders the Error', () => {
       const error = render();
 
-      expect(error.classList.contains('vanilla-tree-viewer__code-error')).to.be.true;
+      expect(error.classList.contains('vanilla-tree-viewer__code-error')).to.be
+        .true;
       expect(error.innerHTML).to.eql('some error');
     });
   });
 
   describe('file has no contents', () => {
-    beforeEach(() => { file.contents = null; });
+    beforeEach(() => {
+      file.contents = null;
+    });
 
     it('calls fetchFileContents()', () => {
       render();
@@ -125,13 +139,16 @@ describe('<Code />', () => {
     it('renders the Loading state', () => {
       const loading = render();
 
-      expect(loading.classList.contains('vanilla-tree-viewer__code-loading')).to.be.true;
+      expect(loading.classList.contains('vanilla-tree-viewer__code-loading')).to
+        .be.true;
       expect(loading.innerHTML).to.eql('Loading...');
     });
   });
 
   describe('no cached syntax highlighting style exists', () => {
-    beforeEach(() => { syntaxHighlightStyles = {}; });
+    beforeEach(() => {
+      syntaxHighlightStyles = {};
+    });
 
     it('calls fetchSyntaxHighlightStyle()', () => {
       render();
@@ -141,7 +158,8 @@ describe('<Code />', () => {
     it('renders the Loading state', () => {
       const loading = render();
 
-      expect(loading.classList.contains('vanilla-tree-viewer__code-loading')).to.be.true;
+      expect(loading.classList.contains('vanilla-tree-viewer__code-loading')).to
+        .be.true;
       expect(loading.innerHTML).to.eql('Loading...');
     });
   });

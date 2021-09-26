@@ -12,7 +12,6 @@ import Store from 'lib/Store/Store';
 import { validateFiles } from './Validator/Validator';
 
 class VanillaTreeViewer extends Component {
-
   constructor(id, files, options) {
     super({
       store: new Store({}),
@@ -61,15 +60,17 @@ class VanillaTreeViewer extends Component {
     const { tree } = this.store.state;
     const url = tree[path].url;
 
-    if (tree[path].contents) { return; }
+    if (tree[path].contents) {
+      return;
+    }
 
-    fetch(url).
-      then((response) => response.text()).
-      then((contents) => {
+    fetch(url)
+      .then((response) => response.text())
+      .then((contents) => {
         tree[path].contents = contents;
         this.store.setState({ tree: tree });
-      }).
-      catch((_error) => {
+      })
+      .catch((_error) => {
         tree[path].error = `Could not fetch file contents from ${url}`;
         this.store.setState({ tree: tree });
       });
@@ -79,22 +80,26 @@ class VanillaTreeViewer extends Component {
     const styleName = styleNameParam.toLowerCase();
     const { syntaxHighlightStyles, tree } = this.store.state;
 
-    if (Object.prototype.hasOwnProperty.call(syntaxHighlightStyles, styleName)) { return; }
+    if (
+      Object.prototype.hasOwnProperty.call(syntaxHighlightStyles, styleName)
+    ) {
+      return;
+    }
 
     const url = hljsStyleUrl(styleName);
 
-    fetch(url).
-      then((response) => {
+    fetch(url)
+      .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);
         }
         return response.text();
-      }).
-      then((contents) => {
+      })
+      .then((contents) => {
         syntaxHighlightStyles[styleName] = contents;
         this.store.setState({ syntaxHighlightStyles: syntaxHighlightStyles });
-      }).
-      catch((_error) => {
+      })
+      .catch((_error) => {
         tree[path].error = `Could not fetch highlight styling from ${url}`;
         this.store.setState({ tree: tree });
       });
@@ -106,11 +111,7 @@ class VanillaTreeViewer extends Component {
   }
 
   renderComponent() {
-    const {
-      selectedPath,
-      syntaxHighlightStyles,
-      tree
-    } = this.store.state;
+    const { selectedPath, syntaxHighlightStyles, tree } = this.store.state;
 
     /*
      * Creates HTMLElement:
@@ -122,30 +123,23 @@ class VanillaTreeViewer extends Component {
      *
      */
 
-
     const div = document.createElement('div');
     div.classList.add('vanilla-tree-viewer');
 
-    const treeEl = renderComponent(
-      Tree,
-      {
-        tree: tree,
-        toggleDirectory: this.toggleDirectory,
-        updateSelectedPath: this.updateSelectedPath,
-        selectedFileId: tree[selectedPath].id
-      }
-    );
+    const treeEl = renderComponent(Tree, {
+      tree: tree,
+      toggleDirectory: this.toggleDirectory,
+      updateSelectedPath: this.updateSelectedPath,
+      selectedFileId: tree[selectedPath].id
+    });
 
-    const codePanel = renderComponent(
-      CodePanel,
-      {
-        namespace: this.id,
-        file: tree[selectedPath],
-        syntaxHighlightStyles: syntaxHighlightStyles,
-        fetchFileContents: this.fetchFileContents,
-        fetchSyntaxHighlightStyle: this.fetchSyntaxHighlightStyle
-      }
-    );
+    const codePanel = renderComponent(CodePanel, {
+      namespace: this.id,
+      file: tree[selectedPath],
+      syntaxHighlightStyles: syntaxHighlightStyles,
+      fetchFileContents: this.fetchFileContents,
+      fetchSyntaxHighlightStyle: this.fetchSyntaxHighlightStyle
+    });
 
     div.appendChild(treeEl);
     div.appendChild(codePanel);
@@ -165,7 +159,6 @@ class VanillaTreeViewer extends Component {
 
     this.renderIntoDOM(content);
   }
-
 }
 
 export default VanillaTreeViewer;

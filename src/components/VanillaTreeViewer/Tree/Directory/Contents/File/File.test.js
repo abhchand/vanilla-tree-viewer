@@ -5,10 +5,7 @@ import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComp
 import simulateKeyboardEvent from 'components/VanillaTreeViewer/Helpers/simulateKeyboardEvent';
 import treeNodePadding from 'components/VanillaTreeViewer/Helpers/treeNodePadding';
 
-let file,
-  indent,
-  isSelected,
-  updateSelectedPath;
+let file, indent, isSelected, updateSelectedPath;
 
 beforeEach(() => {
   file = {
@@ -35,16 +32,21 @@ describe('<File />', () => {
   it('renders the component', () => {
     const container = render();
 
-    expect(container.classList.contains('vanilla-tree-viewer__tree-node--file')).to.be.true;
+    expect(container.classList.contains('vanilla-tree-viewer__tree-node--file'))
+      .to.be.true;
     expect(container.classList.contains('selected')).to.be.false;
 
     expect(container.dataset.path).to.equal(file.path);
     expect(container.tabIndex).to.equal(0);
-    expect(container.style.getPropertyValue('padding-left')).to.equal(`${treeNodePadding(indent)}px`);
+    expect(container.style.getPropertyValue('padding-left')).to.equal(
+      `${treeNodePadding(indent)}px`
+    );
   });
 
   describe('isSelected is true', () => {
-    beforeEach(() => { isSelected = true; });
+    beforeEach(() => {
+      isSelected = true;
+    });
 
     it('renders the `selected` class', () => {
       const container = render();
@@ -53,12 +55,16 @@ describe('<File />', () => {
   });
 
   describe('indent is greater than 1', () => {
-    beforeEach(() => { indent = 7; });
+    beforeEach(() => {
+      indent = 7;
+    });
 
     it('renders the proper padding based off the indent', () => {
       const container = render();
 
-      expect(container.style.getPropertyValue('padding-left')).to.equal(`${treeNodePadding(7)}px`);
+      expect(container.style.getPropertyValue('padding-left')).to.equal(
+        `${treeNodePadding(7)}px`
+      );
     });
   });
 

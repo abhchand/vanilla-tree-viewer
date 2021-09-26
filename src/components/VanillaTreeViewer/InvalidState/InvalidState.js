@@ -25,7 +25,4 @@ const render = (props = {}) => {
   return div;
 };
 
-export {
-  render,
-  DEFAULT_MESSAGE
-};
+export { render, DEFAULT_MESSAGE };

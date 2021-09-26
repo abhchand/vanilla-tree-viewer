@@ -1,7 +1,6 @@
 import PubSub from './PubSub';
 
 class Store {
-
   constructor(params) {
     this.actions = params.actions || {};
     this.mutations = params.mutations || {};
@@ -14,7 +13,6 @@ class Store {
     this.state = Object.assign(this.state, newState);
     this.events.publish('stateChange', this.state);
   }
-
 }
 
 export default Store;

@@ -3,10 +3,7 @@ import { DEFAULT_OPTIONS } from 'components/VanillaTreeViewer/Tree/Builder/Const
 import { expect } from 'chai';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
-let fetchFileContents,
-  fetchSyntaxHighlightStyle,
-  file,
-  syntaxHighlightStyles;
+let fetchFileContents, fetchSyntaxHighlightStyle, file, syntaxHighlightStyles;
 
 const namespace = 'app';
 
@@ -36,20 +33,26 @@ beforeEach(() => {
   fetchSyntaxHighlightStyle = jest.fn();
 
   syntaxHighlightStyles = {
-    'custom-style': '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
+    'custom-style':
+      '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
   };
 });
 
 describe('<CodePanel />', () => {
   it('renders the container', () => {
     const container = render();
-    expect(container.classList.contains('vanilla-tree-viewer__code-panel')).to.be.true;
+    expect(container.classList.contains('vanilla-tree-viewer__code-panel')).to
+      .be.true;
   });
 
   it('renders the Header', () => {
     const container = render();
-    const header = container.getElementsByClassName('vanilla-tree-viewer__code-panel-header')[0];
-    const path = header.getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+    const header = container.getElementsByClassName(
+      'vanilla-tree-viewer__code-panel-header'
+    )[0];
+    const path = header.getElementsByClassName(
+      'vanilla-tree-viewer__code-path'
+    )[0];
 
     expect(path.innerText).to.eql(file.path);
   });
@@ -70,12 +73,13 @@ describe('<CodePanel />', () => {
   });
 
   describe('it passes fetchFileContents() through to `Code`', () => {
-
     /*
      * Simulate this by picking a single scenario that would cause
      * the function to be called: file contents being empty
      */
-    beforeEach(() => { file.contents = null; });
+    beforeEach(() => {
+      file.contents = null;
+    });
 
     it('calls fetchFileContents()', () => {
       render();
@@ -84,12 +88,13 @@ describe('<CodePanel />', () => {
   });
 
   describe('it passes fetchSyntaxHighlightStyle() through to `Code`', () => {
-
     /*
      * Simulate this by picking a single scenario that would cause
      * the function to be called: syntax highlight styles are empty
      */
-    beforeEach(() => { syntaxHighlightStyles = {}; });
+    beforeEach(() => {
+      syntaxHighlightStyles = {};
+    });
 
     it('calls fetchSyntaxHighlightStyle()', () => {
       render();
