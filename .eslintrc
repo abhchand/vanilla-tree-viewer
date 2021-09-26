@@ -1,6 +1,7 @@
 {
   extends: [
     "eslint:all",                       // List of rules: https://eslint.org/docs/rules
+    "prettier",                         // Configuration: https://github.com/prettier/eslint-config-prettier
   ],
   env: {
     browser: true,
@@ -18,44 +19,30 @@
   settings: {},
   rules: {
     arrow-body-style:                       "off",
-    brace-style:                            ["error", "stroustrup", { allowSingleLine: true }],
     capitalized-comments:                   "warn",
-    comma-dangle:                           ["warn", "never"],
     consistent-this:                        "off",
     default-case:                           ["warn", { "commentPattern": "^eslint\\sskip\\sdefault" }],
     eqeqeq:                                 ["error", "smart"],
     func-style:                             ["error", "declaration", { allowArrowFunctions: true }],
     function-call-argument-newline:         "off",
     id-length:                              "off",
-    indent:                                 ["error", 2, { "SwitchCase": 1 }],
     init-declarations:                      "off",
-    key-spacing:                            ["error", { "mode": "minimum" }],
-    max-len:                                ["warn", 150, { comments: 80, ignoreTrailingComments: true, ignoreUrls: true }],
     max-lines-per-function:                 ["error", { skipComments: true, skipBlankLines: true }],
     max-statements-per-line:                "off",
     max-statements:                         "off",
     multiline-ternary:                      "off",
     no-continue:                            "off",
-    no-extra-parens:                        "warn",
     no-inline-comments:                     "warn",
     no-magic-numbers:                       ["warn", { "ignore": [-1, 0, 1] }],
     no-plusplus:                            ["warn", { "allowForLoopAfterthoughts": true }],
     no-ternary:                             "off",
+    no-underscore-dangle:                   "off",
     no-unused-vars:                         ["error", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
-    object-curly-spacing:                   ["error", "always"],
-    object-property-newline:                ["error", { "allowAllPropertiesOnSameLine": true }],
     object-shorthand:                       "off",
     one-var:                                "off",
-    padded-blocks:                          "off",
-    prefer-arrow-callback:                  "warn",
     prefer-destructuring:                   "off",
-    quote-props:                            ["error", "consistent"],
-    quotes:                                 ["warn", "single"],
-    semi:                                   ["error", "always"],
     sort-imports:                           ["warn", { ignoreCase: true }],
-    sort-keys:                              "off",
-    space-before-function-paren:            ["error", "never"],
-    space-in-parens:                        ["warn", "never"]
+    sort-keys:                              "off"
   },
   overrides: [
     {
@@ -66,10 +53,11 @@
         jest: true
       },
       rules: {
+        line-comment-position:              "off",
         max-lines:                          "off",
         max-lines-per-function:             "off",
+        no-inline-comments:                 "off",
         no-magic-numbers:                   "off",
-        no-undef:                           "off",
         no-unused-expressions:              "off",
         no-use-before-define:               "off"
       }
