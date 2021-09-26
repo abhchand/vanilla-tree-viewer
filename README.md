@@ -46,7 +46,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
   - [`id`](#config-id)
   - [`files`](#config-files)
   - [`options`](#config-options)
-  - [Less Common Languages](#less-common-languages)
+  - [Highlighting Less Common Languages](#highlighting-less-common-languages)
   - [Configuring Width and Alignment](#configuring-width-and-alignment)
   - [Customizing Styling](#customizing-styling)
 - [Development](#development)
@@ -158,7 +158,7 @@ Options can be defined per file or as a shared set of options passed to `Vanilla
 2. Shared options
 3. Default options
 
-### <a name="less-common-languages"></a>Less Common Languages
+### <a name="highlighting-less-common-languages"></a>Highlighting Less Common Languages
 
 To keep the bundle size small, `Highlight.js` ships with language support for only the most common languages by default. See the [Common Languages outlined here](https://highlightjs.org/download/)
 
