@@ -68,9 +68,7 @@ Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([Se
 Define a DOM node on which to render a new viewer. You can define multiple viewers and DOM nodes, as long as they each have a unique `id`.
 
 ```html
-<body>
-  <div id='my-viewer'></div>
-</body>
+<div id='my-viewer'></div>
 ```
 
 At the bottom of your page, include a `<script>` tag that defines the list of files and initializes the viewer.
@@ -85,15 +83,16 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
     {
       path: '/package.json',
       url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
-      // Override the shared options for this specific file
+      // Overrides the 'global' options below, just for this specific file
       options: { language: 'json' }
     }
   ];
 
-  var sharedOptions = { language: 'javascript' }
-
-  var viewer = new VanillaTreeViewer('my-viewer', files, sharedOptions);
-  viewer.render();
+  new VanillaTreeViewer(
+    'my-viewer',
+    files,
+    { language: 'javascript' }
+  ).render();
 </script>
 ```
 
