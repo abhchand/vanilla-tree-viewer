@@ -22,7 +22,7 @@
 
 Show off multiple files or code snippets in an elegant and space saving way.
 
-Perfect for blog posts ([example](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
+Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
 * [view a live demo](https://abhchand.me/vanilla-tree-viewer)
 * [view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)
@@ -30,10 +30,10 @@ Perfect for blog posts ([example](https://abhchand.me/blog/use-react-in-rails-wi
 <img src="meta/demo.png" />
 
 
-### Features
+### Benefits
 
 * Lightweight (built with pure JavaScript!)
-* Only 1 dependency! `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
+* Only 1 dependency! `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting
 * Mobile friendly out of the box
 * Easily customize-able syntax highlighting and component styling
 * Well tested
