@@ -298,11 +298,6 @@ hljs.registerLanguage('swift', swift);
 hljs.registerLanguage('typescript', typescript);
 hljs.registerLanguage('yaml', yaml);
 
-export {
-  hljs,
-  hljsStyleUrl,
-  HLJS_VERSION,
-  HLJS_LANGUAGES
-};
+export { hljs, hljsStyleUrl, HLJS_VERSION, HLJS_LANGUAGES };
 
 /* eslint-enable max-lines */

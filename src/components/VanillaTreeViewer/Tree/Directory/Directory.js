@@ -1,6 +1,9 @@
 import './Directory.scss';
 
-import { keyCodes, parseKeyCode } from 'components/VanillaTreeViewer/Helpers/Keys';
+import {
+  keyCodes,
+  parseKeyCode
+} from 'components/VanillaTreeViewer/Helpers/Keys';
 import Contents from './Contents/Contents';
 import FolderClosedIcon from 'components/VanillaTreeViewer/Icons/FolderClosed';
 import FolderOpenIcon from 'components/VanillaTreeViewer/Icons/FolderOpen';
@@ -8,7 +11,6 @@ import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComp
 import treeNodePadding from 'components/VanillaTreeViewer/Helpers/treeNodePadding';
 
 class Directory {
-
   constructor(props) {
     this.props = props;
 
@@ -77,17 +79,14 @@ class Directory {
       updateSelectedPath
     } = this.props;
 
-    return renderComponent(
-      Contents,
-      {
-        tree: tree,
-        parentPath: tree[path].path,
-        indent: indent + 1,
-        toggleDirectory: toggleDirectory,
-        updateSelectedPath: updateSelectedPath,
-        selectedFileId: selectedFileId
-      }
-    );
+    return renderComponent(Contents, {
+      tree: tree,
+      parentPath: tree[path].path,
+      indent: indent + 1,
+      toggleDirectory: toggleDirectory,
+      updateSelectedPath: updateSelectedPath,
+      selectedFileId: selectedFileId
+    });
   }
 
   render() {
@@ -101,7 +100,6 @@ class Directory {
 
     return items;
   }
-
 }
 
 export default Directory;

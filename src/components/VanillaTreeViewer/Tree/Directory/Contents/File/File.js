@@ -1,6 +1,9 @@
 import './File.scss';
 
-import { keyCodes, parseKeyCode } from 'components/VanillaTreeViewer/Helpers/Keys';
+import {
+  keyCodes,
+  parseKeyCode
+} from 'components/VanillaTreeViewer/Helpers/Keys';
 import FileIcon from 'components/VanillaTreeViewer/Icons/File';
 import treeNodePadding from 'components/VanillaTreeViewer/Helpers/treeNodePadding';
 
@@ -33,7 +36,9 @@ function render(props) {
     'vanilla-tree-viewer__tree-node',
     'vanilla-tree-viewer__tree-node--file'
   );
-  if (isSelected) { li.classList.add('selected'); }
+  if (isSelected) {
+    li.classList.add('selected');
+  }
 
   li.addEventListener('click', onClick);
   li.addEventListener('keydown', (e) => {
@@ -58,6 +63,4 @@ function render(props) {
   return li;
 }
 
-export {
-  render
-};
+export { render };

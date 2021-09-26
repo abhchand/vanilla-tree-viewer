@@ -6,4 +6,6 @@
 
 import { expect } from 'chai';
 
-it('returns true', () => { expect(true).to.be.true; });
+it('returns true', () => {
+  expect(true).to.be.true;
+});

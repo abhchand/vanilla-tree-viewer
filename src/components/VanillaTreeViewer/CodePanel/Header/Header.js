@@ -4,7 +4,6 @@ import * as Path from './Path/Path';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
 const render = (props) => {
-
   /*
    * Creates HTMLElement:
    *
@@ -24,6 +23,4 @@ const render = (props) => {
   return div;
 };
 
-export {
-  render
-};
+export { render };

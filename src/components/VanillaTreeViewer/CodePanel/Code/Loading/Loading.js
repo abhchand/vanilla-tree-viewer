@@ -1,7 +1,6 @@
 import './Loading.scss';
 
 const render = (_props = {}) => {
-
   /*
    * Creates HTMLElement:
    *
@@ -18,6 +17,4 @@ const render = (_props = {}) => {
   return div;
 };
 
-export {
-  render
-};
+export { render };

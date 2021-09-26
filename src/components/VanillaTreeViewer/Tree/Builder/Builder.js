@@ -38,7 +38,6 @@ function normalizePath(path) {
 }
 
 function addToDirectoryTree(tree, file, globalOptions) {
-
   /*
    * Parse each segment of the path, accounting for the 'root'
    * segment/directory as ''.
@@ -53,10 +52,9 @@ function addToDirectoryTree(tree, file, globalOptions) {
 
   // Merge any relevant global options / defaults into the individual `file`
   file.options = {
-
     ...DEFAULT_OPTIONS,
-    ...globalOptions || {},
-    ...file.options || {}
+    ...(globalOptions || {}),
+    ...(file.options || {})
   };
 
   segments.forEach((segment, idx) => {
@@ -73,7 +71,9 @@ function addToDirectoryTree(tree, file, globalOptions) {
      * If the current path is a directory which already exists, skip
      * it so we don't re-create it
      */
-    if (type === 'directory' && tree[currentPath]) { return; }
+    if (type === 'directory' && tree[currentPath]) {
+      return;
+    }
 
     /*
      * Add a new node and add it to the parent (which is guranteed
@@ -97,7 +97,4 @@ function toDirectoryTree(files, globalOptions) {
   return tree;
 }
 
-export {
-  normalizePath,
-  toDirectoryTree
-};
+export { normalizePath, toDirectoryTree };

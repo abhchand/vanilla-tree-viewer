@@ -4,20 +4,17 @@ import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComp
 
 describe('<InvalidState />', () => {
   it('renders the component', () => {
-    const container = renderComponent(
-      InvalidState,
-      { reason: 'some reason' }
-    );
+    const container = renderComponent(InvalidState, { reason: 'some reason' });
 
     expect(container.innerText).to.eql(InvalidState.DEFAULT_MESSAGE);
   });
 
   describe('it can override the message', () => {
     it('renders the component with custom message', () => {
-      const container = renderComponent(
-        InvalidState,
-        { reason: 'some reason', message: 'some message' }
-      );
+      const container = renderComponent(InvalidState, {
+        reason: 'some reason',
+        message: 'some message'
+      });
 
       expect(container.innerText).to.eql('some message');
     });

@@ -30,10 +30,7 @@ describe('Builder.toDirectoryTree', () => {
         type: 'directory',
         path: '/',
         isOpen: true,
-        childPaths: [
-          '/alpha',
-          '/delta'
-        ]
+        childPaths: ['/alpha', '/delta']
       },
       '/alpha': {
         id: 'directory+/alpha',
@@ -95,7 +92,7 @@ describe('Builder.toDirectoryTree', () => {
       expect(node.path).to.equal('/alpha/beta/gamma.rb');
     });
 
-    it('handles paths prefixed with \'/\'', () => {
+    it("handles paths prefixed with '/'", () => {
       files[0].path = '/alpha/beta/gamma.rb';
 
       const tree = toDirectoryTree(files, globalOptions);
@@ -248,7 +245,7 @@ describe('Builder.toDirectoryTree', () => {
 });
 
 describe('Builder.normalizePath', () => {
-  it('adds the \'/\' prefix if missing', () => {
+  it("adds the '/' prefix if missing", () => {
     expect(normalizePath('foo')).to.equal('/foo');
   });
 

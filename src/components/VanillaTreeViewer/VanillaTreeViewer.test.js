@@ -5,8 +5,7 @@ import fetchMock from 'fetch-mock';
 import { hljsStyleUrl } from 'components/VanillaTreeViewer/hljs';
 import VanillaTreeViewer from 'components/VanillaTreeViewer/VanillaTreeViewer';
 
-let files,
-  options;
+let files, options;
 
 fetchMock.config.overwriteRoutes = true;
 
@@ -32,13 +31,10 @@ beforeEach(() => {
 
   // Mock fetch() calls to retrieve file contents and styles
 
-  fetchMock.get(
-    'https://example.co/path/to/gamma.rb',
-    'def foo;true;end'
-  );
+  fetchMock.get('https://example.co/path/to/gamma.rb', 'def foo;true;end');
   fetchMock.get(
     'https://example.co/path/to/epsilon.js',
-    'const foo = () => { alert(\'foo\'); }'
+    "const foo = () => { alert('foo'); }"
   );
   fetchMock.get(
     hljsStyleUrl(DEFAULT_OPTIONS.style),
@@ -46,25 +42,29 @@ beforeEach(() => {
   );
 });
 
-afterEach(() => { fetchMock.restore(); });
+afterEach(() => {
+  fetchMock.restore();
+});
 
 describe('<VanillaTreeViewer />', () => {
-  it('renders the component', async() => {
+  it('renders the component', async () => {
     render();
     await waitUntil(hasRenderedCode);
 
     expect(rendered().classList.contains('vanilla-tree-viewer')).to.be.true;
   });
 
-  it('renders the path', async() => {
+  it('renders the path', async () => {
     render();
     await waitUntil(hasRenderedCode);
 
-    const path = rendered().getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+    const path = rendered().getElementsByClassName(
+      'vanilla-tree-viewer__code-path'
+    )[0];
     expect(path.innerText).to.equal('/gamma.rb');
   });
 
-  it('renders the directory tree', async() => {
+  it('renders the directory tree', async () => {
     render();
     await waitUntil(hasRenderedCode);
 
@@ -77,30 +77,42 @@ describe('<VanillaTreeViewer />', () => {
   });
 
   describe('rendering style', () => {
-    it('renders the default style', async() => {
+    it('renders the default style', async () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const style = code.getElementsByTagName('style')[0];
-      expect(style.innerHTML).to.equal(`#${id} .hljs{display:block;}#${id} .hljs,#${id} .hljs-subst,#${id} .hljs-tag{color:#ffffff}`);
+      expect(style.innerHTML).to.equal(
+        `#${id} .hljs{display:block;}#${id} .hljs,#${id} .hljs-subst,#${id} .hljs-tag{color:#ffffff}`
+      );
     });
 
-    it('overrides styling for all files with the global options', async() => {
+    it('overrides styling for all files with the global options', async () => {
       options.style = 'my-global-style';
-      fetchMock.get(hljsStyleUrl('my-global-style'), '.hljs{display:inline-block;}');
+      fetchMock.get(
+        hljsStyleUrl('my-global-style'),
+        '.hljs{display:inline-block;}'
+      );
 
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(`#${id} .hljs{display:inline-block;}`);
     });
 
-    it('overrides styling for specific files with the file-level options', async() => {
+    it('overrides styling for specific files with the file-level options', async () => {
       options.style = 'my-global-style';
-      fetchMock.get(hljsStyleUrl('my-global-style'), '.hljs{display:inline-block;}');
+      fetchMock.get(
+        hljsStyleUrl('my-global-style'),
+        '.hljs{display:inline-block;}'
+      );
 
       files[0].options = {};
       files[0].options.style = 'my-file-style';
@@ -109,38 +121,46 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(`#${id} .hljs{display:flex;}`);
     });
   });
 
   describe('syntax highlighting', () => {
-    it('performs no syntax highlighting by default', async() => {
+    it('performs no syntax highlighting by default', async () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const codeTag = code.getElementsByTagName('code')[0];
       expect(codeTag.innerHTML).to.equal('def foo;true;end');
     });
 
-    it('overrides highlighting for all files with the global options', async() => {
+    it('overrides highlighting for all files with the global options', async () => {
       options.language = 'ruby';
 
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal('<span class="hljs-function">' +
-        '<span class="hljs-keyword">def</span> ' +
-        '<span class="hljs-title">foo</span>;</span>' +
-        '<span class="hljs-literal">true</span>;' +
-        '<span class="hljs-keyword">end</span>');
+      expect(codeTag.innerHTML).to.equal(
+        '<span class="hljs-function">' +
+          '<span class="hljs-keyword">def</span> ' +
+          '<span class="hljs-title">foo</span>;</span>' +
+          '<span class="hljs-literal">true</span>;' +
+          '<span class="hljs-keyword">end</span>'
+      );
     });
 
-    it('overrides highlighting for specific files with the file-level options', async() => {
+    it('overrides highlighting for specific files with the file-level options', async () => {
       options.language = 'ruby';
       files[0].options = {};
       files[0].options.language = 'javascript';
@@ -148,9 +168,13 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal('def foo;<span class="hljs-literal">true</span>;end');
+      expect(codeTag.innerHTML).to.equal(
+        'def foo;<span class="hljs-literal">true</span>;end'
+      );
     });
   });
 
@@ -161,39 +185,48 @@ describe('<VanillaTreeViewer />', () => {
       render();
 
       const component = rendered();
-      expect(component.classList.contains('vanilla-tree-viewer--invalid')).to.be.true;
+      expect(component.classList.contains('vanilla-tree-viewer--invalid')).to.be
+        .true;
       expect(component.innerText).to.equal(DEFAULT_INVALID_STATE_MESSAGE);
     });
 
-    it('renders an error when the file contents dont fetch', async() => {
-      fetchMock.get(
-        'https://example.co/path/to/gamma.rb',
-        { throws: new TypeError('Some error') }
-      );
+    it('renders an error when the file contents dont fetch', async () => {
+      fetchMock.get('https://example.co/path/to/gamma.rb', {
+        throws: new TypeError('Some error')
+      });
 
       render();
       await waitUntil(hasRenderedError);
 
-      const error = rendered().getElementsByClassName('vanilla-tree-viewer__code-error')[0];
-      expect(error.innerHTML).to.equal('Could not fetch file contents from https://example.co/path/to/gamma.rb');
+      const error = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code-error'
+      )[0];
+      expect(error.innerHTML).to.equal(
+        'Could not fetch file contents from https://example.co/path/to/gamma.rb'
+      );
     });
 
-    it('renders an error when the styles dont fetch', async() => {
-      fetchMock.get(
-        hljsStyleUrl(DEFAULT_OPTIONS.style),
-        { throws: new TypeError('Some error') }
-      );
+    it('renders an error when the styles dont fetch', async () => {
+      fetchMock.get(hljsStyleUrl(DEFAULT_OPTIONS.style), {
+        throws: new TypeError('Some error')
+      });
 
       render();
       await waitUntil(hasRenderedError);
 
-      const error = rendered().getElementsByClassName('vanilla-tree-viewer__code-error')[0];
-      expect(error.innerHTML).to.equal(`Could not fetch highlight styling from ${hljsStyleUrl(DEFAULT_OPTIONS.style)}`);
+      const error = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code-error'
+      )[0];
+      expect(error.innerHTML).to.equal(
+        `Could not fetch highlight styling from ${hljsStyleUrl(
+          DEFAULT_OPTIONS.style
+        )}`
+      );
     });
   });
 
   describe('initial file selection', () => {
-    it('selects the file marked with selected: true', async() => {
+    it('selects the file marked with selected: true', async () => {
       files[0].selected = false;
       files[1].selected = true;
 
@@ -207,16 +240,22 @@ describe('<VanillaTreeViewer />', () => {
       expect(selectedFile.classList.contains('selected')).to.be.true;
 
       // Verify code contents
-      const code = component.getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = component.getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal('const foo = () =&gt; { alert(\'foo\'); }');
+      expect(codeTag.innerHTML).to.equal(
+        "const foo = () =&gt; { alert('foo'); }"
+      );
 
       // Verify path
-      const path = component.getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+      const path = component.getElementsByClassName(
+        'vanilla-tree-viewer__code-path'
+      )[0];
       expect(path.innerText).to.equal('/delta/epsilon.js');
     });
 
-    it('renders the first file when no file is marked selected: true', async() => {
+    it('renders the first file when no file is marked selected: true', async () => {
       delete files[0].selected;
       delete files[1].selected;
 
@@ -228,11 +267,13 @@ describe('<VanillaTreeViewer />', () => {
       expect(selectedFile.classList.contains('selected')).to.be.true;
 
       // Verify paths
-      const path = rendered().getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+      const path = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code-path'
+      )[0];
       expect(path.innerText).to.equal('/gamma.rb');
     });
 
-    it('renders the first file when multiple files are marked selected: true', async() => {
+    it('renders the first file when multiple files are marked selected: true', async () => {
       files[0].selected = true;
       files[1].selected = true;
 
@@ -244,13 +285,15 @@ describe('<VanillaTreeViewer />', () => {
       expect(selectedFile.classList.contains('selected')).to.be.true;
 
       // Verify paths
-      const path = rendered().getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+      const path = rendered().getElementsByClassName(
+        'vanilla-tree-viewer__code-path'
+      )[0];
       expect(path.innerText).to.equal('/gamma.rb');
     });
   });
 
   describe('switching between files', () => {
-    it('updates the file contents, path, and selected file', async() => {
+    it('updates the file contents, path, and selected file', async () => {
       render();
       await waitUntil(hasRenderedCode);
 
@@ -263,29 +306,36 @@ describe('<VanillaTreeViewer />', () => {
       secondFile = findTreeNodeByPath('/delta/epsilon.js');
 
       // Path
-      const path = component.getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+      const path = component.getElementsByClassName(
+        'vanilla-tree-viewer__code-path'
+      )[0];
       expect(path.innerText).to.equal('/delta/epsilon.js');
 
       // Selected
       expect(secondFile.classList.contains('selected')).to.be.true;
 
       // File Contents
-      const code = component.getElementsByClassName('vanilla-tree-viewer__code')[0];
+      const code = component.getElementsByClassName(
+        'vanilla-tree-viewer__code'
+      )[0];
       const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal('const foo = () =&gt; { alert(\'foo\'); }');
+      expect(codeTag.innerHTML).to.equal(
+        "const foo = () =&gt; { alert('foo'); }"
+      );
     });
 
     describe('validation and error handling', () => {
-      it('renders an error when the second file\'s contents dont fetch', async() => {
-        fetchMock.get(
-          'https://example.co/path/to/epsilon.js',
-          { throws: new TypeError('Some error') }
-        );
+      it("renders an error when the second file's contents dont fetch", async () => {
+        fetchMock.get('https://example.co/path/to/epsilon.js', {
+          throws: new TypeError('Some error')
+        });
 
         // First file should render correctly
         render();
         await waitUntil(hasRenderedCode);
-        let error = rendered().getElementsByClassName('vanilla-tree-viewer__code-error')[0];
+        let error = rendered().getElementsByClassName(
+          'vanilla-tree-viewer__code-error'
+        )[0];
         expect(error).to.be.undefined;
 
         // Render second file by clicking on it
@@ -294,19 +344,27 @@ describe('<VanillaTreeViewer />', () => {
         await waitUntil(hasRenderedError);
 
         // Verify error is displayed
-        error = rendered().getElementsByClassName('vanilla-tree-viewer__code-error')[0];
-        expect(error.innerHTML).to.equal('Could not fetch file contents from https://example.co/path/to/epsilon.js');
+        error = rendered().getElementsByClassName(
+          'vanilla-tree-viewer__code-error'
+        )[0];
+        expect(error.innerHTML).to.equal(
+          'Could not fetch file contents from https://example.co/path/to/epsilon.js'
+        );
       });
 
-      it('renders an error when the second file\'s styles dont fetch', async() => {
+      it("renders an error when the second file's styles dont fetch", async () => {
         files[1].options = {};
         files[1].options.style = 'bad-style';
-        fetchMock.get(hljsStyleUrl('bad-style'), { throws: new TypeError('Some error') });
+        fetchMock.get(hljsStyleUrl('bad-style'), {
+          throws: new TypeError('Some error')
+        });
 
         // First file should render correctly
         render();
         await waitUntil(hasRenderedCode);
-        let error = rendered().getElementsByClassName('vanilla-tree-viewer__code-error')[0];
+        let error = rendered().getElementsByClassName(
+          'vanilla-tree-viewer__code-error'
+        )[0];
         expect(error).to.be.undefined;
 
         // Render second file by clicking on it
@@ -315,14 +373,18 @@ describe('<VanillaTreeViewer />', () => {
         await waitUntil(hasRenderedError);
 
         // Verify error is displayed
-        error = rendered().getElementsByClassName('vanilla-tree-viewer__code-error')[0];
-        expect(error.innerHTML).to.equal(`Could not fetch highlight styling from ${hljsStyleUrl('bad-style')}`);
+        error = rendered().getElementsByClassName(
+          'vanilla-tree-viewer__code-error'
+        )[0];
+        expect(error.innerHTML).to.equal(
+          `Could not fetch highlight styling from ${hljsStyleUrl('bad-style')}`
+        );
       });
     });
   });
 
   describe('toggling directories', () => {
-    it('can toggle directories', async() => {
+    it('can toggle directories', async () => {
       render();
       await waitUntil(hasRenderedCode);
 
@@ -338,11 +400,7 @@ describe('<VanillaTreeViewer />', () => {
 
       // Collapsed
       directory.click();
-      expect(displayedNodePaths()).to.eql([
-        '/',
-        '/delta',
-        '/gamma.rb'
-      ]);
+      expect(displayedNodePaths()).to.eql(['/', '/delta', '/gamma.rb']);
 
       // Expanded
       directory.click();
@@ -362,7 +420,9 @@ const rendered = () => {
 
 const displayedNodePaths = () => {
   const component = rendered();
-  const allNodes = component.getElementsByClassName('vanilla-tree-viewer__tree-node');
+  const allNodes = component.getElementsByClassName(
+    'vanilla-tree-viewer__tree-node'
+  );
 
   const paths = [];
   for (const item of allNodes) {
@@ -374,7 +434,9 @@ const displayedNodePaths = () => {
 
 const findTreeNodeByPath = (path) => {
   const component = rendered();
-  const allNodes = component.getElementsByClassName('vanilla-tree-viewer__tree-node');
+  const allNodes = component.getElementsByClassName(
+    'vanilla-tree-viewer__tree-node'
+  );
 
   let targetNode;
   for (const item of allNodes) {
@@ -388,20 +450,27 @@ const findTreeNodeByPath = (path) => {
 };
 
 const hasRenderedCode = () => {
-  return rendered().getElementsByClassName('vanilla-tree-viewer__code').length > 0;
+  return (
+    rendered().getElementsByClassName('vanilla-tree-viewer__code').length > 0
+  );
 };
 
 const hasRenderedError = () => {
-  return rendered().getElementsByClassName('vanilla-tree-viewer__code-error').length > 0;
+  return (
+    rendered().getElementsByClassName('vanilla-tree-viewer__code-error')
+      .length > 0
+  );
 };
 
 const waitUntil = (condition) => {
   return new Promise((resolve, _reject) => {
     // eslint-disable-next-line
     (function waitForCondition(condition) {
-      if (condition()) { return resolve(); }
+      if (condition()) {
+        return resolve();
+      }
       setTimeout(waitForCondition, 100, condition);
-    }(condition));
+    })(condition);
   });
 };
 

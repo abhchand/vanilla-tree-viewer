@@ -3,6 +3,4 @@ const DEFAULT_OPTIONS = {
   style: 'monokai-sublime'
 };
 
-export {
-  DEFAULT_OPTIONS
-};
+export { DEFAULT_OPTIONS };

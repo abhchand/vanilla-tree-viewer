@@ -9,7 +9,9 @@
  */
 function isFunction(funcOrClass) {
   const propertyNames = Object.getOwnPropertyNames(funcOrClass);
-  return !propertyNames.includes('prototype') || propertyNames.includes('arguments');
+  return (
+    !propertyNames.includes('prototype') || propertyNames.includes('arguments')
+  );
 }
 
 /*
@@ -39,7 +41,6 @@ function isFunction(funcOrClass) {
  */
 function renderComponent(Component, props = {}) {
   if (typeof Component === 'function') {
-
     /*
      * Both functions and classes are of type 'function',
      * so test for which one it truly is
@@ -56,13 +57,14 @@ function renderComponent(Component, props = {}) {
   }
 
   // This is an object with a `render()` key
-  if (typeof Component === 'object' && Object.prototype.hasOwnProperty.call(Component, 'render')) {
+  if (
+    typeof Component === 'object' &&
+    Object.prototype.hasOwnProperty.call(Component, 'render')
+  ) {
     return Component.render(props);
   }
 
   return null;
 }
 
-export {
-  renderComponent
-};
+export { renderComponent };

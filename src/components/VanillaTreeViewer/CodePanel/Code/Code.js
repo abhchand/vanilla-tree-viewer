@@ -6,7 +6,6 @@ import { hljs } from 'components/VanillaTreeViewer/hljs';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
 class Code {
-
   constructor(props) {
     this.props = props;
 
@@ -39,7 +38,7 @@ class Code {
      */
     const css = syntaxHighlightStyles[file.options.style];
 
-    return css.replace(/\.hljs/ug, `#${namespace} .hljs`);
+    return css.replace(/\.hljs/gu, `#${namespace} .hljs`);
   }
 
   highlightedContents() {
@@ -57,7 +56,6 @@ class Code {
   }
 
   renderComponent() {
-
     /*
      * Creates HTMLElement:
      *
@@ -127,7 +125,6 @@ class Code {
 
     return this.renderComponent();
   }
-
 }
 
 export default Code;

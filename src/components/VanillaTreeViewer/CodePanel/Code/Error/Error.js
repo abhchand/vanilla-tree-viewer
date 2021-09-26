@@ -1,7 +1,6 @@
 import './Error.scss';
 
 const render = (props) => {
-
   /*
    * Creates HTMLElement:
    *
@@ -18,6 +17,4 @@ const render = (props) => {
   return div;
 };
 
-export {
-  render
-};
+export { render };

@@ -10,7 +10,9 @@ describe('<Header />', () => {
 
     const container = renderComponent(Header, { file: file });
 
-    const path = container.getElementsByClassName('vanilla-tree-viewer__code-path')[0];
+    const path = container.getElementsByClassName(
+      'vanilla-tree-viewer__code-path'
+    )[0];
     expect(path.innerText).to.eql('/some/path');
   });
 });

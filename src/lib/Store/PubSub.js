@@ -1,5 +1,4 @@
 export default class PubSub {
-
   constructor() {
     this.events = {};
   }
@@ -38,5 +37,4 @@ export default class PubSub {
 
     return this.events[event].map((callback) => callback(data));
   }
-
 }

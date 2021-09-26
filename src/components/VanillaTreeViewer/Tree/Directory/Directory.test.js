@@ -5,12 +5,7 @@ import simulateKeyboardEvent from 'components/VanillaTreeViewer/Helpers/simulate
 import { toDirectoryTree } from 'components/VanillaTreeViewer/Tree/Builder/Builder';
 import treeNodePadding from 'components/VanillaTreeViewer/Helpers/treeNodePadding';
 
-let indent,
-  path,
-  selectedFileId,
-  toggleDirectory,
-  tree,
-  updateSelectedPath;
+let indent, path, selectedFileId, toggleDirectory, tree, updateSelectedPath;
 
 beforeEach(() => {
   tree = {
@@ -38,11 +33,15 @@ describe('<Directory />', () => {
     expect(items.length).to.equal(1);
     const container = items[0];
 
-    expect(container.classList.contains('vanilla-tree-viewer__tree-node--directory')).to.be.true;
+    expect(
+      container.classList.contains('vanilla-tree-viewer__tree-node--directory')
+    ).to.be.true;
 
     expect(container.dataset.path).to.equal('/');
     expect(container.tabIndex).to.equal(0);
-    expect(container.style.getPropertyValue('padding-left')).to.equal(`${treeNodePadding(indent)}px`);
+    expect(container.style.getPropertyValue('padding-left')).to.equal(
+      `${treeNodePadding(indent)}px`
+    );
   });
 
   it('renders the FolderOpen svg icon', () => {
@@ -90,7 +89,6 @@ describe('<Directory />', () => {
    */
   describe('directory contents', () => {
     beforeEach(() => {
-
       /*
        * The below file structure gives us
        *  - A nested set of directories
@@ -119,23 +117,33 @@ describe('<Directory />', () => {
 
       // '/'
       expect(items[0].dataset.path).to.equal('/');
-      expect(items[0].classList.contains('vanilla-tree-viewer__tree-node--directory')).to.be.true;
+      expect(
+        items[0].classList.contains('vanilla-tree-viewer__tree-node--directory')
+      ).to.be.true;
 
       // '/delta/'
       expect(items[1].dataset.path).to.equal('/delta');
-      expect(items[1].classList.contains('vanilla-tree-viewer__tree-node--directory')).to.be.true;
+      expect(
+        items[1].classList.contains('vanilla-tree-viewer__tree-node--directory')
+      ).to.be.true;
 
       // '/delta/epsilon.js'
       expect(items[2].dataset.path).to.equal('/delta/epsilon.js');
-      expect(items[2].classList.contains('vanilla-tree-viewer__tree-node--file')).to.be.true;
+      expect(
+        items[2].classList.contains('vanilla-tree-viewer__tree-node--file')
+      ).to.be.true;
 
       // '/gamma.rb'
       expect(items[3].dataset.path).to.equal('/gamma.rb');
-      expect(items[3].classList.contains('vanilla-tree-viewer__tree-node--file')).to.be.true;
+      expect(
+        items[3].classList.contains('vanilla-tree-viewer__tree-node--file')
+      ).to.be.true;
     });
 
     describe('selectedFileId is present', () => {
-      beforeEach(() => { selectedFileId = tree['/gamma.rb'].id; });
+      beforeEach(() => {
+        selectedFileId = tree['/gamma.rb'].id;
+      });
 
       it('renders the `selected` class', () => {
         const items = render();
@@ -148,7 +156,9 @@ describe('<Directory />', () => {
     });
 
     describe('renders with the correct indentation', () => {
-      beforeEach(() => { indent = 0; });
+      beforeEach(() => {
+        indent = 0;
+      });
 
       it('renders the proper padding based off the indent', () => {
         const items = render();
@@ -159,13 +169,17 @@ describe('<Directory />', () => {
           { idx: 2, indent: 2 },
           { idx: 3, indent: 1 }
         ].forEach((data) => {
-          expect(items[data.idx].style.getPropertyValue('padding-left')).to.equal(`${treeNodePadding(data.indent)}px`);
+          expect(
+            items[data.idx].style.getPropertyValue('padding-left')
+          ).to.equal(`${treeNodePadding(data.indent)}px`);
         });
       });
     });
 
     describe('directory is closed', () => {
-      beforeEach(() => { tree['/delta'].isOpen = false; });
+      beforeEach(() => {
+        tree['/delta'].isOpen = false;
+      });
 
       it('does not render the directory contents', () => {
         const items = render();
@@ -174,17 +188,27 @@ describe('<Directory />', () => {
 
         // '/'
         expect(items[0].dataset.path).to.equal('/');
-        expect(items[0].classList.contains('vanilla-tree-viewer__tree-node--directory')).to.be.true;
+        expect(
+          items[0].classList.contains(
+            'vanilla-tree-viewer__tree-node--directory'
+          )
+        ).to.be.true;
 
         // '/delta/'
         expect(items[1].dataset.path).to.equal('/delta');
-        expect(items[1].classList.contains('vanilla-tree-viewer__tree-node--directory')).to.be.true;
+        expect(
+          items[1].classList.contains(
+            'vanilla-tree-viewer__tree-node--directory'
+          )
+        ).to.be.true;
 
         // '/delta/epsilon.js' -> not rendered
 
         // '/gamma.rb'
         expect(items[2].dataset.path).to.equal('/gamma.rb');
-        expect(items[2].classList.contains('vanilla-tree-viewer__tree-node--file')).to.be.true;
+        expect(
+          items[2].classList.contains('vanilla-tree-viewer__tree-node--file')
+        ).to.be.true;
       });
 
       it('renders the FolderClosed svg icon', () => {
