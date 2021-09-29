@@ -1,6 +1,10 @@
 @import "components/VanillaTreeViewer/Colors.scss";
 
 .vanilla-tree-viewer__code-panel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
   height: 30px;
   padding: 5px 10px;
   color: $wimbeldon_ridge;

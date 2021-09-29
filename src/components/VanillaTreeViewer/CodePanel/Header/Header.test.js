@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
 describe('<Header />', () => {
-  it('renders the Header with the Path', () => {
+  it('renders the Path', () => {
     const file = {
       path: '/some/path'
     };
@@ -14,5 +14,20 @@ describe('<Header />', () => {
       'vanilla-tree-viewer__code-path'
     )[0];
     expect(path.innerText).to.eql('/some/path');
+  });
+
+  it('renders the Logo', () => {
+    const file = {
+      path: '/some/path'
+    };
+
+    const container = renderComponent(Header, { file: file });
+
+    const logo = container.getElementsByClassName(
+      'vanilla-tree-viewer__logo'
+    )[0];
+    const svg = logo.getElementsByTagName('svg')[0];
+
+    expect(svg).to.not.be.null;
   });
 });
