@@ -237,9 +237,9 @@ You can also help support this project. If you've found this or any other of my 
 See [release notes](https://github.com/abhchand/vanilla-tree-viewer/releases)
 
 [ci-badge]:
-  https://img.shields.io/travis/abhchand/vanilla-tree-viewer/master?style=flat-square
+  https://circleci.com/gh/abhchand/vanilla-tree-viewer/tree/master.svg?style=svg
 [ci]:
-  https://travis-ci.org/abhchand/vanilla-tree-viewer
+  https://circleci.com/gh/abhchand/vanilla-tree-viewer/tree/master
 [npm-version-badge]:
   https://img.shields.io/npm/v/vanilla-tree-viewer.svg?style=flat-square
 [npm-version]:
