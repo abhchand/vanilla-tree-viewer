@@ -46,6 +46,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
   - [`id`](#config-id)
   - [`files`](#config-files)
   - [`options`](#config-options)
+- [Customization](#customization)
   - [Highlighting Less Common Languages](#highlighting-less-common-languages)
   - [Configuring Width and Alignment](#configuring-width-and-alignment)
   - [Customizing Styling](#customizing-styling)
@@ -156,6 +157,8 @@ Options can be defined per file or as a shared set of options passed to `Vanilla
 1. File level options
 2. Shared options
 3. Default options
+
+# <a name="customization"></a>Customization
 
 ### <a name="highlighting-less-common-languages"></a>Highlighting Less Common Languages
 
