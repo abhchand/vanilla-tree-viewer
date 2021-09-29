@@ -2,16 +2,16 @@ import VanillaTreeViewer from '../src/components/VanillaTreeViewer/VanillaTreeVi
 
 const files = [
   {
-    path: 'src/dateParser.js',
-    url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/dateParser.js'
+    path: 'lib/core/transformData.js',
+    url: 'https://raw.githubusercontent.com/axios/axios/master/lib/core/transformData.js'
   },
   {
-    path: 'src/index.js',
-    url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/index.js'
+    path: 'lib/axios.js',
+    url: 'https://raw.githubusercontent.com/axios/axios/master/lib/axios.js'
   },
   {
-    path: '/package.json',
-    url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
+    path: 'package.json',
+    url: 'https://raw.githubusercontent.com/axios/axios/master/package.json',
     options: { language: 'json' }
   }
 ];

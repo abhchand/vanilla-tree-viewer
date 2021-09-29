@@ -6,10 +6,9 @@
   "scripts": {
     "lint": "prettier --check src/* && eslint --ext .js --ext .jsx  src/ && stylelint src/*",
     "lintfix": "prettier --write src/* && eslint --ext .js --ext .jsx --fix src/ && stylelint src/* --fix",
-    "testonly": "jest --no-cache --config test/jest.config.js",
-    "test": "yarn run lint && yarn run testonly",
+    "test": "jest --no-cache --config test/jest.config.js",
     "dev": "NODE_ENV=development webpack-dev-server --open --debug --output-pathinfo",
-    "build": "yarn run test && rm -rf ./dist ./demo/build && NODE_ENV=production webpack --config webpack.config.js",
+    "build": "yarn run lint && yarn run test && rm -rf ./dist ./demo/build && NODE_ENV=production webpack --config webpack.config.js",
     "prepublish": "yarn run build"
   },
   "repository": {

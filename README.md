@@ -77,12 +77,12 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
 <script>
   const files = [
     {
-      path: 'src/index.js',
-      url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/index.js'
+      path: 'lib/axios.js',
+      url: 'https://raw.githubusercontent.com/axios/axios/master/lib/axios.js'
     },
     {
-      path: '/package.json',
-      url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
+      path: 'package.json',
+      url: 'https://raw.githubusercontent.com/axios/axios/master/package.json',
       // Overrides the 'global' options below, just for this specific file
       options: { language: 'json' }
     }
@@ -237,9 +237,9 @@ You can also help support this project. If you've found this or any other of my 
 See [release notes](https://github.com/abhchand/vanilla-tree-viewer/releases)
 
 [ci-badge]:
-  https://img.shields.io/travis/abhchand/vanilla-tree-viewer/master?style=flat-square
+  https://circleci.com/gh/abhchand/vanilla-tree-viewer/tree/master.svg?style=svg
 [ci]:
-  https://travis-ci.org/abhchand/vanilla-tree-viewer
+  https://circleci.com/gh/abhchand/vanilla-tree-viewer/tree/master
 [npm-version-badge]:
   https://img.shields.io/npm/v/vanilla-tree-viewer.svg?style=flat-square
 [npm-version]:
