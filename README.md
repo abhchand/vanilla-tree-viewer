@@ -77,12 +77,12 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
 <script>
   const files = [
     {
-      path: 'src/index.js',
-      url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/src/index.js'
+      path: 'lib/axios.js',
+      url: 'https://raw.githubusercontent.com/axios/axios/master/lib/axios.js'
     },
     {
-      path: '/package.json',
-      url: 'https://raw.githubusercontent.com/nmn/react-timeago/master/package.json',
+      path: 'package.json',
+      url: 'https://raw.githubusercontent.com/axios/axios/master/package.json',
       // Overrides the 'global' options below, just for this specific file
       options: { language: 'json' }
     }
