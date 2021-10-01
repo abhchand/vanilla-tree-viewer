@@ -23,7 +23,8 @@
   flex-wrap: nowrap;
   align-items: stretch;
   justify-content: flex-start;
-  height: 18px;
+  box-sizing: border-box;
+  height: 30px;
   padding: 6px 0;
   cursor: pointer;
 
