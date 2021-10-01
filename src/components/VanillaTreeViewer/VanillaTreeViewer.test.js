@@ -290,6 +290,15 @@ describe('<VanillaTreeViewer />', () => {
       )[0];
       expect(path.innerText).to.equal('/gamma.rb');
     });
+
+    describe('after rendering', () => {
+      it('sets the tree node as full-width', async () => {
+        render();
+        await waitUntil(hasRenderedCode);
+
+        expectAllNodesToBeFullWidth();
+      });
+    });
   });
 
   describe('switching between files', () => {
@@ -322,6 +331,19 @@ describe('<VanillaTreeViewer />', () => {
       expect(codeTag.innerHTML).to.equal(
         "const foo = () =&gt; { alert('foo'); }"
       );
+    });
+
+    describe('after rendering', () => {
+      it('sets the tree node as full-width', async () => {
+        render();
+        await waitUntil(hasRenderedCode);
+
+        const secondFile = findTreeNodeByPath('/delta/epsilon.js');
+        secondFile.click();
+        await waitUntil(hasRenderedCode);
+
+        expectAllNodesToBeFullWidth();
+      });
     });
 
     describe('validation and error handling', () => {
@@ -411,6 +433,23 @@ describe('<VanillaTreeViewer />', () => {
         '/gamma.rb'
       ]);
     });
+
+    describe('after rendering', () => {
+      it('sets the tree node as full-width', async () => {
+        render();
+        await waitUntil(hasRenderedCode);
+
+        const directory = findTreeNodeByPath('/delta');
+
+        // Collapse directory
+        directory.click();
+        expectAllNodesToBeFullWidth();
+
+        // Expand directory
+        directory.click();
+        expectAllNodesToBeFullWidth();
+      });
+    });
   });
 });
 
@@ -430,6 +469,19 @@ const displayedNodePaths = () => {
   }
 
   return paths;
+};
+
+const expectAllNodesToBeFullWidth = () => {
+  const scrollWidth = document.querySelector(
+    '.vanilla-tree-viewer__tree'
+  ).scrollWidth;
+
+  const nodes = rendered().getElementsByClassName(
+    'vanilla-tree-viewer__tree-node'
+  );
+  for (let i = 0; i < nodes.length; i++) {
+    expect(nodes[i].style.width).equal(`${scrollWidth}px`);
+  }
 };
 
 const findTreeNodeByPath = (path) => {

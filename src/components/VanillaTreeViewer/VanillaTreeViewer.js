@@ -8,6 +8,7 @@ import Component from 'lib/Component';
 import defaultSelectedPath from './Helpers/defaultSelectedPath';
 import { hljsStyleUrl } from './hljs';
 import { renderComponent } from './Helpers/renderComponent';
+import setTreeNodeToFullWidth from './Helpers/setTreeNodeToFullWidth';
 import Store from 'lib/Store/Store';
 import { validateFiles } from './Validator/Validator';
 
@@ -27,6 +28,7 @@ class VanillaTreeViewer extends Component {
     this.renderIntoDOM = this.renderIntoDOM.bind(this);
     this.renderComponent = this.renderComponent.bind(this);
     this.renderInvalid = this.renderInvalid.bind(this);
+    this.afterRender = this.afterRender.bind(this);
     this.render = this.render.bind(this);
 
     const validationResult = validateFiles(files);
@@ -153,11 +155,17 @@ class VanillaTreeViewer extends Component {
     return renderComponent(InvalidState, { reason: errorText });
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  afterRender() {
+    setTreeNodeToFullWidth();
+  }
+
   render() {
     const { errorText } = this.store.state;
     const content = errorText ? this.renderInvalid() : this.renderComponent();
 
     this.renderIntoDOM(content);
+    this.afterRender();
   }
 }
 
