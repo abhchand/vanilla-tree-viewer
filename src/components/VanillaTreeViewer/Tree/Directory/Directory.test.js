@@ -47,10 +47,8 @@ describe('<Directory />', () => {
   it('renders the FolderOpen svg icon', () => {
     const container = render()[0];
     const svg = container.getElementsByTagName('svg')[0];
-    const title = svg.getElementsByTagName('title')[0];
 
-    expect(svg).to.not.be.undefined;
-    expect(title.innerHTML).to.equal('folder-open');
+    expect(svg.id).to.equal('folder-open');
   });
 
   it('renders the Directory name', () => {
@@ -213,12 +211,9 @@ describe('<Directory />', () => {
 
       it('renders the FolderClosed svg icon', () => {
         const container = render()[1];
-
         const svg = container.getElementsByTagName('svg')[0];
-        const title = svg.getElementsByTagName('title')[0];
 
-        expect(svg).to.not.be.undefined;
-        expect(title.innerHTML).to.equal('folder-closed');
+        expect(svg.id).to.equal('folder-closed');
       });
     });
 

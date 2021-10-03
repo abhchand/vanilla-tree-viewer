@@ -24,8 +24,7 @@ const render = (_props) => {
 
   a.innerHTML = binocularsIcon({
     height: '18px',
-    width: '27px',
-    title: 'vanilla-tree-viewer'
+    width: '27px'
   });
   div.appendChild(a);
 
