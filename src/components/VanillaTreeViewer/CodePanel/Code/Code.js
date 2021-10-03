@@ -59,7 +59,7 @@ class Code {
     /*
      * Creates HTMLElement:
      *
-     * <div class='vanilla-tree-viewer__code' tabindex='-1'>
+     * <div class='vtv__code' tabindex='-1'>
      *   <pre>
      *     <code class='hljs' tabindex='-1'>
      *       {contents}
@@ -73,7 +73,7 @@ class Code {
      */
 
     const div = document.createElement('div');
-    div.classList.add('vanilla-tree-viewer__code');
+    div.classList.add('vtv__code');
     div.setAttribute('tabindex', '-1');
 
     const style = document.createElement('style');

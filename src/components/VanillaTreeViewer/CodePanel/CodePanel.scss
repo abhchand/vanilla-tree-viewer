@@ -1,10 +1,9 @@
 @import "components/VanillaTreeViewer/Breakpoints.scss";
 
-.vanilla-tree-viewer__code-panel {
+.vtv__code-panel {
   display: flex;
   flex: 1;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex-flow: column nowrap;
   align-items: stretch;
   justify-content: flex-start;
 

@@ -43,8 +43,7 @@ describe('<Code />', () => {
     it('renders the container', () => {
       const container = render();
 
-      expect(container.classList.contains('vanilla-tree-viewer__code')).to.be
-        .true;
+      expect(container.classList.contains('vtv__code')).to.be.true;
       expect(container.tabIndex).to.eql(-1);
     });
 
@@ -120,8 +119,7 @@ describe('<Code />', () => {
     it('renders the Error', () => {
       const error = render();
 
-      expect(error.classList.contains('vanilla-tree-viewer__code-error')).to.be
-        .true;
+      expect(error.classList.contains('vtv__code-error')).to.be.true;
       expect(error.innerHTML).to.eql('some error');
     });
   });
@@ -139,8 +137,7 @@ describe('<Code />', () => {
     it('renders the Loading state', () => {
       const loading = render();
 
-      expect(loading.classList.contains('vanilla-tree-viewer__code-loading')).to
-        .be.true;
+      expect(loading.classList.contains('vtv__code-loading')).to.be.true;
       expect(loading.innerHTML).to.eql('Loading...');
     });
   });
@@ -158,8 +155,7 @@ describe('<Code />', () => {
     it('renders the Loading state', () => {
       const loading = render();
 
-      expect(loading.classList.contains('vanilla-tree-viewer__code-loading')).to
-        .be.true;
+      expect(loading.classList.contains('vtv__code-loading')).to.be.true;
       expect(loading.innerHTML).to.eql('Loading...');
     });
   });

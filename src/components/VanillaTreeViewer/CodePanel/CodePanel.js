@@ -5,10 +5,19 @@ import Code from './Code/Code';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
 const render = (props) => {
+  /*
+   * Builds a code pane:
+   *
+   * <div class='vtv__code-panel'>
+   *   {Header}
+   *   {Code}
+   * </div>
+   */
+
   // Build <div>
 
   const div = document.createElement('div');
-  div.classList.add('vanilla-tree-viewer__code-panel');
+  div.classList.add('vtv__code-panel');
 
   // Build Header and Code
 

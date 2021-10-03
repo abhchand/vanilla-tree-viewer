@@ -1,8 +1,7 @@
 @import "components/VanillaTreeViewer/Colors.scss";
 
-.vanilla-tree-viewer__code-panel-header {
+.vtv__code-panel-header {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   height: 30px;

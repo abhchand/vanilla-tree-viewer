@@ -27,7 +27,6 @@ class VanillaTreeViewer extends Component {
     this.fetchSyntaxHighlightStyle = this.fetchSyntaxHighlightStyle.bind(this);
     this.renderIntoDOM = this.renderIntoDOM.bind(this);
     this.renderComponent = this.renderComponent.bind(this);
-    this.renderInvalid = this.renderInvalid.bind(this);
     this.afterRender = this.afterRender.bind(this);
     this.render = this.render.bind(this);
 
@@ -58,6 +57,7 @@ class VanillaTreeViewer extends Component {
     this.store.setState({ selectedPath: path });
   }
 
+  // Fetches the file contents for a given path via GET
   fetchFileContents(path) {
     const { tree } = this.store.state;
     const url = tree[path].url;
@@ -78,10 +78,12 @@ class VanillaTreeViewer extends Component {
       });
   }
 
+  // Fetches the highlight.js styles from a CDN given the style name
   fetchSyntaxHighlightStyle(styleNameParam, path) {
     const styleName = styleNameParam.toLowerCase();
     const { syntaxHighlightStyles, tree } = this.store.state;
 
+    // If it's already cached, don't re-fetch
     if (
       Object.prototype.hasOwnProperty.call(syntaxHighlightStyles, styleName)
     ) {
@@ -107,18 +109,19 @@ class VanillaTreeViewer extends Component {
       });
   }
 
-  renderIntoDOM(element) {
+  renderIntoDOM(childElement) {
     this.element.innerHTML = '';
-    this.element.appendChild(element);
+    this.element.appendChild(childElement);
   }
 
+  // Renders the VanillaTreeViewer component
   renderComponent() {
     const { selectedPath, syntaxHighlightStyles, tree } = this.store.state;
 
     /*
      * Creates HTMLElement:
      *
-     * <div class='vanilla-tree-viewer'>
+     * <div class='vtv'>
      *   {Tree}
      *   {CodePanel}
      * </div>
@@ -126,7 +129,7 @@ class VanillaTreeViewer extends Component {
      */
 
     const div = document.createElement('div');
-    div.classList.add('vanilla-tree-viewer');
+    div.classList.add('vtv');
 
     const treeEl = renderComponent(Tree, {
       tree: tree,
@@ -149,12 +152,6 @@ class VanillaTreeViewer extends Component {
     return div;
   }
 
-  renderInvalid() {
-    const { errorText } = this.store.state;
-
-    return renderComponent(InvalidState, { reason: errorText });
-  }
-
   // eslint-disable-next-line class-methods-use-this
   afterRender() {
     setTreeNodeToFullWidth();
@@ -162,7 +159,9 @@ class VanillaTreeViewer extends Component {
 
   render() {
     const { errorText } = this.store.state;
-    const content = errorText ? this.renderInvalid() : this.renderComponent();
+    const content = errorText
+      ? renderComponent(InvalidState, { reason: errorText })
+      : this.renderComponent();
 
     this.renderIntoDOM(content);
     this.afterRender();

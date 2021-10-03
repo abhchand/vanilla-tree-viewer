@@ -18,8 +18,8 @@ function render(props) {
   /*
    * Creates HTMLElement:
    *
-   * <li class='vanilla-tree-viewer__tree-node \
-   *   vanilla-tree-viewer__tree-node--file' ...>s
+   * <li class='vtv__tree-node \
+   *   vtv__tree-node--file' ...>s
    *   <svg>...</svg>
    *   <span>{file.name}</span>
    * </div>
@@ -32,10 +32,7 @@ function render(props) {
   li.setAttribute('style', `padding-left: ${treeNodePadding(indent)}px;`);
   li.setAttribute('tabindex', '0');
 
-  li.classList.add(
-    'vanilla-tree-viewer__tree-node',
-    'vanilla-tree-viewer__tree-node--file'
-  );
+  li.classList.add('vtv__tree-node', 'vtv__tree-node--file');
   if (isSelected) {
     li.classList.add('selected');
   }

@@ -203,7 +203,7 @@ The default styling for `VanillaTreeViewer` is based off the look and feel of [S
 
 `VanillaTreeViewer` does not provide a programmatic way to customize the component itself, however you  are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/main.min.css) for the `VanillaTreeViewer` component.
 
-* All top-level CSS classes begin with `.vanilla-tree-viewer*`
+* All top-level CSS classes begin with `.vtv*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
 
 # <a name="development"></a>Development

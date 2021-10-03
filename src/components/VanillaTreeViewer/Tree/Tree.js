@@ -5,7 +5,7 @@ import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComp
 
 const render = (props) => {
   const ul = document.createElement('ul');
-  ul.classList.add('vanilla-tree-viewer__tree');
+  ul.classList.add('vtv__tree');
 
   const children = renderComponent(Directory, {
     tree: props.tree,

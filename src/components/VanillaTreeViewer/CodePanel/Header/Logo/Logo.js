@@ -7,7 +7,7 @@ const render = (_props) => {
   /*
    * Creates HTMLElement:
    *
-   * <div class='vanilla-tree-viewer--logo'>
+   * <div class='vtv--logo'>
    *   <a href='...'>
    *     <svg>...</svg>
    *   </a>
@@ -16,7 +16,7 @@ const render = (_props) => {
    */
 
   const div = document.createElement('div');
-  div.classList.add('vanilla-tree-viewer__logo');
+  div.classList.add('vtv__logo');
 
   const a = document.createElement('a');
   a.href = VTV_SOURCE;
@@ -24,8 +24,7 @@ const render = (_props) => {
 
   a.innerHTML = binocularsIcon({
     height: '18px',
-    width: '27px',
-    title: 'vanilla-tree-viewer'
+    width: '27px'
   });
   div.appendChild(a);
 
