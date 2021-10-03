@@ -1,11 +1,11 @@
 import PubSub from './PubSub';
 
+/*
+ * A minimal implementation of a data store
+ */
 class Store {
   constructor(params) {
-    this.actions = params.actions || {};
-    this.mutations = params.mutations || {};
     this.state = params.state || {};
-
     this.events = new PubSub();
   }
 
