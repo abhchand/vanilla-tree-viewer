@@ -8,7 +8,7 @@ const render = (props) => {
   /*
    * Builds a code pane:
    *
-   * <div class='vanilla-tree-viewer__code-panel'>
+   * <div class='vtv__code-panel'>
    *   {Header}
    *   {Code}
    * </div>
@@ -17,7 +17,7 @@ const render = (props) => {
   // Build <div>
 
   const div = document.createElement('div');
-  div.classList.add('vanilla-tree-viewer__code-panel');
+  div.classList.add('vtv__code-panel');
 
   // Build Header and Code
 

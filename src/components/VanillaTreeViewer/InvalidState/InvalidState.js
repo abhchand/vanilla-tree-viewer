@@ -9,7 +9,7 @@ const render = (props = {}) => {
   /*
    * Creates HTMLElement:
    *
-   * <div class='vanilla-tree-viewer vanilla-tree-viewer--invalid'>
+   * <div class='vtv vtv--invalid'>
    *   {message}
    * </div>
    *
@@ -17,8 +17,8 @@ const render = (props = {}) => {
 
   const div = document.createElement('div');
 
-  div.classList.add('vanilla-tree-viewer');
-  div.classList.add('vanilla-tree-viewer--invalid');
+  div.classList.add('vtv');
+  div.classList.add('vtv--invalid');
 
   div.innerText = props.message || DEFAULT_MESSAGE;
 

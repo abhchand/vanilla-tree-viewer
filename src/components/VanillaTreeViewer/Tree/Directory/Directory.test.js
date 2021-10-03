@@ -33,9 +33,8 @@ describe('<Directory />', () => {
     expect(items.length).to.equal(1);
     const container = items[0];
 
-    expect(
-      container.classList.contains('vanilla-tree-viewer__tree-node--directory')
-    ).to.be.true;
+    expect(container.classList.contains('vtv__tree-node--directory')).to.be
+      .true;
 
     expect(container.dataset.path).to.equal('/');
     expect(container.tabIndex).to.equal(0);
@@ -115,27 +114,21 @@ describe('<Directory />', () => {
 
       // '/'
       expect(items[0].dataset.path).to.equal('/');
-      expect(
-        items[0].classList.contains('vanilla-tree-viewer__tree-node--directory')
-      ).to.be.true;
+      expect(items[0].classList.contains('vtv__tree-node--directory')).to.be
+        .true;
 
       // '/delta/'
       expect(items[1].dataset.path).to.equal('/delta');
-      expect(
-        items[1].classList.contains('vanilla-tree-viewer__tree-node--directory')
-      ).to.be.true;
+      expect(items[1].classList.contains('vtv__tree-node--directory')).to.be
+        .true;
 
       // '/delta/epsilon.js'
       expect(items[2].dataset.path).to.equal('/delta/epsilon.js');
-      expect(
-        items[2].classList.contains('vanilla-tree-viewer__tree-node--file')
-      ).to.be.true;
+      expect(items[2].classList.contains('vtv__tree-node--file')).to.be.true;
 
       // '/gamma.rb'
       expect(items[3].dataset.path).to.equal('/gamma.rb');
-      expect(
-        items[3].classList.contains('vanilla-tree-viewer__tree-node--file')
-      ).to.be.true;
+      expect(items[3].classList.contains('vtv__tree-node--file')).to.be.true;
     });
 
     describe('selectedFileId is present', () => {
@@ -186,27 +179,19 @@ describe('<Directory />', () => {
 
         // '/'
         expect(items[0].dataset.path).to.equal('/');
-        expect(
-          items[0].classList.contains(
-            'vanilla-tree-viewer__tree-node--directory'
-          )
-        ).to.be.true;
+        expect(items[0].classList.contains('vtv__tree-node--directory')).to.be
+          .true;
 
         // '/delta/'
         expect(items[1].dataset.path).to.equal('/delta');
-        expect(
-          items[1].classList.contains(
-            'vanilla-tree-viewer__tree-node--directory'
-          )
-        ).to.be.true;
+        expect(items[1].classList.contains('vtv__tree-node--directory')).to.be
+          .true;
 
         // '/delta/epsilon.js' -> not rendered
 
         // '/gamma.rb'
         expect(items[2].dataset.path).to.equal('/gamma.rb');
-        expect(
-          items[2].classList.contains('vanilla-tree-viewer__tree-node--file')
-        ).to.be.true;
+        expect(items[2].classList.contains('vtv__tree-node--file')).to.be.true;
       });
 
       it('renders the FolderClosed svg icon', () => {

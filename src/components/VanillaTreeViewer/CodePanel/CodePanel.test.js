@@ -41,18 +41,15 @@ beforeEach(() => {
 describe('<CodePanel />', () => {
   it('renders the container', () => {
     const container = render();
-    expect(container.classList.contains('vanilla-tree-viewer__code-panel')).to
-      .be.true;
+    expect(container.classList.contains('vtv__code-panel')).to.be.true;
   });
 
   it('renders the Header', () => {
     const container = render();
     const header = container.getElementsByClassName(
-      'vanilla-tree-viewer__code-panel-header'
+      'vtv__code-panel-header'
     )[0];
-    const path = header.getElementsByClassName(
-      'vanilla-tree-viewer__code-path'
-    )[0];
+    const path = header.getElementsByClassName('vtv__code-path')[0];
 
     expect(path.innerText).to.eql(file.path);
   });

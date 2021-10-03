@@ -1,7 +1,7 @@
 @import "components/VanillaTreeViewer/Breakpoints.scss";
 @import "components/VanillaTreeViewer/Colors.scss";
 
-.vanilla-tree-viewer__tree {
+.vtv__tree {
   box-sizing: border-box;
   min-width: 200px;
   height: 200px;
@@ -17,7 +17,7 @@
   }
 }
 
-.vanilla-tree-viewer__tree-node {
+.vtv__tree-node {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

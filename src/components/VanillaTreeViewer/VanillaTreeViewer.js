@@ -121,7 +121,7 @@ class VanillaTreeViewer extends Component {
     /*
      * Creates HTMLElement:
      *
-     * <div class='vanilla-tree-viewer'>
+     * <div class='vtv'>
      *   {Tree}
      *   {CodePanel}
      * </div>
@@ -129,7 +129,7 @@ class VanillaTreeViewer extends Component {
      */
 
     const div = document.createElement('div');
-    div.classList.add('vanilla-tree-viewer');
+    div.classList.add('vtv');
 
     const treeEl = renderComponent(Tree, {
       tree: tree,

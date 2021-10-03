@@ -31,8 +31,8 @@ class Directory {
     /*
      * Creates HTMLElement:
      *
-     * <li class='vanilla-tree-viewer__tree-node
-     *   vanilla-tree-viewer__tree-node--directory' ...>
+     * <li class='vtv__tree-node
+     *   vtv__tree-node--directory' ...>
      *   <svg>...</svg>
      *   <span>{directoryName}</span>
      * </div>
@@ -45,10 +45,7 @@ class Directory {
     li.setAttribute('style', `padding-left: ${treeNodePadding(indent)}px;`);
     li.setAttribute('tabindex', '0');
 
-    li.classList.add(
-      'vanilla-tree-viewer__tree-node',
-      'vanilla-tree-viewer__tree-node--directory'
-    );
+    li.classList.add('vtv__tree-node', 'vtv__tree-node--directory');
 
     li.addEventListener('click', onClick);
     li.addEventListener('keydown', (e) => {

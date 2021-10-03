@@ -4,14 +4,14 @@ const render = (props) => {
   /*
    * Creates HTMLElement:
    *
-   * <div class='vanilla-tree-viewer--code-path'>
+   * <div class='vtv--code-path'>
    *   {path}
    * </div>
    *
    */
 
   const div = document.createElement('div');
-  div.classList.add('vanilla-tree-viewer__code-path');
+  div.classList.add('vtv__code-path');
   div.innerText = props.path;
 
   return div;

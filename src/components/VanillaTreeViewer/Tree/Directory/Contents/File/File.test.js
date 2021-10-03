@@ -32,8 +32,7 @@ describe('<File />', () => {
   it('renders the component', () => {
     const container = render();
 
-    expect(container.classList.contains('vanilla-tree-viewer__tree-node--file'))
-      .to.be.true;
+    expect(container.classList.contains('vtv__tree-node--file')).to.be.true;
     expect(container.classList.contains('selected')).to.be.false;
 
     expect(container.dataset.path).to.equal(file.path);

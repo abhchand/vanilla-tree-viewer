@@ -8,7 +8,7 @@ const render = (props) => {
   /*
    * Creates HTMLElement:
    *
-   * <div class='vanilla-tree-viewer__code-panel-header'>
+   * <div class='vtv__code-panel-header'>
    *   {Path}
    *   {Logo}
    * </div>
@@ -16,7 +16,7 @@ const render = (props) => {
    */
 
   const div = document.createElement('div');
-  div.classList.add('vanilla-tree-viewer__code-panel-header');
+  div.classList.add('vtv__code-panel-header');
 
   const path = renderComponent(Path, { path: props.file.path });
   const logo = renderComponent(Logo);

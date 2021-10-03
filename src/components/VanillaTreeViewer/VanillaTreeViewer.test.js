@@ -51,16 +51,14 @@ describe('<VanillaTreeViewer />', () => {
     render();
     await waitUntil(hasRenderedCode);
 
-    expect(rendered().classList.contains('vanilla-tree-viewer')).to.be.true;
+    expect(rendered().classList.contains('vtv')).to.be.true;
   });
 
   it('renders the path', async () => {
     render();
     await waitUntil(hasRenderedCode);
 
-    const path = rendered().getElementsByClassName(
-      'vanilla-tree-viewer__code-path'
-    )[0];
+    const path = rendered().getElementsByClassName('vtv__code-path')[0];
     expect(path.innerText).to.equal('/gamma.rb');
   });
 
@@ -81,9 +79,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = rendered().getElementsByClassName('vtv__code')[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(
         `#${id} .hljs{display:block;}#${id} .hljs,#${id} .hljs-subst,#${id} .hljs-tag{color:#ffffff}`
@@ -100,9 +96,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = rendered().getElementsByClassName('vtv__code')[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(`#${id} .hljs{display:inline-block;}`);
     });
@@ -121,9 +115,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = rendered().getElementsByClassName('vtv__code')[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(`#${id} .hljs{display:flex;}`);
     });
@@ -134,9 +126,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = rendered().getElementsByClassName('vtv__code')[0];
       const codeTag = code.getElementsByTagName('code')[0];
       expect(codeTag.innerHTML).to.equal('def foo;true;end');
     });
@@ -147,9 +137,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = rendered().getElementsByClassName('vtv__code')[0];
       const codeTag = code.getElementsByTagName('code')[0];
       expect(codeTag.innerHTML).to.equal(
         '<span class="hljs-function">' +
@@ -168,9 +156,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = rendered().getElementsByClassName('vtv__code')[0];
       const codeTag = code.getElementsByTagName('code')[0];
       expect(codeTag.innerHTML).to.equal(
         'def foo;<span class="hljs-literal">true</span>;end'
@@ -185,8 +171,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
 
       const component = rendered();
-      expect(component.classList.contains('vanilla-tree-viewer--invalid')).to.be
-        .true;
+      expect(component.classList.contains('vtv--invalid')).to.be.true;
       expect(component.innerText).to.equal(DEFAULT_INVALID_STATE_MESSAGE);
     });
 
@@ -198,9 +183,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedError);
 
-      const error = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code-error'
-      )[0];
+      const error = rendered().getElementsByClassName('vtv__code-error')[0];
       expect(error.innerHTML).to.equal(
         'Could not fetch file contents from https://example.co/path/to/gamma.rb'
       );
@@ -214,9 +197,7 @@ describe('<VanillaTreeViewer />', () => {
       render();
       await waitUntil(hasRenderedError);
 
-      const error = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code-error'
-      )[0];
+      const error = rendered().getElementsByClassName('vtv__code-error')[0];
       expect(error.innerHTML).to.equal(
         `Could not fetch highlight styling from ${hljsStyleUrl(
           DEFAULT_OPTIONS.style
@@ -240,18 +221,14 @@ describe('<VanillaTreeViewer />', () => {
       expect(selectedFile.classList.contains('selected')).to.be.true;
 
       // Verify code contents
-      const code = component.getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = component.getElementsByClassName('vtv__code')[0];
       const codeTag = code.getElementsByTagName('code')[0];
       expect(codeTag.innerHTML).to.equal(
         "const foo = () =&gt; { alert('foo'); }"
       );
 
       // Verify path
-      const path = component.getElementsByClassName(
-        'vanilla-tree-viewer__code-path'
-      )[0];
+      const path = component.getElementsByClassName('vtv__code-path')[0];
       expect(path.innerText).to.equal('/delta/epsilon.js');
     });
 
@@ -267,9 +244,7 @@ describe('<VanillaTreeViewer />', () => {
       expect(selectedFile.classList.contains('selected')).to.be.true;
 
       // Verify paths
-      const path = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code-path'
-      )[0];
+      const path = rendered().getElementsByClassName('vtv__code-path')[0];
       expect(path.innerText).to.equal('/gamma.rb');
     });
 
@@ -285,9 +260,7 @@ describe('<VanillaTreeViewer />', () => {
       expect(selectedFile.classList.contains('selected')).to.be.true;
 
       // Verify paths
-      const path = rendered().getElementsByClassName(
-        'vanilla-tree-viewer__code-path'
-      )[0];
+      const path = rendered().getElementsByClassName('vtv__code-path')[0];
       expect(path.innerText).to.equal('/gamma.rb');
     });
 
@@ -315,18 +288,14 @@ describe('<VanillaTreeViewer />', () => {
       secondFile = findTreeNodeByPath('/delta/epsilon.js');
 
       // Path
-      const path = component.getElementsByClassName(
-        'vanilla-tree-viewer__code-path'
-      )[0];
+      const path = component.getElementsByClassName('vtv__code-path')[0];
       expect(path.innerText).to.equal('/delta/epsilon.js');
 
       // Selected
       expect(secondFile.classList.contains('selected')).to.be.true;
 
       // File Contents
-      const code = component.getElementsByClassName(
-        'vanilla-tree-viewer__code'
-      )[0];
+      const code = component.getElementsByClassName('vtv__code')[0];
       const codeTag = code.getElementsByTagName('code')[0];
       expect(codeTag.innerHTML).to.equal(
         "const foo = () =&gt; { alert('foo'); }"
@@ -355,9 +324,7 @@ describe('<VanillaTreeViewer />', () => {
         // First file should render correctly
         render();
         await waitUntil(hasRenderedCode);
-        let error = rendered().getElementsByClassName(
-          'vanilla-tree-viewer__code-error'
-        )[0];
+        let error = rendered().getElementsByClassName('vtv__code-error')[0];
         expect(error).to.be.undefined;
 
         // Render second file by clicking on it
@@ -366,9 +333,7 @@ describe('<VanillaTreeViewer />', () => {
         await waitUntil(hasRenderedError);
 
         // Verify error is displayed
-        error = rendered().getElementsByClassName(
-          'vanilla-tree-viewer__code-error'
-        )[0];
+        error = rendered().getElementsByClassName('vtv__code-error')[0];
         expect(error.innerHTML).to.equal(
           'Could not fetch file contents from https://example.co/path/to/epsilon.js'
         );
@@ -384,9 +349,7 @@ describe('<VanillaTreeViewer />', () => {
         // First file should render correctly
         render();
         await waitUntil(hasRenderedCode);
-        let error = rendered().getElementsByClassName(
-          'vanilla-tree-viewer__code-error'
-        )[0];
+        let error = rendered().getElementsByClassName('vtv__code-error')[0];
         expect(error).to.be.undefined;
 
         // Render second file by clicking on it
@@ -395,9 +358,7 @@ describe('<VanillaTreeViewer />', () => {
         await waitUntil(hasRenderedError);
 
         // Verify error is displayed
-        error = rendered().getElementsByClassName(
-          'vanilla-tree-viewer__code-error'
-        )[0];
+        error = rendered().getElementsByClassName('vtv__code-error')[0];
         expect(error.innerHTML).to.equal(
           `Could not fetch highlight styling from ${hljsStyleUrl('bad-style')}`
         );
@@ -459,9 +420,7 @@ const rendered = () => {
 
 const displayedNodePaths = () => {
   const component = rendered();
-  const allNodes = component.getElementsByClassName(
-    'vanilla-tree-viewer__tree-node'
-  );
+  const allNodes = component.getElementsByClassName('vtv__tree-node');
 
   const paths = [];
   for (const item of allNodes) {
@@ -472,13 +431,9 @@ const displayedNodePaths = () => {
 };
 
 const expectAllNodesToBeFullWidth = () => {
-  const scrollWidth = document.querySelector(
-    '.vanilla-tree-viewer__tree'
-  ).scrollWidth;
+  const scrollWidth = document.querySelector('.vtv__tree').scrollWidth;
 
-  const nodes = rendered().getElementsByClassName(
-    'vanilla-tree-viewer__tree-node'
-  );
+  const nodes = rendered().getElementsByClassName('vtv__tree-node');
   for (let i = 0; i < nodes.length; i++) {
     expect(nodes[i].style.width).equal(`${scrollWidth}px`);
   }
@@ -486,9 +441,7 @@ const expectAllNodesToBeFullWidth = () => {
 
 const findTreeNodeByPath = (path) => {
   const component = rendered();
-  const allNodes = component.getElementsByClassName(
-    'vanilla-tree-viewer__tree-node'
-  );
+  const allNodes = component.getElementsByClassName('vtv__tree-node');
 
   let targetNode;
   for (const item of allNodes) {
@@ -502,16 +455,11 @@ const findTreeNodeByPath = (path) => {
 };
 
 const hasRenderedCode = () => {
-  return (
-    rendered().getElementsByClassName('vanilla-tree-viewer__code').length > 0
-  );
+  return rendered().getElementsByClassName('vtv__code').length > 0;
 };
 
 const hasRenderedError = () => {
-  return (
-    rendered().getElementsByClassName('vanilla-tree-viewer__code-error')
-      .length > 0
-  );
+  return rendered().getElementsByClassName('vtv__code-error').length > 0;
 };
 
 const waitUntil = (condition) => {

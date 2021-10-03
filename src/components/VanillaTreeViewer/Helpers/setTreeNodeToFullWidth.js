@@ -15,16 +15,14 @@
  * have been rendered so that we can fetch the `scrollWidth` of the parent container
  */
 function setTreeNodeToFullWidth() {
-  const tree = document.querySelector('.vanilla-tree-viewer__tree');
+  const tree = document.querySelector('.vtv__tree');
   if (!tree) {
     return;
   }
 
-  document
-    .querySelectorAll('.vanilla-tree-viewer__tree-node')
-    .forEach((element) => {
-      element.style.width = `${tree.scrollWidth}px`;
-    });
+  document.querySelectorAll('.vtv__tree-node').forEach((element) => {
+    element.style.width = `${tree.scrollWidth}px`;
+  });
 }
 
 export default setTreeNodeToFullWidth;

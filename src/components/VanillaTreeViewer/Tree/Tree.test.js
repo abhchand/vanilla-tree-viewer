@@ -29,8 +29,7 @@ describe('<Tree />', () => {
   it('renders the component', () => {
     const container = render();
 
-    expect(container.classList.contains('vanilla-tree-viewer__tree')).to.be
-      .true;
+    expect(container.classList.contains('vtv__tree')).to.be.true;
   });
 
   it('renders the directory tree', () => {
@@ -41,25 +40,19 @@ describe('<Tree />', () => {
 
     // '/'
     expect(items[0].dataset.path).to.equal('/');
-    expect(
-      items[0].classList.contains('vanilla-tree-viewer__tree-node--directory')
-    ).to.be.true;
+    expect(items[0].classList.contains('vtv__tree-node--directory')).to.be.true;
 
     // '/delta/'
     expect(items[1].dataset.path).to.equal('/delta');
-    expect(
-      items[1].classList.contains('vanilla-tree-viewer__tree-node--directory')
-    ).to.be.true;
+    expect(items[1].classList.contains('vtv__tree-node--directory')).to.be.true;
 
     // '/delta/epsilon.js'
     expect(items[2].dataset.path).to.equal('/delta/epsilon.js');
-    expect(items[2].classList.contains('vanilla-tree-viewer__tree-node--file'))
-      .to.be.true;
+    expect(items[2].classList.contains('vtv__tree-node--file')).to.be.true;
 
     // '/gamma.rb'
     expect(items[3].dataset.path).to.equal('/gamma.rb');
-    expect(items[3].classList.contains('vanilla-tree-viewer__tree-node--file'))
-      .to.be.true;
+    expect(items[3].classList.contains('vtv__tree-node--file')).to.be.true;
   });
 });
 
