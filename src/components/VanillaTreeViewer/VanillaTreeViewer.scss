@@ -3,8 +3,7 @@
 
 .vtv {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  flex-flow: column nowrap;
   align-items: stretch;
   justify-content: flex-start;
   width: 100%;
