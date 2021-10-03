@@ -40,7 +40,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # Table of Contents
 
-- [Quick Start](#quick-start)
+- [3-Step Quick Start](#three-step-quick-start)
   - [A note on `<script>` tag placement](#a-note-on-script-tag-placement)
 - [Configuration](#configuration)
   - [`id`](#config-id)
@@ -55,9 +55,9 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 - [Issues / Contributing](#issues-contributing)
 - [Changelog](#changelog)
 
-# <a name="quick-start"></a>Quick Start
+# <a name="three-step-quick-start"></a>3-Step Quick Start
 
-Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+Import the latest **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
@@ -66,7 +66,7 @@ Import the latest VanillaTreeViewer **script** and **styling** from our CDN ([Se
 </head>
 ```
 
-Define a DOM node on which to render a new viewer. You can define multiple viewers and DOM nodes, as long as they each have a unique `id`.
+Define one or more DOM nodes (with unique `id`s) on which to render a new viewer.
 
 ```html
 <div id='my-viewer'></div>
