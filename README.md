@@ -42,12 +42,14 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 - [3-Step Quick Start](#three-step-quick-start)
   - [A note on `<script>` tag placement](#a-note-on-script-tag-placement)
+- [Syntax Highlighting](#syntax-highlighting)
+  - [Default Language Support](#default-language-support)
+  - [Highlighting Other Languages](#highlighting-other-languages)
 - [Configuration](#configuration)
   - [`id`](#config-id)
   - [`files`](#config-files)
   - [`options`](#config-options)
 - [Customization](#customization)
-  - [Highlighting Less Common Languages](#highlighting-less-common-languages)
   - [Configuring Width and Alignment](#configuring-width-and-alignment)
   - [Customizing Styling](#customizing-styling)
 - [Development](#development)
@@ -111,6 +113,57 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 ```
 
+# <a name="syntax-highlighting"></a>Syntax Highlighting
+
+`VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
+
+See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.1.1) supported by `highlight.js`.
+
+## <a name="default-language-support"></a>Defalt Language Support
+
+To keep the bundle size small, `VanillaTreeViewer` supports only the most common languages by default.
+
+* bash
+* c
+* cpp
+* csharp
+* css
+* diff
+* go
+* java
+* javascript
+* json
+* makefile
+* xml
+* markdown
+* objectivec
+* php
+* php-template
+* plaintext
+* python
+* ruby
+* rust
+* scss
+* shell
+* sql
+* typescript
+* yaml
+
+## <a name="highlighting-other-languages"></a>Highlighting Other Languages
+
+If you require syntax highlighting for any language not supported by default, you'll have to include the syntax definitions from `Highlight.js` manually.
+
+Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
+
+For example, highlighting ActionScript:
+
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/index.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/actionscript.min.js"></script>
+```
+
+See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.1.1) supported by `highlight.js`.
+
 # <a name="configuration"></a>Configuration
 
 ```js
@@ -159,23 +212,6 @@ Options can be defined per file or as a shared set of options passed to `Vanilla
 3. Default options
 
 # <a name="customization"></a>Customization
-
-### <a name="highlighting-less-common-languages"></a>Highlighting Less Common Languages
-
-To keep the bundle size small, `Highlight.js` ships with language support for only the most common languages by default. See the [Common Languages outlined here](https://highlightjs.org/download/)
-
-If you require syntax highlighting for a less common language, you'll have to include the syntax definitions from `Highlight.js` manually (which uses CDN JS for hosting).
-
-Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
-
-Example for ActionScript:
-
-```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/index.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/actionscript.min.js"></script>
-```
-
-You can find the full list of language syntax definitions maintained by `highlight.js` [here](https://cdnjs.com/libraries/highlight.js/10.1.1).
 
 ### <a name="configuring-width-and-alignment"></a>Configuring Width and Alignment
 
