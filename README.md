@@ -9,7 +9,7 @@
     />
   </a>
 
-  <p>Vanilla Tree Viewer is a minimalist file browser for compactly displaying several files at once</p>
+  <p>`VanillaTreeViewer` is a minimalist file browser for compactly displaying several files at once</p>
 </div>
 
 ---
