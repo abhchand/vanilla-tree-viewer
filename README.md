@@ -41,7 +41,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 # Table of Contents
 
 - [3-Step Quick Start](#three-step-quick-start)
-  - [A note on `<script>` tag placement](#a-note-on-script-tag-placement)
+  - [`<script>` tag placement](#script-tag-placement)
 - [Syntax Highlighting](#syntax-highlighting)
   - [Default Language Support](#default-language-support)
   - [Highlighting Other Languages](#highlighting-other-languages)
@@ -101,7 +101,7 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
 
 For a fully functioning copy-pastable example that you can also run locally, see [`examples/simple.html`](https://github.com/abhchand/vanilla-tree-viewer/blob/master/examples/simple.html)
 
-### <a name="a-note-on-script-tag-placement"></a>A note on `<script>` tag placement
+### <a name="script-tag-placement"></a>`<script>` tag placement
 
 In the above code snippet we placed our `<script>` tag at the end so the script runs _after_ our DOM node `#my-viewer` has rendered.
 
