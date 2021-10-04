@@ -216,7 +216,7 @@ Options can be defined per file or as a shared set of options passed to `Vanilla
 
 ### <a name="configuring-width-and-alignment"></a>Configuring Width and Alignment
 
-By default the `VanillaTreeViewer` takes the full width of the DOM container element it's mounted on to. It is recommended that you style this DOM element accordingly to set the desired width and alignment.
+By default `VanillaTreeViewer` takes the full width of the DOM container element it's mounted on to. It is recommended that you style this DOM element accordingly to set the desired width and alignment.
 
 Here is one approach that handles styling for all mount nodes:
 
