@@ -154,19 +154,17 @@ If you're highlighting files in any of these languages, there's no further actio
 
 ## <a name="highlighting-other-languages"></a>Highlighting Other Languages
 
-If you require syntax highlighting for any language not supported by default, you'll have to manually include the syntax definitions from `Highlight.js`.
+If you require syntax highlighting for any language not supported by default, you'll have to manually include the syntax definitions from `Highlight.js`. Don't worry, it's easy!
 
-See the [available list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
+1. Find your language's syntax definitions from the [available list of language syntax definitions supported by `highlight.js`](https://cdnjs.com/libraries/highlight.js/10.4.1).
+2. Then, add the `<script>` for your syntax definitions _after_ the `VanillaTreeViewer` `<script>`.
 
-For **example**, highlighting ActionScript:
+For example, highlighting `ActionScript`:
 
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0/dist/index.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
 ```
-
-Be sure to include the syntax highlighting definition(s) _after_ the `VanillaTreeViewer` `<script>`.
-
 
 # <a name="configuration"></a>Configuration
 
