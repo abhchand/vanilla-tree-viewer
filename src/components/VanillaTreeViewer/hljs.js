@@ -3,7 +3,7 @@
 import hljs from 'highlight.js/lib/core';
 
 // If updating this, manually update the README as well
-const HLJS_VERSION = '10.1.1';
+const HLJS_VERSION = '10.4.1';
 
 /*
  * Expose hljs globally so that external scripts can
@@ -38,14 +38,14 @@ const HLJS_LANGUAGES = [
   'basic',
   'bnf',
   'brainfuck',
-  'c',
   'c-like',
+  'c',
   'cal',
   'capnproto',
   'ceylon',
   'clean',
-  'clojure',
   'clojure-repl',
+  'clojure',
   'cmake',
   'coffeescript',
   'coq',
@@ -71,8 +71,8 @@ const HLJS_LANGUAGES = [
   'elixir',
   'elm',
   'erb',
-  'erlang',
   'erlang-repl',
+  'erlang',
   'excel',
   'fix',
   'flix',
@@ -104,8 +104,8 @@ const HLJS_LANGUAGES = [
   'javascript',
   'jboss-cli',
   'json',
-  'julia',
   'julia-repl',
+  'julia',
   'kotlin',
   'lasso',
   'latex',
@@ -134,6 +134,7 @@ const HLJS_LANGUAGES = [
   'nginx',
   'nim',
   'nix',
+  'node-repl',
   'nsis',
   'objectivec',
   'ocaml',
@@ -143,8 +144,8 @@ const HLJS_LANGUAGES = [
   'perl',
   'pf',
   'pgsql',
-  'php',
   'php-template',
+  'php',
   'plaintext',
   'pony',
   'powershell',
@@ -155,8 +156,8 @@ const HLJS_LANGUAGES = [
   'protobuf',
   'puppet',
   'purebasic',
-  'python',
   'python-repl',
+  'python',
   'q',
   'qml',
   'r',
@@ -194,8 +195,8 @@ const HLJS_LANGUAGES = [
   'typescript',
   'vala',
   'vbnet',
-  'vbscript',
   'vbscript-html',
+  'vbscript',
   'verilog',
   'vhdl',
   'vim',

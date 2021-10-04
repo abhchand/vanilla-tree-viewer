@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
 
-See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.1.1) supported by `highlight.js`.
+See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
 
 ## <a name="default-language-support"></a>Defalt Language Support
 
@@ -159,10 +159,10 @@ For example, highlighting ActionScript:
 
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/index.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/actionscript.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
 ```
 
-See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.1.1) supported by `highlight.js`.
+See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
 
 # <a name="configuration"></a>Configuration
 
