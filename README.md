@@ -124,6 +124,8 @@ See the [full list of language syntax definitions](https://cdnjs.com/libraries/h
 
 To keep the bundle size small, `VanillaTreeViewer` supports syntax highlighting for only the most common languages by default.
 
+If you're highlighting files in any of these languages, there's no further action required.
+
 * bash
 * c
 * cpp
@@ -152,9 +154,9 @@ To keep the bundle size small, `VanillaTreeViewer` supports syntax highlighting 
 
 ## <a name="highlighting-other-languages"></a>Highlighting Other Languages
 
-If you require syntax highlighting for any language not supported by default, you'll have to include the syntax definitions from `Highlight.js` manually.
+If you require syntax highlighting for any language not supported by default, you'll have to manually include the syntax definitions from `Highlight.js`.
 
-Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
+See the [available list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
 
 For **example**, highlighting ActionScript:
 
@@ -163,7 +165,8 @@ For **example**, highlighting ActionScript:
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
 ```
 
-See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
+Be sure to include the syntax highlighting definition(s) _after_ the `VanillaTreeViewer` `<script>`.
+
 
 # <a name="configuration"></a>Configuration
 
