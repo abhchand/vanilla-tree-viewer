@@ -121,7 +121,7 @@ See the [full list of language syntax definitions](https://cdnjs.com/libraries/h
 
 ## <a name="default-language-support"></a>Defalt Language Support
 
-To keep the bundle size small, `VanillaTreeViewer` supports only the most common languages by default.
+To keep the bundle size small, `VanillaTreeViewer` supports syntax highlighting for only the most common languages by default.
 
 * bash
 * c
@@ -155,7 +155,7 @@ If you require syntax highlighting for any language not supported by default, yo
 
 Be sure to include this _after_ sourcing the `VanillaTreeViewer` script
 
-For example, highlighting ActionScript:
+For **example**, highlighting ActionScript:
 
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0-beta.7/dist/index.min.js"></script>
