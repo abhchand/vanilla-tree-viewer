@@ -34,7 +34,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 * Lightweight
   * built with pure JavaScript
-  * Only 1 dependency! `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting
+  * only 1 dependency! `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting
 * Mobile-friendly
 * Easily customize-able syntax highlighting and component styling
 * Well tested
