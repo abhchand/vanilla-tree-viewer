@@ -64,8 +64,8 @@ Import the latest **script** and **styling** from our CDN ([See all available ve
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0/dist/main.min.css" >
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0/dist/index.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/main.min.css" >
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/index.min.js"></script>
 </head>
 ```
 
@@ -162,7 +162,7 @@ If you require syntax highlighting for any language not supported by default, yo
 For example, highlighting `ActionScript`:
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0/dist/index.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/index.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
 ```
 
@@ -239,7 +239,7 @@ Here is one approach that handles styling for all mount nodes:
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
-`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, however you  are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.0/dist/main.min.css) for the `VanillaTreeViewer` component.
+`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, however you  are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/main.min.css) for the `VanillaTreeViewer` component.
 
 * All top-level CSS classes begin with `.vtv*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
