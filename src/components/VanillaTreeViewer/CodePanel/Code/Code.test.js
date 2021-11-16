@@ -124,21 +124,58 @@ describe('<Code />', () => {
     });
   });
 
-  describe('file has no contents', () => {
-    beforeEach(() => {
-      file.contents = null;
+  describe('determining file contents', () => {
+    describe('file has `url` set, but not `contents`', () => {
+      beforeEach(() => {
+        file.contents = null;
+      });
+
+      it('calls fetchFileContents()', () => {
+        render();
+        expect(fetchFileContents.mock.calls.length).to.eql(1);
+      });
+
+      it('renders the Loading state', () => {
+        const loading = render();
+
+        expect(loading.classList.contains('vtv__code-loading')).to.be.true;
+        expect(loading.innerHTML).to.eql('Loading...');
+      });
     });
 
-    it('calls fetchFileContents()', () => {
-      render();
-      expect(fetchFileContents.mock.calls.length).to.eql(1);
+    describe('file has `contents` set, but not `url`', () => {
+      beforeEach(() => {
+        file.url = null;
+        file.contents = 'class Foo < Bar\nend';
+      });
+
+      it('does not call fetchFileContents()', () => {
+        render();
+        expect(fetchFileContents.mock.calls.length).to.eql(0);
+      });
+
+      it('does not render the Loading state', () => {
+        const loading = render();
+
+        expect(loading.classList.contains('vtv__code-loading')).to.be.false;
+      });
     });
 
-    it('renders the Loading state', () => {
-      const loading = render();
+    describe('both `contents` and `url` are set', () => {
+      beforeEach(() => {
+        file.contents = 'class Foo < Bar\nend';
+      });
 
-      expect(loading.classList.contains('vtv__code-loading')).to.be.true;
-      expect(loading.innerHTML).to.eql('Loading...');
+      it('does not call fetchFileContents()', () => {
+        render();
+        expect(fetchFileContents.mock.calls.length).to.eql(0);
+      });
+
+      it('does not render the Loading state', () => {
+        const loading = render();
+
+        expect(loading.classList.contains('vtv__code-loading')).to.be.false;
+      });
     });
   });
 

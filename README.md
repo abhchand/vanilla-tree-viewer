@@ -86,7 +86,8 @@ At the bottom of your page, include a `<script>` tag that defines the list of fi
     },
     {
       path: 'package.json',
-      url: 'https://raw.githubusercontent.com/axios/axios/master/package.json',
+      // Specify the file contents directly, instead of a URL
+      contents: '{ \"foo\": \"bar\" }',
       // Overrides the 'global' options below, just for this specific file
       options: { language: 'json' }
     }
@@ -190,8 +191,9 @@ Each file object can have the following keys:
 
 | Key  | Type | Required? | Description
 | ------------- | ------------- | ------------- | ------------- |
-| `url`  | `String` | Yes  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents |
 | `path`  | `String` | Yes  | The path under which the file should be displayed in the viewer tree |
+| `url`  | `String` | One of `url`/`contents` required  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents. |
+| `contents` | `String` | One of `url`/`contents` required | The file contents to be displayed. Takes precedence over `url` if both are set. |
 | `selected` | `Boolean` | No | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
 | `options` | `Object{}` | No | File-level options that will apply only to this file. See `options` below for a full list of supported options |
 

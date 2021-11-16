@@ -19,7 +19,16 @@ function allFilesHaveRequiredKey(files) {
     if (!file.path || (file.path || '').length === 0) {
       badFileCount += 1;
     }
-    if (!file.url || (file.url || '').length === 0) {
+  });
+
+  return badFileCount === 0;
+}
+
+function hasUrlOrContentsPresent(files) {
+  let badFileCount = 0;
+
+  files.forEach((file) => {
+    if ((file.url || '').length === 0 && (file.contents || '').length === 0) {
       badFileCount += 1;
     }
   });
@@ -90,7 +99,15 @@ function handleMissingFiles() {
 function handleFilesMissingRequiredKeys() {
   return {
     isValid: false,
-    error: 'Each `file` must have a non-empty `path` and `url`'
+    error: 'Each `file` must have a non-empty `path`'
+  };
+}
+
+function handleUrlOrContentsBlank() {
+  return {
+    isValid: false,
+    error:
+      'Each `file` must have at least one of the following set: `url`, `contents`'
   };
 }
 
@@ -136,6 +153,9 @@ function validateFiles(files) {
   }
   if (!allFilesHaveRequiredKey(files)) {
     return handleFilesMissingRequiredKeys();
+  }
+  if (!hasUrlOrContentsPresent(files)) {
+    return handleUrlOrContentsBlank();
   }
   if (!allFilesHaveUniquePaths(files)) {
     return handleFilesHaveDuplicatePaths();

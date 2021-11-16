@@ -106,8 +106,9 @@ class Code {
     }
 
     /*
-     * If we don't have the file contents for this file cached,
-     * fetch it asynchronously and display `Loading` in the mean time
+     * If we don't have the file contents for this file already set
+     * or cached, fetch it asynchronously and display `Loading` in
+     * the mean time
      */
     if (!file.contents) {
       fetchFileContents(file.path);
