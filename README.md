@@ -127,31 +127,7 @@ To keep the bundle size small, `VanillaTreeViewer` supports syntax highlighting 
 
 If you're highlighting files in any of these languages, there's no further action required.
 
-* bash
-* c
-* cpp
-* csharp
-* css
-* diff
-* go
-* java
-* javascript
-* json
-* makefile
-* xml
-* markdown
-* objectivec
-* php
-* php-template
-* plaintext
-* python
-* ruby
-* rust
-* scss
-* shell
-* sql
-* typescript
-* yaml
+> `bash`, `c`, `cpp`, `csharp`, `css`, `diff`, `go`, `java`, `javascript`, `json`, `makefile`, `xml`, `markdown`, `objectivec`, `php`, `php-template`, `plaintext`, `python`, `ruby`, `rust`, `scss`, `shell`, `sql`, `typescript`, `yaml`
 
 ## <a name="highlighting-other-languages"></a>Highlighting Other Languages
 
