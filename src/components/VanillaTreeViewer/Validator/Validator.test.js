@@ -26,6 +26,18 @@ describe('Validator.validateFiles', () => {
     expect(result.isValid).to.be.true;
   });
 
+  describe('`contents` is specified instead of `url`', () => {
+    beforeEach(() => {
+      delete files[0].url;
+      files[0].contents = 'foo bar';
+    });
+
+    it('marks the files as valid', () => {
+      const result = validateFiles(files);
+      expect(result.isValid).to.be.true;
+    });
+  });
+
   const testForInvalid = () => {
     const result = validateFiles(files);
 
@@ -75,14 +87,6 @@ describe('Validator.validateFiles', () => {
     it('marks the files as invalid', testForInvalid);
   });
 
-  describe('one ore more files is missing `url`', () => {
-    beforeEach(() => {
-      delete files[1].url;
-    });
-
-    it('marks the files as invalid', testForInvalid);
-  });
-
   describe('one ore more files has null `path`', () => {
     beforeEach(() => {
       files[1].path = null;
@@ -91,9 +95,19 @@ describe('Validator.validateFiles', () => {
     it('marks the files as invalid', testForInvalid);
   });
 
-  describe('one ore more files has null `url`', () => {
+  describe('one ore more files has missing `url` AND `contents`', () => {
+    beforeEach(() => {
+      delete files[1].url;
+      delete files[1].contents;
+    });
+
+    it('marks the files as invalid', testForInvalid);
+  });
+
+  describe('one ore more files has null `url` AND `contents`', () => {
     beforeEach(() => {
       files[1].url = null;
+      files[1].contents = null;
     });
 
     it('marks the files as invalid', testForInvalid);

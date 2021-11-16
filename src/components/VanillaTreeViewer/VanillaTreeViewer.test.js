@@ -74,6 +74,44 @@ describe('<VanillaTreeViewer />', () => {
     ]);
   });
 
+  describe('determining file contents', () => {
+    it('fetches the file contents from the `url`', async () => {
+      files[0].url = 'https://example.co/path/to/gamma.rb';
+      files[0].contents = null;
+
+      render();
+      await waitUntil(hasRenderedCode);
+
+      const code = rendered().getElementsByClassName('vtv__code')[0];
+      const codeTag = code.getElementsByTagName('code')[0];
+      expect(codeTag.innerHTML).to.equal('def foo;true;end');
+    });
+
+    it('allows specifying file contents directly with `contents`', async () => {
+      files[0].url = null;
+      files[0].contents = 'def foo;nil;end';
+
+      render();
+      await waitUntil(hasRenderedCode);
+
+      const code = rendered().getElementsByClassName('vtv__code')[0];
+      const codeTag = code.getElementsByTagName('code')[0];
+      expect(codeTag.innerHTML).to.equal('def foo;nil;end');
+    });
+
+    it('The `contents` option takes precedence over `url`', async () => {
+      files[0].url = 'https://example.co/path/to/gamma.rb';
+      files[0].contents = 'def foo;nil;end';
+
+      render();
+      await waitUntil(hasRenderedCode);
+
+      const code = rendered().getElementsByClassName('vtv__code')[0];
+      const codeTag = code.getElementsByTagName('code')[0];
+      expect(codeTag.innerHTML).to.equal('def foo;nil;end');
+    });
+  });
+
   describe('rendering style', () => {
     it('renders the default style', async () => {
       render();

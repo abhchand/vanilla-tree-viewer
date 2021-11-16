@@ -81,6 +81,20 @@ describe('Builder.toDirectoryTree', () => {
     expect(tree).to.deep.equal(expected);
   });
 
+  describe('`contents` is specified instead of `url`', () => {
+    beforeEach(() => {
+      files[0].contents = 'class Foo < Bar\nend';
+    });
+
+    it('sets `contents`', () => {
+      const tree = toDirectoryTree(files, globalOptions);
+
+      expect(tree['/alpha/beta/gamma.rb'].contents).to.eql(
+        'class Foo < Bar\nend'
+      );
+    });
+  });
+
   describe('parsing paths', () => {
     it('handles paths case insensitively', () => {
       files[0].path = 'AlPhA/BeTA/gaMMa.rb';

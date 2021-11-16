@@ -17,8 +17,12 @@ function newTreeNode(type, name, path, file) {
   }
 
   if (type === 'file') {
-    // File contents will be fetched & populated later
-    treeNode.contents = null;
+    /*
+     * Upstream validations will guarantee that one of `url`
+     * or `contents` is present. If `contents` are blank, it
+     * will be fetched and populated from the `url` later.
+     */
+    treeNode.contents = file.contents || null;
     treeNode.url = file.url;
     treeNode.error = null;
     treeNode.options = file.options;
