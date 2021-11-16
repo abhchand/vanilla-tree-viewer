@@ -41,7 +41,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # Table of Contents
 
-- [3-Step Quick Start](#three-step-quick-start)
+- [Quick Start](#quick-start)
   - [`<script>` tag placement](#script-tag-placement)
 - [Syntax Highlighting](#syntax-highlighting)
   - [Default Language Support](#default-language-support)
@@ -58,24 +58,24 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 - [Issues / Contributing](#issues-contributing)
 - [Changelog](#changelog)
 
-# <a name="three-step-quick-start"></a>3-Step Quick Start
+# <a name="quick-start"></a>Quick Start
 
-Import the latest **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+① Import the latest **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/main.min.css" >
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/index.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.0.1/dist/main.min.css" >
 </head>
 ```
 
-Define one or more DOM nodes (with unique `id`s) on which to render a new viewer.
+② Define one or more DOM nodes (with unique `id`s) on which to render a new viewer.
 
 ```html
 <div id='my-viewer'></div>
 ```
 
-At the bottom of your page, include a `<script>` tag that defines the list of files and initializes the viewer.
+③ At the bottom of your page, include a `<script>` tag that defines the list of files and initializes the viewer.
 
 ```html
 <script>
