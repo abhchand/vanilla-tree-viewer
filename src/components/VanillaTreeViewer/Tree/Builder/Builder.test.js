@@ -3,7 +3,6 @@ import { DEFAULT_OPTIONS } from './Constants';
 import { expect } from 'chai';
 
 let files;
-const globalOptions = {};
 
 beforeEach(() => {
   files = [
@@ -21,7 +20,7 @@ beforeEach(() => {
 
 describe('Builder.toDirectoryTree', () => {
   it('builds a directory tree', () => {
-    const tree = toDirectoryTree(files, globalOptions);
+    const tree = toDirectoryTree(files);
 
     const expected = {
       '/': {
@@ -56,7 +55,8 @@ describe('Builder.toDirectoryTree', () => {
         contents: null,
         url: 'https://example.co/alpha/beta/gamma.rb',
         error: null,
-        options: DEFAULT_OPTIONS
+        language: DEFAULT_OPTIONS.language,
+        style: DEFAULT_OPTIONS.style
       },
       '/delta': {
         id: 'directory+/delta',
@@ -74,7 +74,8 @@ describe('Builder.toDirectoryTree', () => {
         contents: null,
         url: 'https://example.co/delta/epsilon.rb',
         error: null,
-        options: DEFAULT_OPTIONS
+        language: DEFAULT_OPTIONS.language,
+        style: DEFAULT_OPTIONS.style
       }
     };
 
@@ -87,7 +88,7 @@ describe('Builder.toDirectoryTree', () => {
     });
 
     it('sets `contents`', () => {
-      const tree = toDirectoryTree(files, globalOptions);
+      const tree = toDirectoryTree(files);
 
       expect(tree['/alpha/beta/gamma.rb'].contents).to.eql(
         'class Foo < Bar\nend'
@@ -99,7 +100,7 @@ describe('Builder.toDirectoryTree', () => {
     it('handles paths case insensitively', () => {
       files[0].path = 'AlPhA/BeTA/gaMMa.rb';
 
-      const tree = toDirectoryTree(files, globalOptions);
+      const tree = toDirectoryTree(files);
       const node = tree['/alpha/beta/gamma.rb'];
 
       expect(node.name).to.equal('gamma.rb');
@@ -109,7 +110,7 @@ describe('Builder.toDirectoryTree', () => {
     it("handles paths prefixed with '/'", () => {
       files[0].path = '/alpha/beta/gamma.rb';
 
-      const tree = toDirectoryTree(files, globalOptions);
+      const tree = toDirectoryTree(files);
       const node = tree['/alpha/beta/gamma.rb'];
 
       expect(node.name).to.equal('gamma.rb');
@@ -119,7 +120,7 @@ describe('Builder.toDirectoryTree', () => {
     it('blindly assumes the last path segment is the filename', () => {
       files[0].path = 'foo/bar/baz';
 
-      const tree = toDirectoryTree(files, globalOptions);
+      const tree = toDirectoryTree(files);
       const node = tree['/foo/bar/baz'];
 
       expect(node.name).to.equal('baz');
@@ -132,7 +133,7 @@ describe('Builder.toDirectoryTree', () => {
       files[1].path = '/alpha/omega.rb';
       files[1].url = 'https://example.co/alpha/omega.rb';
 
-      const tree = toDirectoryTree(files, globalOptions);
+      const tree = toDirectoryTree(files);
 
       // No need to retest all nodes, just test the nodes impacted
 
@@ -147,7 +148,8 @@ describe('Builder.toDirectoryTree', () => {
         contents: null,
         url: 'https://example.co/alpha/beta/gamma.rb',
         error: null,
-        options: DEFAULT_OPTIONS
+        language: DEFAULT_OPTIONS.language,
+        style: DEFAULT_OPTIONS.style
       };
       expect(node).to.deep.equal(expected);
 
@@ -160,7 +162,8 @@ describe('Builder.toDirectoryTree', () => {
         contents: null,
         url: 'https://example.co/alpha/omega.rb',
         error: null,
-        options: DEFAULT_OPTIONS
+        language: DEFAULT_OPTIONS.language,
+        style: DEFAULT_OPTIONS.style
       };
       expect(node).to.deep.equal(expected);
 
@@ -184,7 +187,7 @@ describe('Builder.toDirectoryTree', () => {
       files[1].path = '/alpha/beta.rb';
       files[1].url = 'https://example.co/alpha/beta.rb';
 
-      const tree = toDirectoryTree(files, globalOptions);
+      const tree = toDirectoryTree(files);
 
       // No need to retest all nodes, just test the nodes impacted
 
@@ -199,7 +202,8 @@ describe('Builder.toDirectoryTree', () => {
         contents: null,
         url: 'https://example.co/alpha/beta.rb',
         error: null,
-        options: DEFAULT_OPTIONS
+        language: DEFAULT_OPTIONS.language,
+        style: DEFAULT_OPTIONS.style
       };
       expect(node).to.deep.equal(expected);
 
@@ -216,44 +220,61 @@ describe('Builder.toDirectoryTree', () => {
     });
   });
 
-  describe('parsing options', () => {
+  describe('parsing language', () => {
     beforeEach(() => {
-      files[0].options = {};
-      files[0].options.style = 'file-style';
-      globalOptions.style = 'global-style';
+      files[0].language = 'ruby';
     });
 
-    describe('highlight options', () => {
-      it('uses the file-level option if present', () => {
-        const tree = toDirectoryTree(files, globalOptions);
+    it('reads the `language` option if present', () => {
+      const tree = toDirectoryTree(files);
 
-        const node = tree['/alpha/beta/gamma.rb'];
-        expect(node.options.style).to.equal('file-style');
-      });
+      const node = tree['/alpha/beta/gamma.rb'];
+      expect(node.language).to.equal('ruby');
+    });
 
-      it('falls back on the global option if file option is blank', () => {
-        const tree = toDirectoryTree(files, globalOptions);
+    it('falls back on the default option if no option provided', () => {
+      delete files[0].language;
 
-        const node = tree['/delta/epsilon.rb'];
-        expect(node.options.style).to.equal('global-style');
-      });
+      const tree = toDirectoryTree(files);
+      let node;
 
-      it('falls back on the default option if no option provided', () => {
-        delete files[0].options.style;
-        delete globalOptions.style;
+      // Just confirm that we're testing against a `null` default value
+      expect(DEFAULT_OPTIONS.language).to.be.null;
 
-        const tree = toDirectoryTree(files, globalOptions);
-        let node;
+      node = tree['/alpha/beta/gamma.rb'];
+      expect(node.language).to.equal(DEFAULT_OPTIONS.language);
 
-        // Just double-check we're testing against valid data here
-        expect(DEFAULT_OPTIONS.style.length).to.be.gt(0);
+      node = tree['/delta/epsilon.rb'];
+      expect(node.language).to.equal(DEFAULT_OPTIONS.language);
+    });
+  });
 
-        node = tree['/alpha/beta/gamma.rb'];
-        expect(node.options.style).to.equal(DEFAULT_OPTIONS.style);
+  describe('parsing style', () => {
+    beforeEach(() => {
+      files[0].style = 'file-style';
+    });
 
-        node = tree['/delta/epsilon.rb'];
-        expect(node.options.style).to.equal(DEFAULT_OPTIONS.style);
-      });
+    it('reads the `style` option if present', () => {
+      const tree = toDirectoryTree(files);
+
+      const node = tree['/alpha/beta/gamma.rb'];
+      expect(node.style).to.equal('file-style');
+    });
+
+    it('falls back on the default option if no option provided', () => {
+      delete files[0].style;
+
+      const tree = toDirectoryTree(files);
+      let node;
+
+      // Just double-check we're testing against valid data here
+      expect(DEFAULT_OPTIONS.style.length).to.be.gt(0);
+
+      node = tree['/alpha/beta/gamma.rb'];
+      expect(node.style).to.equal(DEFAULT_OPTIONS.style);
+
+      node = tree['/delta/epsilon.rb'];
+      expect(node.style).to.equal(DEFAULT_OPTIONS.style);
     });
   });
 });

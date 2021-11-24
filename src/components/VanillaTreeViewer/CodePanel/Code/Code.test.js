@@ -9,23 +9,21 @@ const namespace = 'app';
 
 beforeEach(() => {
   file = {
-    id: 'file+/alpha/beta/gamma.rb',
-    name: 'gamma.rb',
-    type: 'file',
-    path: '/alpha/beta/gamma.rb',
-    contents: `
-      def foo
-        true
-      end
-    `,
-    url: 'https://example.co/alpha/beta/gamma.rb',
-    error: null,
-    options: {
-      ...DEFAULT_OPTIONS,
-      ...{
-        style: 'custom-style',
-        language: 'ruby'
-      }
+    ...DEFAULT_OPTIONS,
+    ...{
+      id: 'file+/alpha/beta/gamma.rb',
+      name: 'gamma.rb',
+      type: 'file',
+      path: '/alpha/beta/gamma.rb',
+      contents: `
+        def foo
+          true
+        end
+      `,
+      url: 'https://example.co/alpha/beta/gamma.rb',
+      error: null,
+      language: 'ruby',
+      style: 'custom-style'
     }
   };
 
@@ -58,16 +56,16 @@ describe('<Code />', () => {
         expect(code.tabIndex).to.eql(-1);
         expect(code.innerHTML.trim()).to.eql(
           `
-        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>
-        <span class="hljs-literal">true</span>
-      <span class="hljs-keyword">end</span>
+          <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span></span>
+          <span class="hljs-literal">true</span>
+        <span class="hljs-keyword">end</span>
           `.trim()
         );
       });
 
       describe('no language is specified', () => {
         beforeEach(() => {
-          delete file.options.language;
+          delete file.language;
         });
 
         it('it renders the code without highlighting', () => {
@@ -77,9 +75,9 @@ describe('<Code />', () => {
           const code = pre.getElementsByTagName('code')[0];
           expect(code.innerHTML.trim()).to.eql(
             `
-      def foo
-        true
-      end
+        def foo
+          true
+        end
             `.trim()
           );
         });
@@ -98,7 +96,7 @@ describe('<Code />', () => {
 
       describe('no language is specified', () => {
         beforeEach(() => {
-          delete file.options.style;
+          delete file.style;
         });
 
         it('renders no styling', () => {

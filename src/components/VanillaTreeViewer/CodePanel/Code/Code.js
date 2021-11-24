@@ -17,7 +17,7 @@ class Code {
   namespacedCss() {
     const { file, namespace, syntaxHighlightStyles } = this.props;
 
-    if (!file.options || !file.options.style) {
+    if (!file.style) {
       return null;
     }
 
@@ -36,7 +36,7 @@ class Code {
      *   Output: #someId.hljs.foo { background-color: black; }
      *
      */
-    const css = syntaxHighlightStyles[file.options.style];
+    const css = syntaxHighlightStyles[file.style];
 
     return css.replace(/\.hljs/gu, `#${namespace} .hljs`);
   }
@@ -44,7 +44,7 @@ class Code {
   highlightedContents() {
     const { file } = this.props;
 
-    if (!file.options || !file.options.language) {
+    if (!file.language) {
       return file.contents;
     }
 
@@ -52,7 +52,7 @@ class Code {
      * Use `hljs` to apply highlighting markup to the file contents
      * See: https://highlightjs.readthedocs.io/en/latest/api.html#highlight-languagename-code-ignore-illegals-continuation
      */
-    return hljs.highlight(file.options.language, file.contents).value;
+    return hljs.highlight(file.language, file.contents).value;
   }
 
   renderComponent() {
@@ -119,8 +119,8 @@ class Code {
      * If a CSS style was specified and we don't have it cached,
      * fetch it asynchronously and display `Loading` in the mean time
      */
-    if (file.options.style && !syntaxHighlightStyles[file.options.style]) {
-      fetchSyntaxHighlightStyle(file.options.style, file.path);
+    if (file.style && !syntaxHighlightStyles[file.style]) {
+      fetchSyntaxHighlightStyle(file.style, file.path);
       return renderComponent(Loading);
     }
 

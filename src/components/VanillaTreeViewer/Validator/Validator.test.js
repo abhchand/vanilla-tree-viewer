@@ -13,9 +13,7 @@ beforeEach(() => {
     {
       path: 'src/main.js',
       url: 'https://example.co/src/main.js',
-      options: {
-        language: 'javascript'
-      }
+      language: 'javascript'
     }
   ];
 });
@@ -131,7 +129,7 @@ describe('Validator.validateFiles', () => {
 
   describe('language is invalid', () => {
     beforeEach(() => {
-      files[1].options.language = 'foo';
+      files[1].language = 'foo';
     });
 
     it('marks the files as invalid', testForInvalid);
@@ -139,7 +137,7 @@ describe('Validator.validateFiles', () => {
 
   describe('language is valid, but uncommon', () => {
     beforeEach(() => {
-      files[1].options.language = 'actionscript';
+      files[1].language = 'actionscript';
     });
 
     it('marks the files as invalid', testForInvalid);

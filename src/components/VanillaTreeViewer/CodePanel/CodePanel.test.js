@@ -9,23 +9,21 @@ const namespace = 'app';
 
 beforeEach(() => {
   file = {
-    id: 'file+/alpha/beta/gamma.rb',
-    name: 'gamma.rb',
-    type: 'file',
-    path: '/alpha/beta/gamma.rb',
-    contents: `
-      def foo
-        true
-      end
-    `,
-    url: 'https://example.co/alpha/beta/gamma.rb',
-    error: null,
-    options: {
-      ...DEFAULT_OPTIONS,
-      ...{
-        style: 'custom-style',
-        language: 'ruby'
-      }
+    ...DEFAULT_OPTIONS,
+    ...{
+      id: 'file+/alpha/beta/gamma.rb',
+      name: 'gamma.rb',
+      type: 'file',
+      path: '/alpha/beta/gamma.rb',
+      contents: `
+        def foo
+          true
+        end
+      `,
+      url: 'https://example.co/alpha/beta/gamma.rb',
+      error: null,
+      language: 'ruby',
+      style: 'custom-style'
     }
   };
 

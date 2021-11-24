@@ -49,7 +49,6 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 - [Configuration](#configuration)
   - [`id`](#config-id)
   - [`files`](#config-files)
-  - [`options`](#config-options)
 - [Customization](#customization)
   - [Configuring Width and Alignment](#configuring-width-and-alignment)
   - [Customizing Styling](#customizing-styling)
@@ -82,22 +81,18 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
   const files = [
     {
       path: 'lib/axios.js',
-      url: 'https://raw.githubusercontent.com/axios/axios/master/lib/axios.js'
+      url: 'https://raw.githubusercontent.com/axios/axios/master/lib/axios.js',
+      language: 'json'
     },
     {
       path: 'package.json',
       // Specify the file contents directly, instead of a URL
       contents: '{ \"foo\": \"bar\" }',
-      // Overrides the 'global' options below, just for this specific file
-      options: { language: 'json' }
+      language: 'json'
     }
   ];
 
-  new VanillaTreeViewer(
-    'my-viewer',
-    files,
-    { language: 'javascript' }
-  ).render();
+  new VanillaTreeViewer('my-viewer', files).render();
 </script>
 ```
 
@@ -146,7 +141,7 @@ For example, highlighting `ActionScript`:
 # <a name="configuration"></a>Configuration
 
 ```js
-var viewer = new VanillaTreeViewer(id, files, options);
+var viewer = new VanillaTreeViewer(id, files);
 viewer.render();
 ```
 
@@ -165,31 +160,17 @@ You can render multiple instances of the viewer, but keep in mind -
 
 Each file object can have the following keys:
 
-| Key  | Type | Required? | Description
-| ------------- | ------------- | ------------- | ------------- |
-| `path`  | `String` | Yes  | The path under which the file should be displayed in the viewer tree |
-| `url`  | `String` | One of `url`/`contents` required  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents. |
-| `contents` | `String` | One of `url`/`contents` required | The file contents to be displayed. Takes precedence over `url` if both are set. |
-| `selected` | `Boolean` | No | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
-| `options` | `Object{}` | No | File-level options that will apply only to this file. See `options` below for a full list of supported options |
-
-
-### <a name="config-options"></a>`options`
-
-The `options` are -
-
-| Key  | Type | Default | Description
-| ------------- | ------------- | ------------- | ------------- |
-| `language` | `String` | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
-| `style` | `String` | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
+| Key  | Type | Required? | Default | Description
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| `path`  | `String` | Yes | | The path under which the file should be displayed in the viewer tree |
+| `url`  | `String` | One of `url`/`contents` required | | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents. |
+| `contents` | `String` | One of `url`/`contents` required | | The file contents to be displayed. Takes precedence over `url` if both are set. |
+| `selected` | `Boolean` | No | | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
+| `language` | `String` | No | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
+| `style` | `String` | No | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
 
 **NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.
 
-Options can be defined per file or as a shared set of options passed to `VanillaTreeViewer`. For each file, options are evaluated in the following order of precedence:
-
-1. File level options
-2. Shared options
-3. Default options
 
 # <a name="customization"></a>Customization
 
