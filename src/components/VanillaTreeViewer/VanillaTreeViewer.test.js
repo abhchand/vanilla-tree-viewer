@@ -5,7 +5,7 @@ import fetchMock from 'fetch-mock';
 import { hljsStyleUrl } from 'components/VanillaTreeViewer/hljs';
 import VanillaTreeViewer from 'components/VanillaTreeViewer/VanillaTreeViewer';
 
-let files, options;
+let files;
 
 fetchMock.config.overwriteRoutes = true;
 
@@ -23,8 +23,6 @@ beforeEach(() => {
       url: 'https://example.co/path/to/epsilon.js'
     }
   ];
-
-  options = {};
 
   // Set up DOM to mount component
   document.body.innerHTML = `<div id='${id}'></div>`;
@@ -124,38 +122,18 @@ describe('<VanillaTreeViewer />', () => {
       );
     });
 
-    it('overrides styling for all files with the global options', async () => {
-      options.style = 'my-global-style';
-      fetchMock.get(
-        hljsStyleUrl('my-global-style'),
-        '.hljs{display:inline-block;}'
-      );
+    describe('a style is specified for a file', () => {
+      it('renders the specified style', async () => {
+        files[0].style = 'my-file-style';
+        fetchMock.get(hljsStyleUrl('my-file-style'), '.hljs{display:flex;}');
 
-      render();
-      await waitUntil(hasRenderedCode);
+        render();
+        await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const style = code.getElementsByTagName('style')[0];
-      expect(style.innerHTML).to.equal(`#${id} .hljs{display:inline-block;}`);
-    });
-
-    it('overrides styling for specific files with the file-level options', async () => {
-      options.style = 'my-global-style';
-      fetchMock.get(
-        hljsStyleUrl('my-global-style'),
-        '.hljs{display:inline-block;}'
-      );
-
-      files[0].options = {};
-      files[0].options.style = 'my-file-style';
-      fetchMock.get(hljsStyleUrl('my-file-style'), '.hljs{display:flex;}');
-
-      render();
-      await waitUntil(hasRenderedCode);
-
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const style = code.getElementsByTagName('style')[0];
-      expect(style.innerHTML).to.equal(`#${id} .hljs{display:flex;}`);
+        const code = rendered().getElementsByClassName('vtv__code')[0];
+        const style = code.getElementsByTagName('style')[0];
+        expect(style.innerHTML).to.equal(`#${id} .hljs{display:flex;}`);
+      });
     });
   });
 
@@ -169,36 +147,19 @@ describe('<VanillaTreeViewer />', () => {
       expect(codeTag.innerHTML).to.equal('def foo;true;end');
     });
 
-    it('overrides highlighting for all files with the global options', async () => {
-      options.language = 'ruby';
+    describe('a syntax highlighting language is specified for a file', () => {
+      it('highlights the specified file', async () => {
+        files[0].language = 'javascript';
 
-      render();
-      await waitUntil(hasRenderedCode);
+        render();
+        await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal(
-        '<span class="hljs-function">' +
-          '<span class="hljs-keyword">def</span> ' +
-          '<span class="hljs-title">foo</span>;</span>' +
-          '<span class="hljs-literal">true</span>;' +
-          '<span class="hljs-keyword">end</span>'
-      );
-    });
-
-    it('overrides highlighting for specific files with the file-level options', async () => {
-      options.language = 'ruby';
-      files[0].options = {};
-      files[0].options.language = 'javascript';
-
-      render();
-      await waitUntil(hasRenderedCode);
-
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal(
-        'def foo;<span class="hljs-literal">true</span>;end'
-      );
+        const code = rendered().getElementsByClassName('vtv__code')[0];
+        const codeTag = code.getElementsByTagName('code')[0];
+        expect(codeTag.innerHTML).to.equal(
+          'def foo;<span class="hljs-literal">true</span>;end'
+        );
+      });
     });
   });
 
@@ -378,8 +339,7 @@ describe('<VanillaTreeViewer />', () => {
       });
 
       it("renders an error when the second file's styles dont fetch", async () => {
-        files[1].options = {};
-        files[1].options.style = 'bad-style';
+        files[1].style = 'bad-style';
         fetchMock.get(hljsStyleUrl('bad-style'), {
           throws: new TypeError('Some error')
         });
@@ -513,7 +473,7 @@ const waitUntil = (condition) => {
 };
 
 const render = () => {
-  const viewer = new VanillaTreeViewer(id, files, options);
+  const viewer = new VanillaTreeViewer(id, files);
   viewer.render();
 
   return rendered();

@@ -25,7 +25,8 @@ function newTreeNode(type, name, path, file) {
     treeNode.contents = file.contents || null;
     treeNode.url = file.url;
     treeNode.error = null;
-    treeNode.options = file.options;
+    treeNode.language = file.language;
+    treeNode.style = file.style;
   }
 
   return treeNode;
@@ -41,7 +42,7 @@ function normalizePath(path) {
   return newPath.toLowerCase();
 }
 
-function addToDirectoryTree(tree, file, globalOptions) {
+function addToDirectoryTree(tree, file) {
   /*
    * Parse each segment of the path, accounting for the 'root'
    * segment/directory as ''.
@@ -54,12 +55,8 @@ function addToDirectoryTree(tree, file, globalOptions) {
   let parentPath = null;
   let currentPath = '';
 
-  // Merge any relevant global options / defaults into the individual `file`
-  file.options = {
-    ...DEFAULT_OPTIONS,
-    ...(globalOptions || {}),
-    ...(file.options || {})
-  };
+  // Merge any defaults into the individual `file`
+  const fileWithDefaults = { ...DEFAULT_OPTIONS, ...file };
 
   segments.forEach((segment, idx) => {
     parentPath = currentPath;
@@ -83,19 +80,24 @@ function addToDirectoryTree(tree, file, globalOptions) {
      * Add a new node and add it to the parent (which is guranteed
      * to be a directory object with a `childPaths` key)
      */
-    tree[currentPath] = newTreeNode(type, segment, currentPath, file);
+    tree[currentPath] = newTreeNode(
+      type,
+      segment,
+      currentPath,
+      fileWithDefaults
+    );
     tree[parentPath].childPaths.push(currentPath);
   });
 
   return tree;
 }
 
-function toDirectoryTree(files, globalOptions) {
+function toDirectoryTree(files) {
   let tree = {};
   tree['/'] = newTreeNode('directory', '/', '/', null);
 
   files.forEach((file) => {
-    tree = addToDirectoryTree(tree, file, globalOptions);
+    tree = addToDirectoryTree(tree, file);
   });
 
   return tree;

@@ -49,11 +49,7 @@ function allLanguagesValid(files) {
   const invalidLanguages = [];
 
   files.forEach((file) => {
-    if (!file.options) {
-      return;
-    }
-
-    const lang = file.options.language;
+    const lang = file.language;
 
     if (lang && HLJS_LANGUAGES.indexOf(lang) < 0) {
       invalidLanguages.push(lang);
@@ -68,11 +64,7 @@ function anyLanguagesUncommon(files) {
   const registeredLanguages = hljs.listLanguages();
 
   files.forEach((file) => {
-    if (!file.options) {
-      return;
-    }
-
-    const lang = file.options.language;
+    const lang = file.language;
 
     if (lang && registeredLanguages.indexOf(lang) < 0) {
       uncommonLanguages.push(lang);

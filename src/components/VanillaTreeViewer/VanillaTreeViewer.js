@@ -13,7 +13,7 @@ import Store from 'lib/Store/Store';
 import { validateFiles } from './Validator/Validator';
 
 class VanillaTreeViewer extends Component {
-  constructor(id, files, options) {
+  constructor(id, files) {
     super({
       store: new Store({}),
       element: document.getElementById(id)
@@ -35,7 +35,7 @@ class VanillaTreeViewer extends Component {
 
     if (validationResult.isValid) {
       selectedPath = normalizePath(defaultSelectedPath(files));
-      tree = toDirectoryTree(files, options);
+      tree = toDirectoryTree(files);
     }
 
     this.store.state = {
