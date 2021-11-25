@@ -49,7 +49,7 @@ describe('<VanillaTreeViewer />', () => {
     render();
     await waitUntil(hasRenderedCode);
 
-    expect(rendered().classList.contains('vtv')).to.be.true;
+    expect(rendered().classList.contains('vtv-root')).to.be.true;
   });
 
   it('renders the path', async () => {

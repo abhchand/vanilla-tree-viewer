@@ -1,7 +1,7 @@
 @import "components/VanillaTreeViewer/Breakpoints.scss";
 @import "components/VanillaTreeViewer/Colors.scss";
 
-.vtv {
+.vtv-root {
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
