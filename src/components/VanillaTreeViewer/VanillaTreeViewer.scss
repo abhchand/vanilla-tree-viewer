@@ -1,6 +1,9 @@
 @import "components/VanillaTreeViewer/Breakpoints.scss";
 @import "components/VanillaTreeViewer/Colors.scss";
 
+.vtv-wrapper {
+}
+
 .vtv-root {
   display: flex;
   flex-flow: column nowrap;
