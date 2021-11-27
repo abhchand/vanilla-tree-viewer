@@ -7,12 +7,21 @@ import { normalizePath, toDirectoryTree } from './Tree/Builder/Builder';
 import Component from 'lib/Component';
 import defaultSelectedPath from './Helpers/defaultSelectedPath';
 import { hljsStyleUrl } from './hljs';
+import { parseUserNodes } from './Parser/Parser';
 import { renderComponent } from './Helpers/renderComponent';
 import setTreeNodeToFullWidth from './Helpers/setTreeNodeToFullWidth';
 import Store from 'lib/Store/Store';
 import { validateFiles } from './Validator/Validator';
 
 class VanillaTreeViewer extends Component {
+  static renderAll() {
+    /*
+     * Extract configuration from each user-defined node
+     * and render a `VanillaTreeViewer` instance on that node
+     */
+    parseUserNodes().forEach((args) => new VanillaTreeViewer(...args).render());
+  }
+
   constructor(id, files) {
     super({
       store: new Store({}),
@@ -121,7 +130,7 @@ class VanillaTreeViewer extends Component {
     /*
      * Creates HTMLElement:
      *
-     * <div class='vtv'>
+     * <div class='vtv-root'>
      *   {Tree}
      *   {CodePanel}
      * </div>
@@ -129,7 +138,7 @@ class VanillaTreeViewer extends Component {
      */
 
     const div = document.createElement('div');
-    div.classList.add('vtv');
+    div.classList.add('vtv-root');
 
     const treeEl = renderComponent(Tree, {
       tree: tree,
