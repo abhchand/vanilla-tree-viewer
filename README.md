@@ -34,7 +34,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 - [Quick Start](#quick-start)
 - [Syntax Highlighting](#syntax-highlighting)
   - [Default Language Support](#default-language-support)
-  - [Highlighting Other Languages](#highlighting-other-languages)
+  - [Other Language Support](#other-language-support)
 - [Options](#options)
 - [Customization](#customization)
   - [Configuring Width and Alignment](#configuring-width-and-alignment)
@@ -98,7 +98,7 @@ This will find and parse all `.vtv` elements and render a `VanillaTreeViewer` co
 
 See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
 
-## <a name="default-language-support"></a>Defalt Language Support
+## <a name="default-language-support"></a>Default Language Support
 
 To keep the bundle size small, `VanillaTreeViewer` supports syntax highlighting for only the most common languages by default.
 
@@ -106,17 +106,19 @@ If you're highlighting files in any of these languages, there's no further actio
 
 > `bash`, `c`, `cpp`, `csharp`, `css`, `diff`, `go`, `java`, `javascript`, `json`, `makefile`, `xml`, `markdown`, `objectivec`, `php`, `php-template`, `plaintext`, `python`, `ruby`, `rust`, `scss`, `shell`, `sql`, `typescript`, `yaml`
 
-## <a name="highlighting-other-languages"></a>Highlighting Other Languages
+## <a name="other-language-support"></a>Other Language Support
 
 If you require syntax highlighting for any language not supported by default, you'll have to manually include the syntax definitions from `Highlight.js`. Don't worry, it's easy!
 
 1. Find your language's syntax definitions from the [available list of language syntax definitions supported by `highlight.js`](https://cdnjs.com/libraries/highlight.js/10.4.1).
 2. Then, add the `<script>` for your syntax definitions _after_ the `VanillaTreeViewer` `<script>`.
 
-For example, highlighting `ActionScript`:
+For example, to highlight `ActionScript` include the second `<script>` definition below:
 
 ```html
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.1.1/dist/index.min.js"></script>
+
+<!-- Add this: -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
 ```
 
