@@ -1,3 +1,4 @@
+import './template.scss';
 import VanillaTreeViewer from '../src/components/VanillaTreeViewer/VanillaTreeViewer';
 
 document.addEventListener('DOMContentLoaded', function() {
