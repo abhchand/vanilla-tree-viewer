@@ -52,6 +52,10 @@ var config = {
         use: [
           'babel-loader'
         ]
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: ['svg-inline-loader'],
       }
     ]
   },
