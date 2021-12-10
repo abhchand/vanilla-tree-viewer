@@ -52,7 +52,7 @@ class Code {
      * Use `hljs` to apply highlighting markup to the file contents
      * See: https://highlightjs.readthedocs.io/en/latest/api.html#highlight-languagename-code-ignore-illegals-continuation
      */
-    return hljs.highlight(file.language, file.contents).value;
+    return hljs.highlight(file.language, file.contents, true).value;
   }
 
   renderComponent() {
