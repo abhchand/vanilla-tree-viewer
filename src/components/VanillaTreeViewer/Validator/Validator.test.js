@@ -111,6 +111,24 @@ describe('Validator.validateFiles', () => {
     it('marks the files as invalid', testForInvalid);
   });
 
+  describe('multiple files exist with ambiguous directories', () => {
+    beforeEach(() => {
+      const segments0 = files[0].path.split('/');
+      const segments1 = files[1].path.split('/');
+
+      /*
+       * Object files[1] should have the same directory as files[0], but with
+       * different case and its original filename
+       */
+      segments0.pop();
+      files[1].path = [segments0.join('/').toUpperCase(), segments1.pop()].join(
+        '/'
+      );
+    });
+
+    it('marks the files as invalid', testForInvalid);
+  });
+
   describe('files object is duplicate paths', () => {
     beforeEach(() => {
       files[1].path = files[0].path;

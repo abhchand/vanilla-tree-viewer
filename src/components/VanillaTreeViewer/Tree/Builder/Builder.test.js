@@ -97,14 +97,14 @@ describe('Builder.toDirectoryTree', () => {
   });
 
   describe('parsing paths', () => {
-    it('handles paths case insensitively', () => {
+    it('preserves the original path case', () => {
       files[0].path = 'AlPhA/BeTA/gaMMa.rb';
 
       const tree = toDirectoryTree(files);
-      const node = tree['/alpha/beta/gamma.rb'];
+      const node = tree['/AlPhA/BeTA/gaMMa.rb'];
 
-      expect(node.name).to.equal('gamma.rb');
-      expect(node.path).to.equal('/alpha/beta/gamma.rb');
+      expect(node.name).to.equal('gaMMa.rb');
+      expect(node.path).to.equal('/AlPhA/BeTA/gaMMa.rb');
     });
 
     it("handles paths prefixed with '/'", () => {
@@ -284,7 +284,7 @@ describe('Builder.normalizePath', () => {
     expect(normalizePath('foo')).to.equal('/foo');
   });
 
-  it('downcases the path', () => {
-    expect(normalizePath('/FoO')).to.equal('/foo');
+  it('preserves the path case', () => {
+    expect(normalizePath('/FoO')).to.equal('/FoO');
   });
 });
