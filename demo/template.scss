@@ -1,3 +1,5 @@
+@import "components/VanillaTreeViewer/Breakpoints.scss";
+
 // COLORS
 
 $beau_blue: #D8E9FD;
@@ -24,8 +26,12 @@ a:link, a:visited {
 h1 { font-size: 36px; }
 
 section.content {
-  width: 1200px;
+  width: 100%;
   margin: auto;
+
+  @include breakpoint($screen-xs) {
+    width: 1200px;
+  }
 }
 
 code.inline {
@@ -40,12 +46,21 @@ code.inline {
 
 .header {
   display: flex;
+  flex-direction: column;
   width: 100%;
-  margin: 80px 0;
+  margin: 100px 0;
+
+  @include breakpoint($screen-xs) {
+    flex-direction: row;
+  }
 }
 .header__left {
-  width: 500px;
+  width: 100%;
   text-align: left;
+
+  @include breakpoint($screen-xs) {
+    width: 500px;
+  }
 }
 .header__title {
   margin: 0;
@@ -64,7 +79,7 @@ code.inline {
 
 .logo-link {
   svg {
-    width: 120px;
+    width: 100px;
   }
 }
 
@@ -73,25 +88,46 @@ code.inline {
 .demo {
   display: flex;
   width: 100%;
+  flex-direction: column;
+
+  @include breakpoint($screen-xs) {
+    flex-direction: row;
+  }
 }
 .demo__preview {
-  width: 800px;
   padding-top: 20px;
+
+  @include breakpoint($screen-xs) {
+    width: 800px;
+  }
 }
 .demo__preview-explanation {
   margin: 25px 0 10px 0;
 }
 .demo__marketing {
   flex: 1;
-  padding-left: 50px;
+  padding-left: 0;
+  margin-top: 50px;
+
+  @include breakpoint($screen-xs) {
+    padding-left: 50px;
+    margin-top: 0;
+  }
 }
 .demo__features {
   padding-left: 0;
+  padding-top: 20px;
+  border-top: 1px solid white;
 
   li {
     list-style-type: square;
     list-style-position: inside;
     margin: 4px 0;
+  }
+
+  @include breakpoint($screen-xs) {
+    border: none;
+    padding: 0;
   }
 }
 #demo__get-started {
@@ -120,5 +156,5 @@ code.inline {
 // FOOTER
 
 .attribution {
-  margin-top: 125px;
+  margin-top: 100px;
 }
