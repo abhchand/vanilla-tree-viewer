@@ -39,7 +39,7 @@ function normalizePath(path) {
     newPath = `/${newPath}`;
   }
 
-  return newPath.toLowerCase();
+  return newPath;
 }
 
 function addToDirectoryTree(tree, file) {
