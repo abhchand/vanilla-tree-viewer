@@ -32,7 +32,7 @@ beforeEach(() => {
 
   syntaxHighlightStyles = {
     'custom-style':
-      '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
+      'pre code.hljs{display:block;}code.hljs{border: none;}.hljs-subst,.hljs-tag{color:#ffffff}'
   };
 });
 
@@ -90,7 +90,7 @@ describe('<Code />', () => {
         const style = container.getElementsByTagName('style')[0];
 
         expect(style.innerHTML).to.eql(
-          '#app .hljs{display:block;}#app .hljs,#app .hljs-subst,#app .hljs-tag{color:#ffffff}'
+          '#app pre code.hljs{display:block;}#app code.hljs{border: none;}#app .hljs-subst,.hljs-tag{color:#ffffff}'
         );
       });
 

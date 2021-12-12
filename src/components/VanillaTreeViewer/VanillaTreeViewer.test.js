@@ -40,7 +40,7 @@ beforeEach(() => {
   );
   fetchMock.get(
     hljsStyleUrl(DEFAULT_OPTIONS.style),
-    '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
+    'pre code.hljs{display:block;}code.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
   );
 });
 
@@ -122,21 +122,24 @@ describe('<VanillaTreeViewer />', () => {
       const code = rendered().getElementsByClassName('vtv__code')[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(
-        `#${id} .hljs{display:block;}#${id} .hljs,#${id} .hljs-subst,#${id} .hljs-tag{color:#ffffff}`
+        `#${id} pre code.hljs{display:block;}#${id} code.hljs,.hljs-subst,.hljs-tag{color:#ffffff}`
       );
     });
 
     describe('a style is specified for a file', () => {
       it('renders the specified style', async () => {
         fileNodesData[0].style = 'my-file-style';
-        fetchMock.get(hljsStyleUrl('my-file-style'), '.hljs{display:flex;}');
+        fetchMock.get(
+          hljsStyleUrl('my-file-style'),
+          'code.hljs{display:flex;}'
+        );
 
         render();
         await waitUntil(hasRenderedCode);
 
         const code = rendered().getElementsByClassName('vtv__code')[0];
         const style = code.getElementsByTagName('style')[0];
-        expect(style.innerHTML).to.equal(`#${id} .hljs{display:flex;}`);
+        expect(style.innerHTML).to.equal(`#${id} code.hljs{display:flex;}`);
       });
     });
   });

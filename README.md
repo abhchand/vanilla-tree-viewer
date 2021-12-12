@@ -96,7 +96,7 @@ This will find and parse all `.vtv` elements and render a `VanillaTreeViewer` co
 
 `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
 
-See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
+See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/11.3.1) supported by `highlight.js`.
 
 ## <a name="default-language-support"></a>Default Language Support
 
@@ -110,7 +110,7 @@ If you're highlighting files in any of these languages, there's no further actio
 
 If you require syntax highlighting for any language not supported by default, you'll have to manually include the syntax definitions from `Highlight.js`. Don't worry, it's easy!
 
-1. Find your language's syntax definitions from the [available list of language syntax definitions supported by `highlight.js`](https://cdnjs.com/libraries/highlight.js/10.4.1).
+1. Find your language's syntax definitions from the [available list of language syntax definitions supported by `highlight.js`](https://cdnjs.com/libraries/highlight.js/11.3.1).
 2. Then, add the `<script>` for your syntax definitions _after_ the `VanillaTreeViewer` `<script>`.
 
 For example, to highlight `ActionScript` include the second `<script>` definition below:
@@ -119,7 +119,7 @@ For example, to highlight `ActionScript` include the second `<script>` definitio
 <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.1.1/dist/index.min.js"></script>
 
 <!-- Add this: -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/actionscript.min.js"></script>
 ```
 
 # <a name="options"></a>Options
