@@ -29,16 +29,31 @@ class Code {
      * applies to this instance.
      *
      * Conveniently, `hljs` prefixes all of it's CSS rules with
-     * `.hljs` so we can use this component's id as a namespace
+     * `.hljs` so we can use this component's id as a namespace.
      *
-     * e.g.
-     *   Input:  .hljs.foo { background-color: black; }
-     *   Output: #someId.hljs.foo { background-color: black; }
+     * The general format of the generated CSS is
+     *
+     *     pre code.hljs{...}code.hljs{...}.hljs{...} ... .hljs-foo{...}
+     *
+     * We namespace this as follows:
+     *
+     *  1. Add the `#<namespace>` CSS id to the start, which is always
+     *     prefixed with `pre code.hljs`
+     *
+     *  2. Add the `#<namespace>` CSS id before each selector (or alternately,
+     *     add `#namespace` after the end of the previous rule - `}`)
+     *
+     * This results in the following generated namespaced CSS
+     *
+     *    #namespace pre code.hljs{...}#namespace code.hljs{...}#namespace .hljs{...}#namespace  ... .hljs-foo{...}
      *
      */
     const css = syntaxHighlightStyles[file.style];
 
-    return css.replace(/\.hljs/gu, `#${namespace} .hljs`);
+    const id = `#${namespace}`;
+    const body = css.replace(/\}(?<prefix>.)/gu, `}${id} $1`);
+
+    return `${id} ${body}`;
   }
 
   highlightedContents() {
@@ -52,7 +67,10 @@ class Code {
      * Use `hljs` to apply highlighting markup to the file contents
      * See: https://highlightjs.readthedocs.io/en/latest/api.html#highlight-languagename-code-ignore-illegals-continuation
      */
-    return hljs.highlight(file.language, file.contents, true).value;
+    return hljs.highlight(file.contents, {
+      language: file.language,
+      ignoreIllegals: true
+    }).value;
   }
 
   renderComponent() {

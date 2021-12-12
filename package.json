@@ -67,6 +67,6 @@
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "highlight.js": "10.4.1"
+    "highlight.js": "11.3.1"
   }
 }
