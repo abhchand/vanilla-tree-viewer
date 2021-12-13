@@ -94,7 +94,7 @@ Merge the `dev-*` to `master` if you are NOT deploying a `beta-*` version.
 
 ```
 git checkout master
-git merge dev-v2.1.0
+git merge --no-ff dev-v2.1.0 -m "Changes for v2.1.0"
 
 git push origin master
 ```
