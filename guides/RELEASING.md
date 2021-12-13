@@ -1,3 +1,5 @@
+This document describes the process for contributing and releasing features to `vanilla-tree-viewer`.
+
 - [Versioning](#versioning)
   * [Contributing to a `MAJOR` or `MINOR` release](#contributing-to-a--major--or--minor--release)
   * [Contributing to a `PATCH` release](#contributing-to-a--patch--release)
@@ -6,7 +8,6 @@
   * [Merge](#merge)
   * [Release](#release)
 
-This document describes the process for contributing and releasing features to `vanilla-tree-viewer`.
 
 # Versioning
 
