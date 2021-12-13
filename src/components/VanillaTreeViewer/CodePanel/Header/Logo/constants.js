@@ -1,3 +1,4 @@
-const VTV_SOURCE = 'https://github.com/abhchand/vanilla-tree-viewer';
+const VTV_SOURCE = 'https://abhchand.me/vanilla-tree-viewer/';
+const UTM_CAMPAIGN = 'usage';
 
-export { VTV_SOURCE };
+export { VTV_SOURCE, UTM_CAMPAIGN };
