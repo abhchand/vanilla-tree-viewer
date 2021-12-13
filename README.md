@@ -26,6 +26,8 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 <img src="meta/demo.png" />
 
+*The above displays a sample of files from the* [`sinatra`](https://github.com/sinatra/sinatra/) *project*
+
 # Table of Contents
 
 - [Quick Start](#quick-start)
