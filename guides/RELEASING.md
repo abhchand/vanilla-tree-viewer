@@ -7,7 +7,8 @@ This document describes the process for contributing and releasing features to `
   * [Prepare and Build](#prepare-and-build)
   * [Merge](#merge)
   * [Release](#release)
-
+    + [`beta` Version](#-beta--version)
+    + [Regular Version](#regular-version)
 
 # Versioning
 
@@ -100,11 +101,27 @@ git push origin master
 
 ## Release
 
-Prepare release notes for this version, following the guide of [previous notes on the Changelog](https://github.com/abhchand/vanilla-tree-viewer/releases). You can ignore non-code related changes like updates to the `README` or other documentation.
+### `beta` Version
 
-Create a new version by running:
+Create a new version from the `dev-*` branch by running:
 
 ```bash
+git checkout dev-v2.0.0
+git pull
+
+np 2.0.0-beta.1 --any-branch
+```
+
+### Regular Version
+
+Prepare release notes for this version, following the guide of [previous notes on the Changelog](https://github.com/abhchand/vanilla-tree-viewer/releases). You can ignore non-code related changes like updates to the `README` or other documentation.
+
+Create a new version from `master` by running:
+
+```bash
+git checkout master
+git pull
+
 np
 ```
 
