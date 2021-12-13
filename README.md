@@ -9,7 +9,7 @@
     />
   </a>
 
-  <p>`VanillaTreeViewer` is a minimalist file browser for compactly displaying several files at once</p>
+  <p>VanillaTreeViewer is a minimalist file browser for compactly displaying several files at once</p>
 </div>
 
 ---
@@ -20,12 +20,9 @@
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
-Show off multiple files or code snippets in an elegant and space saving way.
-
 Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
-* [view a **live demo**](https://abhchand.me/vanilla-tree-viewer)
-* [view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)
+\[[view a **live demo**](https://abhchand.me/vanilla-tree-viewer)\] | \[[view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)\]
 
 <img src="meta/demo.png" />
 
