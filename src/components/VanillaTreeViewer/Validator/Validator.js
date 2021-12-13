@@ -3,6 +3,7 @@ import {
   HLJS_LANGUAGES,
   HLJS_VERSION
 } from 'components/VanillaTreeViewer/hljs';
+import { normalizePath } from 'components/VanillaTreeViewer/Tree/Builder/Builder';
 
 function filesIsArray(files) {
   return typeof files === 'object' && files !== null;
@@ -36,6 +37,72 @@ function hasUrlOrContentsPresent(files) {
   return badFileCount === 0;
 }
 
+/*
+ * Verifies whether all combinations of subpaths are compatible and
+ * unambiguous.
+ *
+ * For example, the following list of paths is NOT valid:
+ *
+ *  * /alpha/beta/gamma.rb
+ *  * /alpha/BETA/delta.rb
+ *
+ * Since directories are case-sensitive, we have an ambigous definition
+ * of `/alpha/beta` vs `/alpha/BETA`.
+ */
+function allFilesHaveUnambiguousSubPaths(files) {
+  let subpaths = new Set();
+
+  /*
+   * Build a cumulative list of every subsubpath, case sensitively
+   *
+   *  INPUT:
+   *  '/alpha/BETA/gamma.rb' will result in:
+   *
+   *  OUTPUT:
+   *  [
+   *    '/',
+   *    '/alpha',
+   *    '/alpha/BETA'
+   *  ]
+   */
+  files.forEach((file) => {
+    const segments = normalizePath(file.path).split('/');
+
+    // Ignore the filename, which is the last segment
+    segments.pop();
+
+    let builder = '';
+
+    segments.forEach((segment) => {
+      builder += `/${segment}`;
+      subpaths.add(builder);
+    });
+  });
+
+  /*
+   * Check if all values are case sensitively unique. If they
+   * are not, at least one subpath exists with multiple cases
+   * (e.g. '/foo/bar' vs '/foo/BAR')
+   */
+  subpaths = Array.from(subpaths).map((p) => p.toLowerCase());
+  const uniqueSubpaths = subpaths.filter(
+    (value, idx, self) => self.indexOf(value) === idx
+  );
+
+  return uniqueSubpaths.length === subpaths.length;
+}
+
+/*
+ * Verifies that all `path` values are unique, regardless of case.
+ * For example, the following is not valid
+ *
+ *  * /alpha/beta/gamma.rb
+ *  * /alpha/beta/GAMMA.rb
+ *
+ * A previous validation already checks for unambiguous directories,
+ * so we don't have to re-check that here. We just need
+ * to verify that no two paths differ by only their case.
+ */
 function allFilesHaveUniquePaths(files) {
   const paths = files.map((file) => file.path.toLowerCase());
   const uniquePaths = paths.filter(
@@ -49,11 +116,7 @@ function allLanguagesValid(files) {
   const invalidLanguages = [];
 
   files.forEach((file) => {
-    if (!file.options) {
-      return;
-    }
-
-    const lang = file.options.language;
+    const lang = file.language;
 
     if (lang && HLJS_LANGUAGES.indexOf(lang) < 0) {
       invalidLanguages.push(lang);
@@ -68,11 +131,7 @@ function anyLanguagesUncommon(files) {
   const registeredLanguages = hljs.listLanguages();
 
   files.forEach((file) => {
-    if (!file.options) {
-      return;
-    }
-
-    const lang = file.options.language;
+    const lang = file.language;
 
     if (lang && registeredLanguages.indexOf(lang) < 0) {
       uncommonLanguages.push(lang);
@@ -108,6 +167,20 @@ function handleUrlOrContentsBlank() {
     isValid: false,
     error:
       'Each `file` must have at least one of the following set: `url`, `contents`'
+  };
+}
+
+function handleFilesHaveAmbiguousSubpaths() {
+  return {
+    isValid: false,
+    error: `One or more \`path\` values have ambiguous directory names.
+
+For example:
+
+  * /alpha/beta/gamma.txt
+  * /alpha/BETA/delta.text
+
+Since directories are case sensitive, this produces an ambiguous definition of '/alpha/beta/' vs '/alpha/BETA'.`
   };
 }
 
@@ -156,6 +229,9 @@ function validateFiles(files) {
   }
   if (!hasUrlOrContentsPresent(files)) {
     return handleUrlOrContentsBlank();
+  }
+  if (!allFilesHaveUnambiguousSubPaths(files)) {
+    return handleFilesHaveAmbiguousSubpaths();
   }
   if (!allFilesHaveUniquePaths(files)) {
     return handleFilesHaveDuplicatePaths();

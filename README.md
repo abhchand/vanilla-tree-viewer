@@ -9,7 +9,7 @@
     />
   </a>
 
-  <p>`VanillaTreeViewer` is a minimalist file browser for compactly displaying several files at once</p>
+  <p>VanillaTreeViewer is a minimalist file browser for compactly displaying several files at once</p>
 </div>
 
 ---
@@ -20,36 +20,21 @@
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
 
-Show off multiple files or code snippets in an elegant and space saving way.
-
 Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
-* [view a live demo](https://abhchand.me/vanilla-tree-viewer)
-* [view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)
+\[[view demo](https://abhchand.me/vanilla-tree-viewer)\] | \[[view codepen playground](https://codepen.io/abhchand/pen/WNZGQpQ)\] | \[[view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)\]
 
 <img src="meta/demo.png" />
 
-
-### Benefits
-
-* Lightweight
-  * built with pure JavaScript
-  * only 1 dependency! `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting
-* Mobile-friendly
-* Easily customize-able syntax highlighting and component styling
-* Well tested
+*The above displays a sample of files from the* [`sinatra`](https://github.com/sinatra/sinatra/) *project*
 
 # Table of Contents
 
 - [Quick Start](#quick-start)
-  - [`<script>` tag placement](#script-tag-placement)
 - [Syntax Highlighting](#syntax-highlighting)
   - [Default Language Support](#default-language-support)
-  - [Highlighting Other Languages](#highlighting-other-languages)
-- [Configuration](#configuration)
-  - [`id`](#config-id)
-  - [`files`](#config-files)
-  - [`options`](#config-options)
+  - [Other Language Support](#other-language-support)
+- [Options](#options)
 - [Customization](#customization)
   - [Configuring Width and Alignment](#configuring-width-and-alignment)
   - [Customizing Styling](#customizing-styling)
@@ -60,68 +45,57 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # <a name="quick-start"></a>Quick Start
 
-① Import the latest **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
+
+① **Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.1.1/dist/index.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.1.1/dist/main.min.css" >
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css">
 </head>
 ```
 
-② Define one or more DOM nodes (with unique `id`s) on which to render a new viewer.
+② **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+
+(For a full list of `data-*` attribute options, see [Options](#options))
 
 ```html
-<div id='my-viewer'></div>
+<ol class='vtv' data-language="javascript">
+  <!-- File 1 -->
+  <!-- File contents will be fetched from `data-url` -->
+  <li
+    data-path="lib/axios.js"
+    data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
+  </li>
+
+  <!-- File 2 -->
+  <!-- You can specify the file contents directly inside `<li>...</li>` -->
+  <!-- You can override syntax highlighting with `data-language` for this file -->
+  <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
+
+  <!-- File 3 -->
+  ...
+</ol>
 ```
 
-③ At the bottom of your page, include a `<script>` tag that defines the list of files and initializes the viewer.
+③ **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
 
 ```html
 <script>
-  const files = [
-    {
-      path: 'lib/axios.js',
-      url: 'https://raw.githubusercontent.com/axios/axios/master/lib/axios.js'
-    },
-    {
-      path: 'package.json',
-      // Specify the file contents directly, instead of a URL
-      contents: '{ \"foo\": \"bar\" }',
-      // Overrides the 'global' options below, just for this specific file
-      options: { language: 'json' }
-    }
-  ];
-
-  new VanillaTreeViewer(
-    'my-viewer',
-    files,
-    { language: 'javascript' }
-  ).render();
+  document.addEventListener('DOMContentLoaded', function() {
+    VanillaTreeViewer.renderAll();
+  }, false);
 </script>
-```
-
-For a fully functioning copy-pastable example that you can also run locally, see [`examples/simple.html`](https://github.com/abhchand/vanilla-tree-viewer/blob/master/examples/simple.html)
-
-### <a name="script-tag-placement"></a>`<script>` tag placement
-
-In the above code snippet we placed our `<script>` tag at the end so the script runs _after_ our DOM node `#my-viewer` has rendered.
-
-Alternately you can place the `<script>` tag at the top and have it wait till the DOM content is loaded:
-
-```js
-document.addEventListener('DOMContentLoaded', function() {
-  // Include script content from above here
-}, false);
 ```
 
 # <a name="syntax-highlighting"></a>Syntax Highlighting
 
 `VanillaTreeViewer` uses the wonderful [highlight.js](https://highlightjs.org/) library for syntax highlighting.
 
-See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/10.4.1) supported by `highlight.js`.
+See the [full list of language syntax definitions](https://cdnjs.com/libraries/highlight.js/11.3.1) supported by `highlight.js`.
 
-## <a name="default-language-support"></a>Defalt Language Support
+## <a name="default-language-support"></a>Default Language Support
 
 To keep the bundle size small, `VanillaTreeViewer` supports syntax highlighting for only the most common languages by default.
 
@@ -129,127 +103,86 @@ If you're highlighting files in any of these languages, there's no further actio
 
 > `bash`, `c`, `cpp`, `csharp`, `css`, `diff`, `go`, `java`, `javascript`, `json`, `makefile`, `xml`, `markdown`, `objectivec`, `php`, `php-template`, `plaintext`, `python`, `ruby`, `rust`, `scss`, `shell`, `sql`, `typescript`, `yaml`
 
-## <a name="highlighting-other-languages"></a>Highlighting Other Languages
+## <a name="other-language-support"></a>Other Language Support
 
 If you require syntax highlighting for any language not supported by default, you'll have to manually include the syntax definitions from `Highlight.js`. Don't worry, it's easy!
 
-1. Find your language's syntax definitions from the [available list of language syntax definitions supported by `highlight.js`](https://cdnjs.com/libraries/highlight.js/10.4.1).
+1. Find your language's syntax definitions from the [available list of language syntax definitions supported by `highlight.js`](https://cdnjs.com/libraries/highlight.js/11.3.1).
 2. Then, add the `<script>` for your syntax definitions _after_ the `VanillaTreeViewer` `<script>`.
 
-For example, highlighting `ActionScript`:
+For example, to highlight `ActionScript` include the second `<script>` definition below:
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.1.1/dist/index.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/languages/actionscript.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+
+<!-- Add this: -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/actionscript.min.js"></script>
 ```
 
-# <a name="configuration"></a>Configuration
+# <a name="options"></a>Options
 
-```js
-var viewer = new VanillaTreeViewer(id, files, options);
-viewer.render();
+`VanillaTreeViewer` uses HTML attributes on the parent and child nodes to configure behavior
+
+```html
+<!-- Parent node -->
+<ol class="vtv">
+  <!-- Child node -->
+  <li data-path="src/index.js">
+    <!-- File contents -->
+  </li>
+</ol>
 ```
 
-### <a name="config-id"></a>`id`
+The following attribute options are available:
 
-A `String` representing the HTML `id` of the DOM node the viewer will be rendered under.
+| Attribute  | Type | Applies to | Required? | Default | Description
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| `id` | `String` | parent node only | No | auto-generated | Each `VanillaTreeViewer` instance is automatically assigned a unique, sequential `id` (`vtv--1`, `vtv--2`, etc...). However, if you explicitly specify an `id` it will be preserved and used instead of the auto-generated value.
+| `class` | `String` | parent node only | **Yes** | n/a | The class name `.vtv` **must** exist on each parent node. Optionally, if you specify any other custom classes they will also be preserved.
+| `data-path`  | `String` | child node only | **Yes** | n/a | The path under which the file should be displayed in the viewer tree |
+| `data-url`  | `String` | child node only | Yes (if no inline file contents specified) | `null` | The URL to fetch the file contents from (e.g. Github Raw URLs). Any inline file contents in the HTML always take precedence over `data-url`.|
+| `data-selected` | `Boolean` | child node only | No | `false` | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `data-selected=true`, the first one is chosen. Similarly, if no file is marked `data-selected=true`, the first file in the list will be selected by default.
+| `data-language` | `String` | child or parent node | No | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
+| `data-style` | `String` | child or parent node | No | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles). (**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.)
 
-You can render multiple instances of the viewer, but keep in mind -
-
-* Each instance needs to have a unique HTML `id`
-* You'll need to instantiate a new `VanillaTreeViewer` object and call `render()` for each instance of the viewer
-
-### <a name="config-files"></a>`files`
-
-`VanillaTreeViewer` expects an **array of objects** (`files = [{}, {}, ...]`) defining the list of files to display.
-
-Each file object can have the following keys:
-
-| Key  | Type | Required? | Description
-| ------------- | ------------- | ------------- | ------------- |
-| `path`  | `String` | Yes  | The path under which the file should be displayed in the viewer tree |
-| `url`  | `String` | One of `url`/`contents` required  | The URL to fetch the file contents from (e.g. Github Raw URLs). A simple GET request is performed to fetch file contents. |
-| `contents` | `String` | One of `url`/`contents` required | The file contents to be displayed. Takes precedence over `url` if both are set. |
-| `selected` | `Boolean` | No | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `selected: true`, the first one is chosen. Similarly, if no file is marked `selected: true`, the first file in the list will be selected by default.
-| `options` | `Object{}` | No | File-level options that will apply only to this file. See `options` below for a full list of supported options |
-
-
-### <a name="config-options"></a>`options`
-
-The `options` are -
-
-| Key  | Type | Default | Description
-| ------------- | ------------- | ------------- | ------------- |
-| `language` | `String` | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
-| `style` | `String` | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles).
-
-**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.
-
-Options can be defined per file or as a shared set of options passed to `VanillaTreeViewer`. For each file, options are evaluated in the following order of precedence:
-
-1. File level options
-2. Shared options
-3. Default options
 
 # <a name="customization"></a>Customization
 
 ### <a name="configuring-width-and-alignment"></a>Configuring Width and Alignment
 
-By default `VanillaTreeViewer` takes the full width of the DOM container element it's mounted on to. It is recommended that you style this DOM element accordingly to set the desired width and alignment.
+All `VanillaTreeViewer` instances are wrapped in a containing `<div>` with a `.vtv-wrapper` class. It is recommended that you style this wrapper element accordingly to set the desired width and alignment.
 
-Here is one approach that handles styling for all mount nodes:
+For example:
 
 ```html
-<head>
-  <style>
-    .vtv-mount-node {
-      margin: auto;
-      max-width: 980px;
-    }
-  </style>
-</head>
-<body>
-  <div id='my-viewer' class='vtv-mount-node'></div>
-</body>
+<style>
+  .vtv-wrapper {
+    margin: auto;
+    max-width: 980px;
+  }
+</style>
 ```
 
 ### <a name="customizing-styling"></a>Customizing Styling
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
-`VanillaTreeViewer` does not provide a programmatic way to customize the component itself, however you  are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@1.1.1/dist/main.min.css) for the `VanillaTreeViewer` component.
+While you can change the `style`/theme for any specific file(s), `VanillaTreeViewer` does not provide a programmatic way to customize the component itself. However, you are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css) at your discretion.
 
 * All top-level CSS classes begin with `.vtv*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
 
 # <a name="development"></a>Development
 
-If you'd like to edit or develop the component locally, you can run:
-
-```bash
-git clone https://github.com/abhchand/vanilla-tree-viewer.git
-
-yarn install
-yarn run dev
-```
-
-This will open `http://localhost:3035` in a browser window. Any changes made to the `src/` or to the `demo/index.jsx` file will be hot reloaded.
+See the guide to [`DEVELOPING`](guides/DEVELOPING.md).
 
 # <a name="building-releases"></a>Building Releases
 
-1. Install `np` globally: `yarn global add np`
-2. For non-beta releases, manually update README and other version references to the latest (upcoming) version. Do not update `package.json` - that will be updated by `np` automatically.
-3. Build: `yarn run build`
-4. Commit the above changes and `git push` to `master`
-5. Create new version: `np`
+See the guide to [`RELEASING`](guides/RELEASING.md).
 
 # <a name="issues-contributing"></a>Issues / Contributing
 
-- If you have an issue or feature request, please [open an issue here](https://github.com/abhchand/vanilla-tree-viewer/issues/new).
-
-- Contribution is encouraged! But please open an issue first to suggest a new feature and confirm that it will be accepted before filing a pull request.
-
-You can also help support this project. If you've found this or any other of my projects useful, I would greatly appreciate if you could [buy me a coffee](https://www.buymeacoffee.com/abhchand)!
+See the guide to [`CONTRIBUTING`](guides/CONTRIBUTING.md).
 
 # <a name="changelog"></a>Changelog
 

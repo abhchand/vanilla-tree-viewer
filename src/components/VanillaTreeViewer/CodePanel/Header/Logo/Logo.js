@@ -1,7 +1,15 @@
 import './Logo.scss';
 
+import { UTM_CAMPAIGN, VTV_SOURCE } from './constants';
 import binocularsIcon from 'components/VanillaTreeViewer/Icons/Binoculars';
-import { VTV_SOURCE } from './constants';
+
+const utmSource = () => {
+  try {
+    return window.location.origin;
+  } catch (_e) {
+    return 'unknown';
+  }
+};
 
 const render = (_props) => {
   /*
@@ -19,7 +27,7 @@ const render = (_props) => {
   div.classList.add('vtv__logo');
 
   const a = document.createElement('a');
-  a.href = VTV_SOURCE;
+  a.href = `${VTV_SOURCE}?utm_campaign=${UTM_CAMPAIGN}&utm_source=${utmSource()}`;
   a.target = '_blank';
 
   a.innerHTML = binocularsIcon({

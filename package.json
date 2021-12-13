@@ -1,6 +1,6 @@
 {
   "name": "vanilla-tree-viewer",
-  "version": "1.1.1",
+  "version": "2.0.0-beta.1",
   "description": "A directory layout for viewing code files",
   "main": "./dist/index.js",
   "scripts": {
@@ -61,11 +61,12 @@
     "stylelint": "^11.1.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-webpack-plugin": "^1.0.2",
+    "svg-inline-loader": "^0.8.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
   },
   "dependencies": {
-    "highlight.js": "10.4.1"
+    "highlight.js": "11.3.1"
   }
 }

@@ -5,14 +5,14 @@ import fetchMock from 'fetch-mock';
 import { hljsStyleUrl } from 'components/VanillaTreeViewer/hljs';
 import VanillaTreeViewer from 'components/VanillaTreeViewer/VanillaTreeViewer';
 
-let files, options;
+let fileNodesData, id, parentNodeData;
 
 fetchMock.config.overwriteRoutes = true;
 
-const id = 'app';
-
 beforeEach(() => {
-  files = [
+  parentNodeData = {};
+
+  fileNodesData = [
     {
       path: 'gamma.rb',
       url: 'https://example.co/path/to/gamma.rb',
@@ -24,10 +24,12 @@ beforeEach(() => {
     }
   ];
 
-  options = {};
-
-  // Set up DOM to mount component
-  document.body.innerHTML = `<div id='${id}'></div>`;
+  /*
+   * Most tests use a single node to test with, which will
+   * be assigned a sequential `id` of 1. Any individual test
+   * testing with multiple nodes can modify this as needed
+   */
+  id = 'vtv--1';
 
   // Mock fetch() calls to retrieve file contents and styles
 
@@ -38,7 +40,7 @@ beforeEach(() => {
   );
   fetchMock.get(
     hljsStyleUrl(DEFAULT_OPTIONS.style),
-    '.hljs{display:block;}.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
+    'pre code.hljs{display:block;}code.hljs,.hljs-subst,.hljs-tag{color:#ffffff}'
   );
 });
 
@@ -51,7 +53,7 @@ describe('<VanillaTreeViewer />', () => {
     render();
     await waitUntil(hasRenderedCode);
 
-    expect(rendered().classList.contains('vtv')).to.be.true;
+    expect(rendered().classList.contains('vtv-root')).to.be.true;
   });
 
   it('renders the path', async () => {
@@ -76,8 +78,8 @@ describe('<VanillaTreeViewer />', () => {
 
   describe('determining file contents', () => {
     it('fetches the file contents from the `url`', async () => {
-      files[0].url = 'https://example.co/path/to/gamma.rb';
-      files[0].contents = null;
+      fileNodesData[0].url = 'https://example.co/path/to/gamma.rb';
+      fileNodesData[0].contents = null;
 
       render();
       await waitUntil(hasRenderedCode);
@@ -88,8 +90,8 @@ describe('<VanillaTreeViewer />', () => {
     });
 
     it('allows specifying file contents directly with `contents`', async () => {
-      files[0].url = null;
-      files[0].contents = 'def foo;nil;end';
+      fileNodesData[0].url = null;
+      fileNodesData[0].contents = 'def foo;nil;end';
 
       render();
       await waitUntil(hasRenderedCode);
@@ -100,8 +102,8 @@ describe('<VanillaTreeViewer />', () => {
     });
 
     it('The `contents` option takes precedence over `url`', async () => {
-      files[0].url = 'https://example.co/path/to/gamma.rb';
-      files[0].contents = 'def foo;nil;end';
+      fileNodesData[0].url = 'https://example.co/path/to/gamma.rb';
+      fileNodesData[0].contents = 'def foo;nil;end';
 
       render();
       await waitUntil(hasRenderedCode);
@@ -120,42 +122,25 @@ describe('<VanillaTreeViewer />', () => {
       const code = rendered().getElementsByClassName('vtv__code')[0];
       const style = code.getElementsByTagName('style')[0];
       expect(style.innerHTML).to.equal(
-        `#${id} .hljs{display:block;}#${id} .hljs,#${id} .hljs-subst,#${id} .hljs-tag{color:#ffffff}`
+        `#${id} pre code.hljs{display:block;}#${id} code.hljs,.hljs-subst,.hljs-tag{color:#ffffff}`
       );
     });
 
-    it('overrides styling for all files with the global options', async () => {
-      options.style = 'my-global-style';
-      fetchMock.get(
-        hljsStyleUrl('my-global-style'),
-        '.hljs{display:inline-block;}'
-      );
+    describe('a style is specified for a file', () => {
+      it('renders the specified style', async () => {
+        fileNodesData[0].style = 'my-file-style';
+        fetchMock.get(
+          hljsStyleUrl('my-file-style'),
+          'code.hljs{display:flex;}'
+        );
 
-      render();
-      await waitUntil(hasRenderedCode);
+        render();
+        await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const style = code.getElementsByTagName('style')[0];
-      expect(style.innerHTML).to.equal(`#${id} .hljs{display:inline-block;}`);
-    });
-
-    it('overrides styling for specific files with the file-level options', async () => {
-      options.style = 'my-global-style';
-      fetchMock.get(
-        hljsStyleUrl('my-global-style'),
-        '.hljs{display:inline-block;}'
-      );
-
-      files[0].options = {};
-      files[0].options.style = 'my-file-style';
-      fetchMock.get(hljsStyleUrl('my-file-style'), '.hljs{display:flex;}');
-
-      render();
-      await waitUntil(hasRenderedCode);
-
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const style = code.getElementsByTagName('style')[0];
-      expect(style.innerHTML).to.equal(`#${id} .hljs{display:flex;}`);
+        const code = rendered().getElementsByClassName('vtv__code')[0];
+        const style = code.getElementsByTagName('style')[0];
+        expect(style.innerHTML).to.equal(`#${id} code.hljs{display:flex;}`);
+      });
     });
   });
 
@@ -169,42 +154,25 @@ describe('<VanillaTreeViewer />', () => {
       expect(codeTag.innerHTML).to.equal('def foo;true;end');
     });
 
-    it('overrides highlighting for all files with the global options', async () => {
-      options.language = 'ruby';
+    describe('a syntax highlighting language is specified for a file', () => {
+      it('highlights the specified file', async () => {
+        fileNodesData[0].language = 'javascript';
 
-      render();
-      await waitUntil(hasRenderedCode);
+        render();
+        await waitUntil(hasRenderedCode);
 
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal(
-        '<span class="hljs-function">' +
-          '<span class="hljs-keyword">def</span> ' +
-          '<span class="hljs-title">foo</span>;</span>' +
-          '<span class="hljs-literal">true</span>;' +
-          '<span class="hljs-keyword">end</span>'
-      );
-    });
-
-    it('overrides highlighting for specific files with the file-level options', async () => {
-      options.language = 'ruby';
-      files[0].options = {};
-      files[0].options.language = 'javascript';
-
-      render();
-      await waitUntil(hasRenderedCode);
-
-      const code = rendered().getElementsByClassName('vtv__code')[0];
-      const codeTag = code.getElementsByTagName('code')[0];
-      expect(codeTag.innerHTML).to.equal(
-        'def foo;<span class="hljs-literal">true</span>;end'
-      );
+        const code = rendered().getElementsByClassName('vtv__code')[0];
+        const codeTag = code.getElementsByTagName('code')[0];
+        expect(codeTag.innerHTML).to.equal(
+          'def foo;<span class="hljs-literal">true</span>;end'
+        );
+      });
     });
   });
 
   describe('validation and error handling', () => {
     it('renders the InvalidState when the files object is invalid', () => {
-      delete files[0].path;
+      delete fileNodesData[0].path;
 
       render();
 
@@ -246,8 +214,8 @@ describe('<VanillaTreeViewer />', () => {
 
   describe('initial file selection', () => {
     it('selects the file marked with selected: true', async () => {
-      files[0].selected = false;
-      files[1].selected = true;
+      fileNodesData[0].selected = false;
+      fileNodesData[1].selected = true;
 
       render();
       await waitUntil(hasRenderedCode);
@@ -271,8 +239,8 @@ describe('<VanillaTreeViewer />', () => {
     });
 
     it('renders the first file when no file is marked selected: true', async () => {
-      delete files[0].selected;
-      delete files[1].selected;
+      delete fileNodesData[0].selected;
+      delete fileNodesData[1].selected;
 
       render();
       await waitUntil(hasRenderedCode);
@@ -287,8 +255,8 @@ describe('<VanillaTreeViewer />', () => {
     });
 
     it('renders the first file when multiple files are marked selected: true', async () => {
-      files[0].selected = true;
-      files[1].selected = true;
+      fileNodesData[0].selected = true;
+      fileNodesData[1].selected = true;
 
       render();
       await waitUntil(hasRenderedCode);
@@ -378,8 +346,7 @@ describe('<VanillaTreeViewer />', () => {
       });
 
       it("renders an error when the second file's styles dont fetch", async () => {
-        files[1].options = {};
-        files[1].options.style = 'bad-style';
+        fileNodesData[1].style = 'bad-style';
         fetchMock.get(hljsStyleUrl('bad-style'), {
           throws: new TypeError('Some error')
         });
@@ -452,8 +419,43 @@ describe('<VanillaTreeViewer />', () => {
   });
 });
 
+const buildNodes = () => {
+  // Create parent node and populate attributes
+  const parentNode = document.createElement('ol');
+  parentNode.classList.add('vtv');
+
+  Object.keys(parentNodeData).forEach((key) => {
+    parentNode.setAttribute(`data-${key}`, parentNodeData[key]);
+  });
+
+  fileNodesData.forEach((fileNodeData) => {
+    // Create file node and populate attributes
+    const fileNode = document.createElement('li');
+
+    Object.keys(fileNodeData).forEach((key) => {
+      /*
+       * The `contents` key is an exception: We need to set the
+       * `innerHTML` instead of a `data-*` attribute
+       */
+      if (key === 'contents') {
+        if (fileNodeData[key] !== null) {
+          fileNode.innerHTML = fileNodeData[key];
+        }
+        return;
+      }
+
+      fileNode.setAttribute(`data-${key}`, fileNodeData[key]);
+    });
+
+    parentNode.appendChild(fileNode);
+  });
+
+  return parentNode;
+};
+
 const rendered = () => {
-  return document.getElementById(id).children[0];
+  // NOTE: `querySelector` will only find the first instance
+  return document.querySelector('.vtv-wrapper').children[0];
 };
 
 const displayedNodePaths = () => {
@@ -513,8 +515,13 @@ const waitUntil = (condition) => {
 };
 
 const render = () => {
-  const viewer = new VanillaTreeViewer(id, files, options);
-  viewer.render();
+  document.body.innerHTML = '';
+
+  // Construct a fake DOM from the raw parent and file nodes data
+  const parentNode = buildNodes();
+  document.body.appendChild(parentNode);
+
+  VanillaTreeViewer.renderAll();
 
   return rendered();
 };
