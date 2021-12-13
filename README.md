@@ -52,19 +52,16 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 </head>
 ```
 
-② For each `VanillaTreeViewer` instance you'd like to create, define the list of files to be displayed as an HTML `list`. You **must** include the `.vtv` class.
+② For each `VanillaTreeViewer` instance you'd like to create, define the list of files to be displayed as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
-(See [Options](#options) for a full list of `data-*` attribute options.)
+(For a full list of available `data-*` attribute options, see [Options](#options))
 
 ```html
 <ol class='vtv' data-language="javascript">
 
   <!-- File 1 -->
   <!-- Display the contents under the path `src/index.js` -->
-  <li data-path="src/index.js" >
-import Foo from './foo';
-export { Foo.bar }
-  </li>
+  <li data-path="src/index.js" >import Foo from './foo';\nexport { Foo.bar }</li>
 
   <!-- File 2 -->
   <!-- Fetch file contents from a `url` instead -->
@@ -74,6 +71,9 @@ export { Foo.bar }
     data-url="https://raw.githubusercontent.com/axios/axios/master/package.json"
     data-language="json">
   </li>
+
+  <!-- File 3 -->
+  ...
 </ol>
 ```
 
