@@ -43,6 +43,8 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # <a name="quick-start"></a>Quick Start
 
+💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
+
 ① **Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html

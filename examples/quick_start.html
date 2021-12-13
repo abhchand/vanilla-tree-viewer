@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Example: VanillaTreeViewer</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <style>
+      body { font-family: 'Helvetica' }
+      .heading { text-align: center; margin-top: 75px; }
+      .version { text-align: center; margin: 10px; }
+      .container { max-width: 800px; margin: 75px auto; }
+    </style>
+
+    <!-- Include VanillaTreeViewer JS and CSS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0-beta.1/dist/index.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0-beta.1/dist/main.min.css">
+
+    <!-- Render all VanillaTreeViewer instances after page load -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        VanillaTreeViewer.renderAll();
+      }, false);
+    </script>
+  </head>
+  <body>
+    <h3 class="heading">
+      <a href="https://abhchand.me/vanilla-tree-viewer/" target="_blank">VanillaTreeViewer</a> Example
+    </h3>
+    <p class="version">v2.0.0-beta.1</p>
+
+    <div class='container'>
+      <!-- Define the list of files. The `.vtv` CSS class is required. -->
+      <ol class='vtv' data-language="javascript">
+        <!-- File 1 -->
+        <!-- File contents will be fetched from `data-url` -->
+        <li
+          data-path="lib/axios.js"
+          data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
+        </li>
+
+        <!-- File 2 -->
+        <!-- You can specify the file contents directly inside `<li>...</li>` -->
+        <!-- You can override syntax highlighting with `data-language` for this file -->
+        <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
+      </ol>
+    </div>
+  </body>
+</html>
