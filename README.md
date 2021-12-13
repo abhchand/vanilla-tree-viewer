@@ -22,7 +22,7 @@
 
 Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
-\[[view a **live demo**](https://abhchand.me/vanilla-tree-viewer)\] | \[[view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)\]
+\[[view demo](https://abhchand.me/vanilla-tree-viewer)\] | \[[view codepen playground](https://codepen.io/abhchand/pen/WNZGQpQ)\] | \[[view this project on npm](https://www.npmjs.com/package/vanilla-tree-viewer)\]
 
 <img src="meta/demo.png" />
 
