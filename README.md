@@ -43,43 +43,39 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # <a name="quick-start"></a>Quick Start
 
-① Import the latest **script** and **styling** from our CDN ([See all available versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+① **Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0-beta.1/dist/index.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0-beta.1/dist/main.min.css" >
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0-beta.1/dist/main.min.css">
 </head>
 ```
 
-② For each `VanillaTreeViewer` instance you'd like to create, define the list of files to be displayed as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+② **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
-(For a full list of available `data-*` attribute options, see [Options](#options))
+(For a full list of `data-*` attribute options, see [Options](#options))
 
 ```html
 <ol class='vtv' data-language="javascript">
-
   <!-- File 1 -->
-  <!-- Display the contents under the path `src/index.js` -->
-  <li data-path="src/index.js" >import Foo from './foo';\nexport { Foo.bar }</li>
+  <!-- File contents will be fetched from `data-url` -->
+  <li
+    data-path="lib/axios.js"
+    data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
+  </li>
 
   <!-- File 2 -->
-  <!-- Fetch file contents from a `url` instead -->
-  <!-- Override syntax highlighting (`data-language`) for this file -->
-  <li
-    data-path="package.json"
-    data-url="https://raw.githubusercontent.com/axios/axios/master/package.json"
-    data-language="json">
-  </li>
+  <!-- You can specify the file contents directly inside `<li>...</li>` -->
+  <!-- You can override syntax highlighting with `data-language` for this file -->
+  <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
 
   <!-- File 3 -->
   ...
 </ol>
 ```
 
-③ Finally, call `VanillaTreeViewer.renderAll()` after page load.
-
-This will find and parse all `.vtv` elements and render a `VanillaTreeViewer` component at that location.
+③ **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
 
 ```html
 <script>
