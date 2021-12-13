@@ -9,6 +9,7 @@ This document describes the process for contributing and releasing features to `
   * [Release](#release)
     + [`beta` Version](#-beta--version)
     + [Regular Version](#regular-version)
+  * [Post-Release](#post-release)
 
 # Versioning
 
@@ -86,6 +87,7 @@ On the `dev-*` branch:
   3. Ignore `package.json` as well. That will be updated by `np` itself when it publishes to `npm`
   4. Run `yarn run build` to update the build
   5. Commit all the above changes with the message "Preparing to update to `X.Y.Z`". ([example commit](https://github.com/abhchand/vanilla-tree-viewer/commit/02281f6eb89866e99c462ca587509761fe768233))
+  6. Push up the branch: `git push origin dev-v2.1.0`
 
 
 ## Merge
@@ -94,7 +96,7 @@ Merge the `dev-*` to `master` if you are NOT deploying a `beta-*` version.
 
 ```
 git checkout master
-git merge --no-ff dev-v2.1.0 -m "Changes for v2.1.0"
+git merge --no-ff dev-v2.1.0 -m 'Merging changes for `2.1.0`'
 
 git push origin master
 ```
@@ -109,7 +111,7 @@ Create a new version from the `dev-*` branch by running:
 git checkout dev-v2.0.0
 git pull
 
-np 2.0.0-beta.1 --any-branch
+np 2.1.0-beta.1 --any-branch
 ```
 
 ### Regular Version
@@ -120,9 +122,13 @@ Create a new version from `master` by running:
 
 ```bash
 git checkout master
-git pull
+git push origin master
 
-np
+np 2.1.0
 ```
 
 At the end it will open up a window to compose a new release. Use the release notes generated above to create a new release.
+
+## Post-Release
+
+Update the [codepen](https://codepen.io/abhchand/pen/WNZGQpQ) to reference the newly released version (non-`beta` versions only).
