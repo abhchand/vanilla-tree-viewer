@@ -30,7 +30,8 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # Table of Contents
 
-- [Quick Start](#quick-start)
+- [Install](#install)
+- [Usage](#usgae)
 - [Syntax Highlighting](#syntax-highlighting)
   - [Default Language Support](#default-language-support)
   - [Other Language Support](#other-language-support)
@@ -43,11 +44,9 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 - [Issues / Contributing](#issues-contributing)
 - [Changelog](#changelog)
 
-# <a name="quick-start"></a>Quick Start
+# <a name="install"></a>Install
 
-💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
-
-① **Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+**Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
@@ -56,7 +55,11 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 </head>
 ```
 
-② **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+# <a name="usage"></a>Usage
+
+💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
+
+① **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
 (For a full list of `data-*` attribute options, see [Options](#options))
 
@@ -79,7 +82,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 </ol>
 ```
 
-③ **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
+② **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
 
 ```html
 <script>
