@@ -152,6 +152,19 @@ code.inline {
 }
 .demo__links {
 }
+.demo__twitter {
+  display: flex;
+  margin-top: 35px;
+  height: 20px;
+
+  svg {
+    height: 20px;
+  }
+
+  a {
+    line-height: 20px;
+  }
+}
 
 // FOOTER
 
