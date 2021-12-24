@@ -14,12 +14,47 @@ import Store from 'lib/Store/Store';
 import { validateFiles } from './Validator/Validator';
 
 class VanillaTreeViewer extends Component {
+  /*
+   * Top-level API used to render a VanillaTreeViewer instance on top
+   * of each user-defined HTML node.
+   *
+   * This function is idempotent, so it can be called repeatedly as
+   * new user-defined HTML nodes are added to the document.
+   */
   static renderAll() {
     /*
-     * Extract configuration from each user-defined node
-     * and render a `VanillaTreeViewer` instance on that node
+     * Define the rendering function, which will:
+     *   1. Parse/extract configuration from each user-defined node and
+     *   2. Render a `VanillaTreeViewer` instance on that node
      */
-    parseUserNodes().forEach((args) => new VanillaTreeViewer(...args).render());
+    const perform = () => {
+      parseUserNodes().forEach((args) =>
+        new VanillaTreeViewer(...args).render()
+      );
+    };
+
+    /*
+     * We want to ensure the DOM content is fully loaded and all scripts are
+     * loaded before running the above.
+     *
+     * Check the current state of the page and either run it now if it's ready,
+     * or defer execution until the page is done loading content.
+     *
+     * See https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
+     */
+    if (document.readyState === 'complete') {
+      perform();
+    } else {
+      document.onreadystatechange = () => {
+        /*
+         * Check if page is about to transition from
+         * `interactive` -> `complete`
+         */
+        if (document.readyState === 'interactive') {
+          perform();
+        }
+      };
+    }
   }
 
   constructor(id, files) {

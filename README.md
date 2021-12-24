@@ -46,11 +46,13 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # <a name="install"></a>Install
 
-**Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+Import the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+  <!-- Note the `onload` call within the `<script>` tag. -->
+  <script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css">
 </head>
 ```
@@ -59,7 +61,7 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
 
-① **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+**Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
 (For a full list of `data-*` attribute options, see [Options](#options))
 
@@ -80,16 +82,6 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
   <!-- File 3 -->
   ...
 </ol>
-```
-
-② **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
-
-```html
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    VanillaTreeViewer.renderAll();
-  }, false);
-</script>
 ```
 
 # <a name="syntax-highlighting"></a>Syntax Highlighting
