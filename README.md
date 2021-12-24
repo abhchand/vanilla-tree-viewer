@@ -110,7 +110,7 @@ If you require syntax highlighting for any language not supported by default, yo
 For example, to highlight `ActionScript` include the second `<script>` definition below:
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+<script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
 
 <!-- Add this: -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/actionscript.min.js"></script>
