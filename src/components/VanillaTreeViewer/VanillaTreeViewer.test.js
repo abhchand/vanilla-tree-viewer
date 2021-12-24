@@ -521,6 +521,12 @@ const render = () => {
   const parentNode = buildNodes();
   document.body.appendChild(parentNode);
 
+  /*
+   * `document.readyState` should already be `complete` so `renderAll`
+   * renders immediately, but confirm that explicitly
+   */
+  expect(document.readyState).to.equal('complete');
+
   VanillaTreeViewer.renderAll();
 
   return rendered();

@@ -11,15 +11,8 @@
     </style>
 
     <!-- Include VanillaTreeViewer JS and CSS -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+    <script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css">
-
-    <!-- Render all VanillaTreeViewer instances after page load -->
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        VanillaTreeViewer.renderAll();
-      }, false);
-    </script>
   </head>
   <body>
     <h3 class="heading">

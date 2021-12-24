@@ -46,35 +46,33 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # <a name="install"></a>Install
 
-**Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+Import the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+  <!-- Note the `onload` call within the `<script>` tag. -->
+  <script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css">
 </head>
 ```
 
 # <a name="usage"></a>Usage
 
-💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
-
-① **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
-
-(For a full list of `data-*` attribute options, see [Options](#options))
+Define the list of files and their contents as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
 ```html
 <ol class='vtv' data-language="javascript">
   <!-- File 1 -->
-  <!-- File contents will be fetched from `data-url` -->
+  <!-- Fetch file contents from `data-url` -->
   <li
     data-path="lib/axios.js"
     data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
   </li>
 
   <!-- File 2 -->
-  <!-- You can specify the file contents directly inside `<li>...</li>` -->
-  <!-- You can override syntax highlighting with `data-language` for this file -->
+  <!-- Alternately, you can specify the file contents directly inside `<li>...</li>` -->
+  <!-- You can also override syntax highlighting with `data-language` for this file -->
   <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
 
   <!-- File 3 -->
@@ -82,15 +80,11 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 </ol>
 ```
 
-② **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
+For a full list of `data-*` attribute options, see [Options](#options)
 
-```html
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    VanillaTreeViewer.renderAll();
-  }, false);
-</script>
-```
+💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
+
+▶️ To run this example on codepen, [click here](https://codepen.io/abhchand/pen/WNZGQpQ)
 
 # <a name="syntax-highlighting"></a>Syntax Highlighting
 
