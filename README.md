@@ -59,30 +59,32 @@ Import the latest **script** and **styling** ([See all versions](https://cdn.jsd
 
 # <a name="usage"></a>Usage
 
-💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
-
-**Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
-
-(For a full list of `data-*` attribute options, see [Options](#options))
+Define the list of files and their contents as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
 ```html
 <ol class='vtv' data-language="javascript">
   <!-- File 1 -->
-  <!-- File contents will be fetched from `data-url` -->
+  <!-- Fetch file contents from `data-url` -->
   <li
     data-path="lib/axios.js"
     data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
   </li>
 
   <!-- File 2 -->
-  <!-- You can specify the file contents directly inside `<li>...</li>` -->
-  <!-- You can override syntax highlighting with `data-language` for this file -->
+  <!-- Alternately, you can specify the file contents directly inside `<li>...</li>` -->
+  <!-- You can also override syntax highlighting with `data-language` for this file -->
   <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
 
   <!-- File 3 -->
   ...
 </ol>
 ```
+
+For a full list of `data-*` attribute options, see [Options](#options)
+
+💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
+
+▶️ To run this example on codepen, [click here](https://codepen.io/abhchand/pen/WNZGQpQ)
 
 # <a name="syntax-highlighting"></a>Syntax Highlighting
 
