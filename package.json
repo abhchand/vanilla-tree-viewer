@@ -1,6 +1,6 @@
 {
   "name": "vanilla-tree-viewer",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A directory layout for viewing code files",
   "main": "./dist/index.js",
   "scripts": {
