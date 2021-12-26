@@ -46,35 +46,33 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 
 # <a name="install"></a>Install
 
-**Import** the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
+Import the latest **script** and **styling** ([See all versions](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@master/dist/))
 
 ```html
 <head>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css">
+  <!-- Note the `onload` call within the `<script>` tag. -->
+  <script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/index.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/main.min.css">
 </head>
 ```
 
 # <a name="usage"></a>Usage
 
-💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
-
-① **Define** the list of files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
-
-(For a full list of `data-*` attribute options, see [Options](#options))
+Define the list of files and their contents as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
 
 ```html
 <ol class='vtv' data-language="javascript">
   <!-- File 1 -->
-  <!-- File contents will be fetched from `data-url` -->
+  <!-- Fetch file contents from `data-url` -->
   <li
     data-path="lib/axios.js"
     data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
   </li>
 
   <!-- File 2 -->
-  <!-- You can specify the file contents directly inside `<li>...</li>` -->
-  <!-- You can override syntax highlighting with `data-language` for this file -->
+  <!-- Alternately, you can specify the file contents directly inside `<li>...</li>` -->
+  <!-- You can also override syntax highlighting with `data-language` for this file -->
   <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
 
   <!-- File 3 -->
@@ -82,15 +80,11 @@ Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-ra
 </ol>
 ```
 
-② **Render** all instances by calling `VanillaTreeViewer.renderAll()` after page load.
+For a full list of `data-*` attribute options, see [Options](#options)
 
-```html
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    VanillaTreeViewer.renderAll();
-  }, false);
-</script>
-```
+💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
+
+▶️ To run this example on codepen, [click here](https://codepen.io/abhchand/pen/WNZGQpQ)
 
 # <a name="syntax-highlighting"></a>Syntax Highlighting
 
@@ -116,7 +110,7 @@ If you require syntax highlighting for any language not supported by default, yo
 For example, to highlight `ActionScript` include the second `<script>` definition below:
 
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+<script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/index.min.js"></script>
 
 <!-- Add this: -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/actionscript.min.js"></script>
@@ -143,7 +137,7 @@ The following attribute options are available:
 | `id` | `String` | parent node only | No | auto-generated | Each `VanillaTreeViewer` instance is automatically assigned a unique, sequential `id` (`vtv--1`, `vtv--2`, etc...). However, if you explicitly specify an `id` it will be preserved and used instead of the auto-generated value.
 | `class` | `String` | parent node only | **Yes** | n/a | The class name `.vtv` **must** exist on each parent node. Optionally, if you specify any other custom classes they will also be preserved.
 | `data-path`  | `String` | child node only | **Yes** | n/a | The path under which the file should be displayed in the viewer tree |
-| `data-url`  | `String` | child node only | Yes (if no inline file contents specified) | `null` | The URL to fetch the file contents from (e.g. Github Raw URLs). Any inline file contents in the HTML always take precedence over `data-url`.|
+| `data-url`  | `String` | child node only | Yes (if no inline file contents specified) | `null` | The URL to fetch the file contents from (e.g. Github Raw URLs). Any inline file contents specified between `<li>...</li>` will always take precedence over `data-url`.|
 | `data-selected` | `Boolean` | child node only | No | `false` | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `data-selected=true`, the first one is chosen. Similarly, if no file is marked `data-selected=true`, the first file in the list will be selected by default.
 | `data-language` | `String` | child or parent node | No | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
 | `data-style` | `String` | child or parent node | No | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles). (**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.)
@@ -170,7 +164,7 @@ For example:
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
-While you can change the `style`/theme for any specific file(s), `VanillaTreeViewer` does not provide a programmatic way to customize the component itself. However, you are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css) at your discretion.
+While you can change the `style`/theme for any specific file(s), `VanillaTreeViewer` does not provide a programmatic way to customize the component itself. However, you are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/main.min.css) at your discretion.
 
 * All top-level CSS classes begin with `.vtv*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.

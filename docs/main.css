@@ -10,6 +10,8 @@ body{font-family:PT Sans, DejaVu Sans, Arial, sans;background-color:#005CA3;padd
 
 .vtv__code-path{flex-grow:1;overflow-x:auto;line-height:30px;white-space:nowrap}
 
+.vtv__wrap-text-toggle button{background-color:transparent;border:none;cursor:pointer}.vtv__wrap-text-toggle button svg{width:25px;height:25px}.vtv__wrap-text-toggle button svg path{stroke:#23241f}.vtv__wrap-text-toggle button svg path:last-child{fill:#23241f}.vtv__wrap-text-toggle--active{border-radius:2px;box-shadow:inset 0 0 10px #444}.vtv__wrap-text-toggle--active button svg path{stroke:#EBEDEF}.vtv__wrap-text-toggle--active button svg path:last-child{fill:#EBEDEF}
+
 .vtv__code{height:100%;overflow-y:auto;font-size:14px;line-height:1.3}.vtv__code>pre{height:100%;margin:0}.vtv__code>pre>code{box-sizing:border-box;height:100%;padding-left:10px !important}
 
 

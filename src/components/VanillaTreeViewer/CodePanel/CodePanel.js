@@ -21,13 +21,18 @@ const render = (props) => {
 
   // Build Header and Code
 
-  const header = renderComponent(Header, { file: props.file });
+  const header = renderComponent(Header, {
+    file: props.file,
+    wrapText: props.wrapText,
+    toggleWrapText: props.toggleWrapText
+  });
   const code = renderComponent(Code, {
     namespace: props.namespace,
     file: props.file,
     syntaxHighlightStyles: props.syntaxHighlightStyles,
     fetchFileContents: props.fetchFileContents,
-    fetchSyntaxHighlightStyle: props.fetchSyntaxHighlightStyle
+    fetchSyntaxHighlightStyle: props.fetchSyntaxHighlightStyle,
+    wrapText: props.wrapText
   });
 
   // Assemble

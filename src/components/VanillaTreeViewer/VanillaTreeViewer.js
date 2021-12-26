@@ -14,12 +14,47 @@ import Store from 'lib/Store/Store';
 import { validateFiles } from './Validator/Validator';
 
 class VanillaTreeViewer extends Component {
+  /*
+   * Top-level API used to render a VanillaTreeViewer instance on top
+   * of each user-defined HTML node.
+   *
+   * This function is idempotent, so it can be called repeatedly as
+   * new user-defined HTML nodes are added to the document.
+   */
   static renderAll() {
     /*
-     * Extract configuration from each user-defined node
-     * and render a `VanillaTreeViewer` instance on that node
+     * Define the rendering function, which will:
+     *   1. Parse/extract configuration from each user-defined node and
+     *   2. Render a `VanillaTreeViewer` instance on that node
      */
-    parseUserNodes().forEach((args) => new VanillaTreeViewer(...args).render());
+    const perform = () => {
+      parseUserNodes().forEach((args) =>
+        new VanillaTreeViewer(...args).render()
+      );
+    };
+
+    /*
+     * We want to ensure the DOM content is fully loaded and all scripts are
+     * loaded before running the above.
+     *
+     * Check the current state of the page and either run it now if it's ready,
+     * or defer execution until the page is done loading content.
+     *
+     * See https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState
+     */
+    if (document.readyState === 'complete') {
+      perform();
+    } else {
+      document.onreadystatechange = () => {
+        /*
+         * Check if page is about to transition from
+         * `interactive` -> `complete`
+         */
+        if (document.readyState === 'interactive') {
+          perform();
+        }
+      };
+    }
   }
 
   constructor(id, files) {
@@ -31,6 +66,7 @@ class VanillaTreeViewer extends Component {
     this.id = id;
 
     this.toggleDirectory = this.toggleDirectory.bind(this);
+    this.toggleWrapText = this.toggleWrapText.bind(this);
     this.updateSelectedPath = this.updateSelectedPath.bind(this);
     this.fetchFileContents = this.fetchFileContents.bind(this);
     this.fetchSyntaxHighlightStyle = this.fetchSyntaxHighlightStyle.bind(this);
@@ -51,7 +87,8 @@ class VanillaTreeViewer extends Component {
       tree: tree,
       selectedPath: selectedPath,
       syntaxHighlightStyles: {},
-      errorText: validationResult.error
+      errorText: validationResult.error,
+      wrapText: false
     };
   }
 
@@ -60,6 +97,11 @@ class VanillaTreeViewer extends Component {
 
     tree[path].isOpen = !tree[path].isOpen;
     this.store.setState({ tree: tree });
+  }
+
+  toggleWrapText() {
+    const { wrapText } = this.store.state;
+    this.store.setState({ wrapText: !wrapText });
   }
 
   updateSelectedPath(path) {
@@ -125,7 +167,8 @@ class VanillaTreeViewer extends Component {
 
   // Renders the VanillaTreeViewer component
   renderComponent() {
-    const { selectedPath, syntaxHighlightStyles, tree } = this.store.state;
+    const { selectedPath, syntaxHighlightStyles, tree, wrapText } =
+      this.store.state;
 
     /*
      * Creates HTMLElement:
@@ -152,7 +195,9 @@ class VanillaTreeViewer extends Component {
       file: tree[selectedPath],
       syntaxHighlightStyles: syntaxHighlightStyles,
       fetchFileContents: this.fetchFileContents,
-      fetchSyntaxHighlightStyle: this.fetchSyntaxHighlightStyle
+      fetchSyntaxHighlightStyle: this.fetchSyntaxHighlightStyle,
+      wrapText: wrapText,
+      toggleWrapText: this.toggleWrapText
     });
 
     div.appendChild(treeEl);
