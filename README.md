@@ -59,19 +59,21 @@ Import the latest **script** and **styling** ([See all versions](https://cdn.jsd
 
 # <a name="usage"></a>Usage
 
-Define the list of files and their contents as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+At minimum, you will need to specify the _path_ and _contents_ for all files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+
+Additional behavior can be defined using `data-*` attributes. For a full list of `data-*` attributes, see [Options](#options).
 
 ```html
 <ol class='vtv' data-language="javascript">
   <!-- File 1 -->
-  <!-- Fetch file contents from `data-url` -->
+  <!-- File contents will be fetched from the `data-url` -->
   <li
     data-path="lib/axios.js"
     data-url="https://raw.githubusercontent.com/axios/axios/master/lib/axios.js">
   </li>
 
   <!-- File 2 -->
-  <!-- Alternately, you can specify the file contents directly inside `<li>...</li>` -->
+  <!-- Alternately, you can directly specify the file contents inline `<li>...</li>` -->
   <!-- You can also override syntax highlighting with `data-language` for this file -->
   <li data-path="values.json" data-language="json">{ "foo": "bar" }</li>
 
@@ -79,8 +81,6 @@ Define the list of files and their contents as an HTML list (`<ol>`). You **must
   ...
 </ol>
 ```
-
-For a full list of `data-*` attribute options, see [Options](#options)
 
 💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
 
@@ -118,7 +118,7 @@ For example, to highlight `ActionScript` include the second `<script>` definitio
 
 # <a name="options"></a>Options
 
-`VanillaTreeViewer` uses HTML attributes on the parent and child nodes to configure behavior
+`VanillaTreeViewer` uses HTML attributes on the _parent_ (`<ol>`) and _child_ (`<li>`) nodes to configure behavior.
 
 ```html
 <!-- Parent node -->
@@ -142,6 +142,8 @@ The following attribute options are available:
 | `data-language` | `String` | child or parent node | No | `null` | The `highlight.js` language to use for syntax highlighting. [See a full list of supported languages](https://github.com/highlightjs/highlight.js/tree/master/src/languages).
 | `data-style` | `String` | child or parent node | No | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles). (**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.)
 
+
+For attributes that can be specified on the "child or parent node", the file-level attribute (`<li>`) takes precedence.
 
 # <a name="customization"></a>Customization
 
