@@ -1,0 +1,36 @@
+@import "components/VanillaTreeViewer/Colors.scss";
+
+.vtv__wrap-text-toggle {
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      width: 25px;
+      height: 25px;
+
+      path {
+        stroke: $dark_jungle_green;
+        &:last-child {
+          fill: $dark_jungle_green;
+        }
+      }
+    }
+  }
+}
+.vtv__wrap-text-toggle--active {
+  border-radius: 2px;
+  box-shadow: inset 0 0 10px #444;
+
+  button {
+    svg {
+      path {
+        stroke: $wimbeldon_ridge;
+        &:last-child {
+          fill: $wimbeldon_ridge;
+        }
+      }
+    }
+  }
+}
