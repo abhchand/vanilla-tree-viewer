@@ -102,6 +102,12 @@ class Code {
     const code = document.createElement('code');
     code.classList.add('hljs');
     code.setAttribute('tabindex', '-1');
+    if (this.props.wrapText) {
+      code.setAttribute(
+        'style',
+        'white-space: break-spaces;word-wrap: initial;'
+      );
+    }
 
     code.innerHTML = this.highlightedContents();
     pre.appendChild(code);

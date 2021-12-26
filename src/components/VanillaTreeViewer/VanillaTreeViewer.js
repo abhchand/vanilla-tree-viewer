@@ -66,6 +66,7 @@ class VanillaTreeViewer extends Component {
     this.id = id;
 
     this.toggleDirectory = this.toggleDirectory.bind(this);
+    this.toggleWrapText = this.toggleWrapText.bind(this);
     this.updateSelectedPath = this.updateSelectedPath.bind(this);
     this.fetchFileContents = this.fetchFileContents.bind(this);
     this.fetchSyntaxHighlightStyle = this.fetchSyntaxHighlightStyle.bind(this);
@@ -86,7 +87,8 @@ class VanillaTreeViewer extends Component {
       tree: tree,
       selectedPath: selectedPath,
       syntaxHighlightStyles: {},
-      errorText: validationResult.error
+      errorText: validationResult.error,
+      wrapText: false
     };
   }
 
@@ -95,6 +97,11 @@ class VanillaTreeViewer extends Component {
 
     tree[path].isOpen = !tree[path].isOpen;
     this.store.setState({ tree: tree });
+  }
+
+  toggleWrapText() {
+    const { wrapText } = this.store.state;
+    this.store.setState({ wrapText: !wrapText });
   }
 
   updateSelectedPath(path) {
@@ -160,7 +167,8 @@ class VanillaTreeViewer extends Component {
 
   // Renders the VanillaTreeViewer component
   renderComponent() {
-    const { selectedPath, syntaxHighlightStyles, tree } = this.store.state;
+    const { selectedPath, syntaxHighlightStyles, tree, wrapText } =
+      this.store.state;
 
     /*
      * Creates HTMLElement:
@@ -187,7 +195,9 @@ class VanillaTreeViewer extends Component {
       file: tree[selectedPath],
       syntaxHighlightStyles: syntaxHighlightStyles,
       fetchFileContents: this.fetchFileContents,
-      fetchSyntaxHighlightStyle: this.fetchSyntaxHighlightStyle
+      fetchSyntaxHighlightStyle: this.fetchSyntaxHighlightStyle,
+      wrapText: wrapText,
+      toggleWrapText: this.toggleWrapText
     });
 
     div.appendChild(treeEl);

@@ -3,7 +3,11 @@ import { DEFAULT_OPTIONS } from 'components/VanillaTreeViewer/Tree/Builder/Const
 import { expect } from 'chai';
 import { renderComponent } from 'components/VanillaTreeViewer/Helpers/renderComponent';
 
-let fetchFileContents, fetchSyntaxHighlightStyle, file, syntaxHighlightStyles;
+let fetchFileContents,
+  fetchSyntaxHighlightStyle,
+  file,
+  syntaxHighlightStyles,
+  wrapText;
 
 const namespace = 'app';
 
@@ -34,6 +38,8 @@ beforeEach(() => {
     'custom-style':
       'pre code.hljs{display:block;}code.hljs{border: none;}.hljs-subst,.hljs-tag{color:#ffffff}'
   };
+
+  wrapText = false;
 });
 
 describe('<Code />', () => {
@@ -104,6 +110,28 @@ describe('<Code />', () => {
           const style = container.getElementsByTagName('style')[0];
 
           expect(style.innerHTML).to.eql('');
+        });
+      });
+
+      describe('wrapping text', () => {
+        it('renders no `style` by default', () => {
+          const container = render();
+          const code = container.getElementsByTagName('code')[0];
+
+          expect(code.attributes.style).to.be.undefined;
+        });
+
+        describe('`wrapText` is set to `true`', () => {
+          beforeEach(() => (wrapText = true));
+
+          it('renders a `style` to wrap text', () => {
+            const container = render();
+            const code = container.getElementsByTagName('code')[0];
+
+            expect(code.attributes.style.nodeValue).to.equal(
+              'white-space: break-spaces;word-wrap: initial;'
+            );
+          });
         });
       });
     });
@@ -202,7 +230,8 @@ const render = (additionalProps = {}) => {
     file: file,
     syntaxHighlightStyles: syntaxHighlightStyles,
     fetchFileContents: fetchFileContents,
-    fetchSyntaxHighlightStyle: fetchSyntaxHighlightStyle
+    fetchSyntaxHighlightStyle: fetchSyntaxHighlightStyle,
+    wrapText: wrapText
   };
 
   const props = { ...fixedProps, ...additionalProps };

@@ -417,6 +417,40 @@ describe('<VanillaTreeViewer />', () => {
       });
     });
   });
+
+  describe('toggling text wrapping', () => {
+    const toggle = () => document.querySelector('.vtv__wrap-text-toggle');
+    const code = () => document.querySelector('code');
+
+    const hasActiveClass = () =>
+      toggle().classList.contains('vtv__wrap-text-toggle--active');
+    const hasWrapStyle = () =>
+      Boolean((code().attributes.style || {}).nodeValue);
+
+    const clickWrapTextToggle = () => toggle().querySelector('button').click();
+
+    const expectWrapTextEnabled = () => {
+      expect(hasActiveClass()).to.be.true;
+      expect(hasWrapStyle()).to.be.true;
+    };
+    const expectWrapTextDisabled = () => {
+      expect(hasActiveClass()).to.be.false;
+      expect(hasWrapStyle()).to.be.false;
+    };
+
+    it('can toggle text wrapping', async () => {
+      render();
+      await waitUntil(hasRenderedCode);
+
+      expectWrapTextDisabled();
+
+      clickWrapTextToggle();
+      expectWrapTextEnabled();
+
+      clickWrapTextToggle();
+      expectWrapTextDisabled();
+    });
+  });
 });
 
 const buildNodes = () => {
