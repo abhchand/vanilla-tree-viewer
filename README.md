@@ -143,7 +143,7 @@ The following attribute options are available:
 | `data-style` | `String` | child or parent node | No | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles). (**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.)
 
 
-For attributes that can be specified on the "child or parent node", the file-level attribute (`<li>`) takes precedence.
+For attributes that can be specified on the "child or parent node", the child attribute (`<li>`) takes precedence.
 
 # <a name="customization"></a>Customization
 
