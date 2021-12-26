@@ -14,6 +14,7 @@ describe('<WrapTextToggle />', () => {
     // Verify container and class
     const container = render();
     expect(container.classList.contains('vtv__wrap-text-toggle')).to.be.true;
+    expect(container.classList.contains('vtv__code-panel-action')).to.be.true;
 
     // Verify `<button>` presence
     const button = container.querySelector('button');
@@ -28,7 +29,7 @@ describe('<WrapTextToggle />', () => {
     it('does not set the `--active` CSS class', () => {
       const container = render();
 
-      expect(container.classList.contains('vtv__wrap-text-toggle--active')).to
+      expect(container.classList.contains('vtv__code-panel-action--active')).to
         .be.false;
     });
 
@@ -38,8 +39,8 @@ describe('<WrapTextToggle />', () => {
       it('sets the `--active` CSS class', () => {
         const container = render();
 
-        expect(container.classList.contains('vtv__wrap-text-toggle--active')).to
-          .be.true;
+        expect(container.classList.contains('vtv__code-panel-action--active'))
+          .to.be.true;
       });
     });
   });

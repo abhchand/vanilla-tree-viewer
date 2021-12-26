@@ -9,3 +9,28 @@
   color: $wimbeldon_ridge;
   background-color: $midnight_lyric;
 }
+.vtv__code-panel-action {
+  margin-left: 10px;
+
+  &:before {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    content: '';
+  }
+
+  > button {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+.vtv__code-panel-action--active {
+  border-radius: 2px;
+  box-shadow: inset 0 0 10px #444;
+}

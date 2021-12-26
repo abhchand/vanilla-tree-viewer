@@ -16,15 +16,20 @@ const render = (_props) => {
    * Creates HTMLElement:
    *
    * <div class='vtv--logo'>
-   *   <a href='...'>
-   *     <svg>...</svg>
-   *   </a>
+   *   <button>
+   *     <a href='...'>
+   *       <svg>...</svg>
+   *     </a>
+   *   </button>
    * </div>
    *
    */
 
   const div = document.createElement('div');
+  div.classList.add('vtv__code-panel-action');
   div.classList.add('vtv__logo');
+
+  const button = document.createElement('button');
 
   const a = document.createElement('a');
   a.href = `${VTV_SOURCE}?utm_campaign=${UTM_CAMPAIGN}&utm_source=${utmSource()}`;
@@ -32,9 +37,11 @@ const render = (_props) => {
 
   a.innerHTML = binocularsIcon({
     height: '18px',
-    width: '27px'
+    width: '27px',
+    title: 'View Source'
   });
-  div.appendChild(a);
+  button.appendChild(a);
+  div.appendChild(button);
 
   return div;
 };
