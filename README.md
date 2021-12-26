@@ -51,9 +51,9 @@ Import the latest **script** and **styling** ([See all versions](https://cdn.jsd
 ```html
 <head>
   <!-- Note the `onload` call within the `<script>` tag. -->
-  <script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+  <script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/index.min.js"></script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/main.min.css">
 </head>
 ```
 
@@ -110,7 +110,7 @@ If you require syntax highlighting for any language not supported by default, yo
 For example, to highlight `ActionScript` include the second `<script>` definition below:
 
 ```html
-<script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/index.min.js"></script>
+<script type="text/javascript" onload="VanillaTreeViewer.renderAll()" src="https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/index.min.js"></script>
 
 <!-- Add this: -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/languages/actionscript.min.js"></script>
@@ -164,7 +164,7 @@ For example:
 
 The default styling for `VanillaTreeViewer` is based off the look and feel of [Sublime Text](https://www.sublimetext.com/).
 
-While you can change the `style`/theme for any specific file(s), `VanillaTreeViewer` does not provide a programmatic way to customize the component itself. However, you are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.0.0/dist/main.min.css) at your discretion.
+While you can change the `style`/theme for any specific file(s), `VanillaTreeViewer` does not provide a programmatic way to customize the component itself. However, you are free to customize the look and feel as needed by overriding [the CSS](https://cdn.jsdelivr.net/gh/abhchand/vanilla-tree-viewer@2.1.0/dist/main.min.css) at your discretion.
 
 * All top-level CSS classes begin with `.vtv*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
