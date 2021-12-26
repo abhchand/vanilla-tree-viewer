@@ -18,8 +18,11 @@ describe('<Logo />', () => {
 
   it('renders the SVG logo', () => {
     const logo = renderComponent(Logo);
-    const svg = logo.getElementsByTagName('svg')[0];
 
+    expect(logo.classList.contains('vtv__logo')).to.be.true;
+    expect(logo.classList.contains('vtv__code-panel-action')).to.be.true;
+
+    const svg = logo.getElementsByTagName('svg')[0];
     expect(svg).to.not.be.null;
   });
 

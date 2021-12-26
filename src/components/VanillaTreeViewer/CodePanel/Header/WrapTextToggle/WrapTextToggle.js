@@ -15,10 +15,11 @@ const render = (props) => {
    */
 
   const div = document.createElement('div');
+  div.classList.add('vtv__code-panel-action');
   div.classList.add('vtv__wrap-text-toggle');
 
   if (props.wrapText) {
-    div.classList.add('vtv__wrap-text-toggle--active');
+    div.classList.add('vtv__code-panel-action--active');
   }
 
   const button = document.createElement('button');

@@ -423,7 +423,7 @@ describe('<VanillaTreeViewer />', () => {
     const code = () => document.querySelector('code');
 
     const hasActiveClass = () =>
-      toggle().classList.contains('vtv__wrap-text-toggle--active');
+      toggle().classList.contains('vtv__code-panel-action--active');
     const hasWrapStyle = () =>
       Boolean((code().attributes.style || {}).nodeValue);
 
