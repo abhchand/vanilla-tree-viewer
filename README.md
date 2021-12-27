@@ -59,9 +59,9 @@ Import the latest **script** and **styling** ([See all versions](https://cdn.jsd
 
 # <a name="usage"></a>Usage
 
-At minimum, you will need to specify the _path_ and _contents_ for all files as an HTML list (`<ol>`). You **must** include the `.vtv` CSS class.
+At minimum, you will need to specify the directory _path_ and _contents_ for each file. This must be an ordered HTML list (`<ol>`) with a `.vtv` class.
 
-Additional behavior can be defined using `data-*` attributes. For a full list of `data-*` attributes, see [Options](#options).
+Additional behavior is specified using `data-*` attributes. For a full list of `data-*` attributes, see [Options](#options).
 
 ```html
 <ol class='vtv' data-language="javascript">
@@ -81,6 +81,8 @@ Additional behavior can be defined using `data-*` attributes. For a full list of
   ...
 </ol>
 ```
+
+When `renderAll()` is called on `<script>` load, it will parse the above HTML structure with attributes and mount a `VanillaTreeViewer` component at this location.
 
 💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
 
@@ -125,7 +127,7 @@ For example, to highlight `ActionScript` include the second `<script>` definitio
 <ol class="vtv">
   <!-- Child node -->
   <li data-path="src/index.js">
-    <!-- File contents -->
+    <!-- File contents (optional) -->
   </li>
 </ol>
 ```
@@ -135,7 +137,7 @@ The following attribute options are available:
 | Attribute  | Type | Applies to | Required? | Default | Description
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | `class` | `String` | parent node only | **Yes** | n/a | The class name `.vtv` **must** exist on each parent node. Optionally, if you specify any other custom classes they will also be preserved.
-| `data-path`  | `String` | child node only | **Yes** | n/a | The path under which the file should be displayed in the viewer tree |
+| `data-path`  | `String` | child node only | **Yes** | n/a | The directory path under which the file should be displayed in the viewer tree |
 | `data-url`  | `String` | child node only | **Yes\*** (one of the following must be present: inline file contents (`<li>...</li>`) or `data-url`) | `null` | The URL to fetch the file contents from (e.g. Github Raw URLs). Any inline file contents specified between `<li>...</li>` will always take precedence over `data-url`.|
 | `id` | `String` | parent node only | No | auto-generated | Each `VanillaTreeViewer` instance is automatically assigned a unique, sequential `id` (`vtv--1`, `vtv--2`, etc...). However, if you explicitly specify an `id` it will be preserved and used instead of the auto-generated value.
 | `data-selected` | `Boolean` | child node only | No | `false` | Indicates whether this file should be selected when the viewer loads. If more than one file is marked `data-selected="true"`, the first one is chosen. Similarly, if no file is marked `data-selected="true"`, the first file in the list will be selected by default.
@@ -143,13 +145,13 @@ The following attribute options are available:
 | `data-style` | `String` | child or parent node | No | `'monokai-sublime'` | The `highlight.js` style (color theme) to use for syntax highlighting. [See a full list of supported styles](https://github.com/highlightjs/highlight.js/tree/master/src/styles). (**NOTE**: The [`highlight.js` demo page](https://highlightjs.org/static/demo/) will let you preview various languages and styles.)
 
 
-For attributes that can be specified on the "child or parent node", the child attribute (`<li>`) takes precedence.
+For attributes that can be specified on either the "child or parent node", the child attribute (`<li>`) takes precedence.
 
 # <a name="customization"></a>Customization
 
 ### <a name="configuring-width-and-alignment"></a>Configuring Width and Alignment
 
-All `VanillaTreeViewer` instances are wrapped in a `<div class="vtv-wrapper">` element. It is recommended that you style this wrapper element accordingly to set the desired width and alignment.
+All `VanillaTreeViewer` instances are wrapped in a `<div class="vtv-wrapper">` element. It is recommended that you style this element accordingly to set the desired width and alignment.
 
 For example:
 
