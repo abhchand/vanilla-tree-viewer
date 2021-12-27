@@ -16,8 +16,6 @@
   font-family: monospace;
   border-radius: 5px;
 
-  box-shadow: 5px 5px 15px 0 rgba(50,50,50,.75);
-
   @include breakpoint($screen-xs) {
     flex-direction: row;
     height: 400px;

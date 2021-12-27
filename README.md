@@ -171,6 +171,14 @@ While you can change the `style`/theme for any specific file(s), `VanillaTreeVie
 * All top-level CSS classes begin with `.vtv*`
 * Please be aware that the default styling utilizes [media queries](https://www.w3schools.com/css/css_rwd_mediaqueries.asp) to apply styling at different screen widths.
 
+💡 TIP: if you want to give the component a nice drop shadow to make it stand out on light backgrounds, try:
+
+```css
+.vtv-root {
+  box-shadow: 5px 5px 15px 0 rgba(50,50,50,.75);
+}
+```
+
 # <a name="development"></a>Development
 
 See the guide to [`DEVELOPING`](guides/DEVELOPING.md).
