@@ -149,7 +149,7 @@ For attributes that can be specified on the "child or parent node", the child at
 
 ### <a name="configuring-width-and-alignment"></a>Configuring Width and Alignment
 
-All `VanillaTreeViewer` instances are wrapped in a containing `<div>` with a `.vtv-wrapper` class. It is recommended that you style this wrapper element accordingly to set the desired width and alignment.
+All `VanillaTreeViewer` instances are wrapped in a `<div class="vtv-wrapper">` element. It is recommended that you style this wrapper element accordingly to set the desired width and alignment.
 
 For example:
 
