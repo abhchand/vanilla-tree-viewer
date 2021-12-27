@@ -59,7 +59,7 @@ Import the latest **script** and **styling** ([See all versions](https://cdn.jsd
 
 # <a name="usage"></a>Usage
 
-At minimum, you will need to specify the directory _path_ and _contents_ for each file. This must be an ordered HTML list (`<ol>`) with a `.vtv` class.
+At minimum, you will need to specify the directory _path_ and _contents_ for each file. This must be an HTML list (`<ol>`) with a `.vtv` class.
 
 Additional behavior is specified using `data-*` attributes. For a full list of `data-*` attributes, see [Options](#options).
 
@@ -82,7 +82,7 @@ Additional behavior is specified using `data-*` attributes. For a full list of `
 </ol>
 ```
 
-When `renderAll()` is called on `<script>` load, it will parse the above HTML structure with attributes and mount a `VanillaTreeViewer` component at this location.
+When `renderAll()` is called [on `<script>` load](#install), it will parse the above HTML list structure with attributes and mount a `VanillaTreeViewer` component at this location.
 
 💡 To run this example locally, clone this project and open [`examples/quick_start.html`](examples/quick_start.html).
 
