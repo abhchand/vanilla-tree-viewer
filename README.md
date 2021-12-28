@@ -19,6 +19,7 @@
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
+[![Follow on Twitter][twitter-follow]][twitter-follow]
 
 Perfect for blog posts ([like this one](https://abhchand.me/blog/use-react-in-rails-without-the-react-rails-gem)), tutorials, documentation, etc...
 
@@ -222,3 +223,5 @@ See [release notes](https://github.com/abhchand/vanilla-tree-viewer/releases)
   https://twitter.com/intent/tweet?text=Check%20out%20vanilla-tree-viewer%20by%20%40YeaaaahBoiiii%20https%3A%2F%2Fgithub.com%2Fabhchand%2Fvanilla-tree-viewer%20%F0%9F%91%8D
 [twitter-badge]:
   https://img.shields.io/twitter/url/https/github.com/abhchand/vanilla-tree-viewer.svg?style=social
+[twitter-follow]:
+  https://img.shields.io/twitter/follow/vtv_js?style=social
