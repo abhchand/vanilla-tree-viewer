@@ -60,7 +60,7 @@ Import the latest **script** and **styling** ([See all versions](https://cdn.jsd
 
 # <a name="usage"></a>Usage
 
-At minimum, you will need to specify the directory _path_ and _contents_ for each file. This must be an HTML list (`<ol>`) with a `.vtv` class.
+At minimum, you will need to specify the directory _path_ and _contents_ for each file. This must be an [HTML list](https://www.scaler.com/topics/html/html-lists/) (`<ol>`) with a `.vtv` class.
 
 Additional behavior is specified using `data-*` attributes. For a full list of `data-*` attributes, see [Options](#options).
 
